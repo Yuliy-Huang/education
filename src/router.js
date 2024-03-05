@@ -112,6 +112,198 @@ const constantRoutes = [
             },
         ]
     },
+    {
+        path: '/student',
+        component: LayoutIndex,
+        redirect: '/campus-student',
+        meta:{
+            title: "校区学员",
+        },
+        children: [
+            {
+                path: "/campus-student",
+                name: "CampusStudent",
+                meta: {
+                    title: "校区学员",
+                    icon: "home",
+                    breadcrumbNoReaction: true,
+                    // isHidden: true
+                },
+                component: () =>
+                    import(
+                        "@/views/homePage.vue"
+                        ),
+            },
+        ]
+    },
+    {
+        path: '/management',
+        component: LayoutIndex,
+        redirect: '/query-management',
+        meta:{
+            title: "查询管理",
+        },
+        children: [
+            {
+                path: "/query-management",
+                name: "QueryManagement",
+                meta: {
+                    title: "查询管理",
+                    icon: "home",
+                    breadcrumbNoReaction: true,
+                    // isHidden: true
+                },
+                component: () =>
+                    import(
+                        "@/views/homePage.vue"
+                        ),
+            },
+        ]
+    },
+    {
+        path: '/archive',
+        component: LayoutIndex,
+        redirect: '/archive-management',
+        meta:{
+            title: "管理存档",
+        },
+        children: [
+            {
+                path: "/archive-management",
+                name: "ArchiveManagement",
+                meta: {
+                    title: "管理存档",
+                    icon: "home",
+                    breadcrumbNoReaction: true,
+                    // isHidden: true
+                },
+                component: () =>
+                    import(
+                        "@/views/homePage.vue"
+                        ),
+            },
+        ]
+    },
+    {
+        path: '/filing',
+        component: LayoutIndex,
+        redirect: '/daily-filing',
+        meta:{
+            title: "日常归档",
+        },
+        children: [
+            {
+                path: "/daily-filing",
+                name: "DailyFiling",
+                meta: {
+                    title: "日常归档",
+                    icon: "home",
+                    breadcrumbNoReaction: true,
+                    // isHidden: true
+                },
+                component: () =>
+                    import(
+                        "@/views/homePage.vue"
+                        ),
+            },
+        ]
+    },
+    {
+        path: '/detail',
+        component: LayoutIndex,
+        redirect: '/detail-view',
+        meta:{
+            title: "明细查看",
+        },
+        children: [
+            {
+                path: "/detail-view",
+                name: "DetailView",
+                meta: {
+                    title: "明细查看",
+                    icon: "home",
+                    breadcrumbNoReaction: true,
+                    // isHidden: true
+                },
+                component: () =>
+                    import(
+                        "@/views/homePage.vue"
+                        ),
+            },
+        ]
+    },
+    {
+        path: '/financial',
+        component: LayoutIndex,
+        redirect: '/financial-statistics',
+        meta:{
+            title: "财务统计",
+        },
+        children: [
+            {
+                path: "/financial-statistics",
+                name: "FinancialStatistics",
+                meta: {
+                    title: "财务统计",
+                    icon: "home",
+                    breadcrumbNoReaction: true,
+                    // isHidden: true
+                },
+                component: () =>
+                    import(
+                        "@/views/homePage.vue"
+                        ),
+            },
+        ]
+    },
+    {
+        path: '/clock',
+        component: LayoutIndex,
+        redirect: '/clock-in',
+        meta:{
+            title: "上班打卡",
+        },
+        children: [
+            {
+                path: "/clock-in",
+                name: "ClockIn",
+                meta: {
+                    title: "上班打卡",
+                    icon: "home",
+                    breadcrumbNoReaction: true,
+                    // isHidden: true
+                },
+                component: () =>
+                    import(
+                        "@/views/homePage.vue"
+                        ),
+            },
+        ]
+    },
+    {
+        path: '/campus',
+        component: LayoutIndex,
+        redirect: '/campus-account',
+        meta:{
+            title: "校区结账",
+        },
+        children: [
+            {
+                path: "/campus-account",
+                name: "CampusAccount",
+                meta: {
+                    title: "校区结账",
+                    icon: "home",
+                    breadcrumbNoReaction: true,
+                    // isHidden: true
+                },
+                component: () =>
+                    import(
+                        "@/views/homePage.vue"
+                        ),
+            },
+        ]
+    },
 ]
 
 

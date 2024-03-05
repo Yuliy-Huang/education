@@ -3,6 +3,9 @@
     <el-container class="common-container">
       <el-header class="common-head">
         <div class="menu_wrapper">
+          <div class="svg-div">
+            <my-pure-svg :svg-tab="svgBlock" class="svg-left" @click="showNav = !showNav"></my-pure-svg>
+          </div>
           <el-menu class="el-menu-demo"
                    mode="horizontal"
                    :router="true"
@@ -11,8 +14,7 @@
                    :default-active="currentPagePath"
                    :collapse-transition="true"
                    :unique-opened="true">
-            <my-pure-svg :svg-tab="svgBlock" class="svg-left" @click="showNav = !showNav"></my-pure-svg>
-            <div v-if="!showNav" class="nav-date">{{nowDate}}</div>
+            <div v-if="!showNav" class="nav-date">{{ nowDate }}</div>
             <div v-for="(item, index) in currentRoleMenu"
                  :key="index">
               <el-menu-item
