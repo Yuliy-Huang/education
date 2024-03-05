@@ -34,6 +34,38 @@
       </el-header>
       <el-main class="content_wrapper">
         <router-view></router-view>
+        <div class="foot-wrapper">
+          <el-row class="foot-head-row">
+            <el-col :span="4" class="foot-head-1">前台端数据控制平台</el-col>
+            <el-col :span="1" class="foot-head-2">
+              <div class="block"></div>
+            </el-col>
+          </el-row>
+          <el-row class="foot-row">
+            <el-col :span="8">
+              <div class="foot-col-1">
+                <div class="list-item">left</div>
+                <div class="list-item">top</div>
+                <div class="list-item">bottom</div>
+              </div>
+            </el-col>
+            <el-col :span="8">
+              <div class="foot-col-2">
+                <div class="item1">left</div>
+                <div class="item2">middle</div>
+                <div class="item3">right</div>
+                <div class="item4">footer</div>
+              </div>
+            </el-col>
+            <el-col :span="8">
+              <div class="foot-col-3">
+                <div class="item1">top</div>
+                <div class="item2">right</div>
+                <div class="item3">footer</div>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
       </el-main>
     </el-container>
   </div>

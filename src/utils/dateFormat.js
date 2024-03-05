@@ -26,7 +26,7 @@ export function getNowTime() {
     // const second = date.getSeconds();
     //周
     const currentWeek = "周" + "日一二三四五六".charAt(new Date().getDay());
-    const resTime = year + ' 年 ' + month.toString() + ' 月 ' + day.toString() + ' 日' + '\xa0\xa0' + currentWeek + ' ' + period + '\xa0\xa0' + addZero(hour) + ':' + addZero(minute) ;
+    const resTime = year + ' 年 ' + month.toString() + ' 月 ' + day.toString() + ' 日' + '\xa0\xa0' + currentWeek + period + '\xa0\xa0' + addZero(hour) + ':' + addZero(minute) ;
     console.log('resTime : ', resTime)
     return resTime;
 }
