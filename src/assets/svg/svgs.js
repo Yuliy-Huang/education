@@ -4,4 +4,3 @@ export const svgBlock = '<svg width="36" height="34" viewBox="0 0 38 36" fill="n
     '<path fill-rule="evenodd" clip-rule="evenodd" d="M3 20H15C16.105 20 17 20.896 17 22V33C17 34.105 16.105 35 15 35H3C1.895 35 1 34.105 1 33V22C1 20.896 1.895 20 3 20Z" fill="#222322" stroke="black"/>\n' +
     '<path fill-rule="evenodd" clip-rule="evenodd" d="M23 20H35C36.105 20 37 20.896 37 22V33C37 34.105 36.105 35 35 35H23C21.895 35 21 34.105 21 33V22C21 20.896 21.895 20 23 20Z" fill="#222322" stroke="black"/>\n' +
     '</svg>'
-

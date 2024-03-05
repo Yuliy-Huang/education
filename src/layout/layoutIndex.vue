@@ -14,7 +14,11 @@
                    :default-active="currentPagePath"
                    :collapse-transition="true"
                    :unique-opened="true">
+            <div v-if="!showNav" class="notification">动态通知[{{ notificationNum }}]</div>
             <div v-if="!showNav" class="nav-date">{{ nowDate }}</div>
+            <div v-if="!showNav" class="school-info">ID: {{ schoolId }}</div>
+            <div v-if="!showNav" class="top-button1"><el-icon><Back /></el-icon></div>
+            <div v-if="!showNav" class="top-button2"><el-icon><Close /></el-icon></div>
             <div v-for="(item, index) in currentRoleMenu"
                  :key="index">
               <el-menu-item
@@ -36,7 +40,7 @@
         <router-view></router-view>
         <div class="foot-wrapper">
           <el-row class="foot-head-row">
-            <el-col :span="4" class="foot-head-1">前台端数据控制平台</el-col>
+            <el-col :span="4" class="foot-head-1">管理端数据控制平台</el-col>
             <el-col :span="1" class="foot-head-2">
               <div class="block"></div>
             </el-col>
@@ -44,24 +48,36 @@
           <el-row class="foot-row">
             <el-col :span="8">
               <div class="foot-col-1">
-                <div class="list-item">left</div>
-                <div class="list-item">top</div>
-                <div class="list-item">bottom</div>
+                <div class="weekly-1">left</div>
+                <div class="weekly-2">教师学员每周数据</div>
+                <div class="weekly-3">
+                  <div class="left-arrow"><img :src="require(`@/assets/img/arrowLeft.png`)"
+                             style="width: 24px; height: 14px;"
+                             alt=""/></div>
+                  <div class="center-text">吉他教师：陈老师</div>
+                  <div class="right-arrow"><img :src="require(`@/assets/img/arrowRight.png`)"
+                             style="width: 24px; height: 14px;"
+                             alt=""/></div>
+                </div>
               </div>
             </el-col>
             <el-col :span="8">
               <div class="foot-col-2">
-                <div class="item1">left</div>
-                <div class="item2">middle</div>
-                <div class="item3">right</div>
-                <div class="item4">footer</div>
+                <div class="monthly-1">left</div>
+                <div class="monthly-2">教师学员每月数据</div>
+                <div class="monthly-3">right</div>
+                <div class="monthly-4">
+                  <div class="center-text">吉他教师：陈老师</div>
+                </div>
               </div>
             </el-col>
             <el-col :span="8">
               <div class="foot-col-3">
-                <div class="item1">top</div>
-                <div class="item2">right</div>
-                <div class="item3">footer</div>
+                <div class="year-1">教师学员全年数据</div>
+                <div class="year-2">right</div>
+                <div class="year-3">
+                  <div class="center-text">吉他教师：xxxxx</div>
+                </div>
               </div>
             </el-col>
           </el-row>
@@ -82,6 +98,7 @@ import route from "../router";
 import {svgBlock} from '@/assets/svg/svgs'
 import MyPureSvg from "@/components/MyPureSvg.vue";
 import {getNowTime} from "@/utils/dateFormat";
+import {Close, Back} from '@element-plus/icons-vue'
 
 const currentRoleMenu = ref([])
 const currentPagePath = ref("");
@@ -91,6 +108,8 @@ const username = ref('')
 const userIcon = ref('')
 const showNav = ref(false)
 const nowDate = ref('')
+const notificationNum = ref(28)
+const schoolId = ref('A1008')
 
 const initMenu = async () => {
   let tempRouter = route.getRoutes()
