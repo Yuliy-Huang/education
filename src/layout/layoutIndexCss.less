@@ -611,6 +611,13 @@
             grid-column-end: 100;
             grid-row-start: 1;
             grid-row-end: 25;
+            .weekly-title {
+              height: 28%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              text-align: center;
+            }
           }
 
           .weekly-3 {
@@ -623,7 +630,7 @@
             grid-row-start: 25;
             grid-row-end: 26;
             display: grid;
-            justify-items: center;
+            justify-content: center;
             align-items: center;
             grid-template-columns: 20% 60% 20%;
 
@@ -641,7 +648,7 @@
             }
 
             .center-text {
-              //height: 100%;
+
             }
 
             .right-arrow {
@@ -693,6 +700,36 @@
             grid-column-end: 11;
             grid-row-start: 1;
             grid-row-end: 25;
+
+            .monthly-title {
+              height: 28%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              text-align: center;
+            }
+            .monthly-row {
+              border-top: 0.95px solid var(--black-custom-default);
+              height: 24%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              text-align: center;
+            }
+            .monthly-col-left {
+              border-right: 0.95px solid var(--black-custom-default);
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              text-align: center;
+            }
+            .monthly-col-right {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              text-align: center;
+            }
+
           }
 
           .monthly-3 {
@@ -714,9 +751,15 @@
             grid-column-end: 15;
             grid-row-start: 25;
             grid-row-end: 26;
-            display: grid;
-            justify-items: center;
+            display: flex;
+            justify-content: center;
             align-items: center;
+
+            .monthly-bottom {
+              flex: 1;
+              border-left: 0.95px solid var(--black-custom-default);
+              border-right: 0.95px solid var(--black-custom-default);
+            }
           }
 
         }
@@ -753,9 +796,14 @@
             grid-column-end: 32;
             grid-row-start: 25;
             grid-row-end: 26;
-            display: grid;
-            justify-items: center;
+            display: flex;
+            justify-content: center;
             align-items: center;
+
+            .year-bottom {
+              flex: 1;
+              border: 0.95px solid var(--black-custom-default);
+            }
           }
 
           .year-2 {

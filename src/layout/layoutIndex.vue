@@ -20,8 +20,16 @@
             <div v-if="!showNav" class="notification">动态通知[{{ notificationNum }}]</div>
             <div v-if="!showNav" class="nav-date">{{ nowDate }}</div>
             <div v-if="!showNav" class="school-info">ID: {{ schoolId }}</div>
-            <div v-if="!showNav" class="top-button1"><el-icon><Back /></el-icon></div>
-            <div v-if="!showNav" class="top-button2"><el-icon><Close /></el-icon></div>
+            <div v-if="!showNav" class="top-button1">
+              <el-icon>
+                <Back/>
+              </el-icon>
+            </div>
+            <div v-if="!showNav" class="top-button2">
+              <el-icon>
+                <Close/>
+              </el-icon>
+            </div>
             <div v-for="(item, index) in currentRoleMenu"
                  :key="index">
               <el-menu-item
@@ -54,25 +62,44 @@
             <el-col :span="8">
               <div class="foot-col-1">
                 <div class="weekly-1">left</div>
-                <div class="weekly-2">教师学员每周数据</div>
+                <div class="weekly-2">
+                  <div class="weekly-title">教师学员每周数据</div></div>
                 <div class="weekly-3">
-                  <div class="left-arrow"><img :src="require(`@/assets/img/arrowLeft.png`)"
-                             style="width: 24px; height: 14px;"
-                             alt=""/></div>
+                  <div class="left-arrow">
+                    <img :src="require(`@/assets/img/arrowLeft.png`)"
+                         style="width: 24px; height: 14px;"
+                         alt=""/>
+                  </div>
                   <div class="center-text">吉他教师：陈老师</div>
-                  <div class="right-arrow"><img :src="require(`@/assets/img/arrowRight.png`)"
-                             style="width: 24px; height: 14px;"
-                             alt=""/></div>
+                  <div class="right-arrow">
+                    <img :src="require(`@/assets/img/arrowRight.png`)"
+                         style="width: 24px; height: 14px;"
+                         alt=""/>
+                  </div>
                 </div>
               </div>
             </el-col>
             <el-col :span="8">
               <div class="foot-col-2">
                 <div class="monthly-1">left</div>
-                <div class="monthly-2">教师学员每月数据</div>
+                <div class="monthly-2">
+                  <div class="monthly-title">教师学员每月数据</div>
+                  <el-row class="monthly-row">
+                    <el-col :span="12" class="monthly-col-left">招生［0］人</el-col>
+                    <el-col :span="12" class="monthly-col-right">续费［0］人</el-col>
+                  </el-row>
+                  <el-row class="monthly-row">
+                    <el-col :span="12" class="monthly-col-left">请假［0］人</el-col>
+                    <el-col :span="12" class="monthly-col-right">旷课［0］人</el-col>
+                  </el-row>
+                  <el-row class="monthly-row">
+                    <el-col :span="12" class="monthly-col-left">停课［0］人</el-col>
+                    <el-col :span="12" class="monthly-col-right">退学［0］人</el-col>
+                  </el-row>
+                </div>
                 <div class="monthly-3">right</div>
                 <div class="monthly-4">
-                  <div class="center-text">吉他教师：陈老师</div>
+                  <div class="monthly-bottom" v-for="item in monthList" :key="item">{{ item }}</div>
                 </div>
               </div>
             </el-col>
@@ -81,7 +108,7 @@
                 <div class="year-1">教师学员全年数据</div>
                 <div class="year-2">right</div>
                 <div class="year-3">
-                  <div class="center-text">吉他教师：xxxxx</div>
+                  <div class="year-bottom" v-for="item in yearList" :key="item">{{ item }}</div>
                 </div>
               </div>
             </el-col>
@@ -148,6 +175,9 @@ const initMenu = async () => {
   // console.log('layout --- currentRoleMenu: ', currentRoleMenu.value)
 
 };
+
+const monthList = ref(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'])
+const yearList = ref(['招生', '续费', '请假', '旷课', '停课', '退学'])
 
 
 onMounted(() => {
