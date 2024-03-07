@@ -43,7 +43,9 @@
         <router-view></router-view>
         <div class="foot-wrapper">
           <el-row class="foot-head-row">
-            <el-col :span="4" class="foot-head-1">管理端数据控制平台</el-col>
+            <el-col :span="4" class="foot-head-1">
+              <div class="head-title">管理端数据控制平台</div>
+            </el-col>
             <el-col :span="1" class="foot-head-2">
               <div class="block"></div>
             </el-col>

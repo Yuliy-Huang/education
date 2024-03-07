@@ -28,7 +28,7 @@ body,
   text-align: center;
   color: var(--light-grey-custom);
   margin-top: 40px;
-  font-size: calc(100vw * 26 / 1920);
+  font-size: calc(100vw * 22 / 1920);
 }
 #appMain {
   height: 100%;

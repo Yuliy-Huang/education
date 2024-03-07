@@ -233,6 +233,30 @@ const constantRoutes = [
         ]
     },
     {
+        path: '/product',
+        component: LayoutIndex,
+        redirect: '/product-view',
+        meta:{
+            title: "商品查看",
+        },
+        children: [
+            {
+                path: "/product-view",
+                name: "ProductView",
+                meta: {
+                    title: "商品查看",
+                    icon: "home",
+                    breadcrumbNoReaction: true,
+                    // isHidden: true
+                },
+                component: () =>
+                    import(
+                        "@/views/homePage.vue"
+                        ),
+            },
+        ]
+    },
+    {
         path: '/financial',
         component: LayoutIndex,
         redirect: '/financial-statistics',
