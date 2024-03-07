@@ -1,5 +1,5 @@
 <template>
-  <div v-html="svgTab"></div>
+  <div v-html="svgTab" class="svg-tab-div"></div>
 </template>
 
 <script>
@@ -15,5 +15,8 @@ export default {
 </script>
 
 <style scoped>
-/* CSS样式 */
+.svg-tab-div {
+  text-align: center;
+  align-items: center;
+}
 </style>

@@ -4,7 +4,10 @@
       <el-header class="common-head">
         <div class="menu_wrapper">
           <div class="svg-div">
-            <my-pure-svg :svg-tab="svgBlock" class="svg-left" @click="showNav = !showNav"></my-pure-svg>
+            <img :src="require(`@/assets/img/block.png`)"
+                 @click="showNav = !showNav"
+                 class="svg-left"
+                 alt=""/>
           </div>
           <el-menu class="el-menu-demo"
                    mode="horizontal"
@@ -81,6 +84,12 @@
               </div>
             </el-col>
           </el-row>
+
+          <el-row class="foot-line">
+            <div class="line-1"></div>
+            <div class="line-2"></div>
+            <div class="line-3"></div>
+          </el-row>
         </div>
       </el-main>
     </el-container>
@@ -95,8 +104,6 @@ import {
   watch,
 } from "vue";
 import route from "../router";
-import {svgBlock} from '@/assets/svg/svgs'
-import MyPureSvg from "@/components/MyPureSvg.vue";
 import {getNowTime} from "@/utils/dateFormat";
 import {Close, Back} from '@element-plus/icons-vue'
 

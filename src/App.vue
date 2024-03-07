@@ -1,18 +1,11 @@
 <template>
   <div id="appMain">
     <router-view />
-<!--    <scale-box :width="1920" :height="1080" bgc="transparent" :delay="100" :isFlat="false">-->
-<!--      -->
-<!--    </scale-box>-->
   </div>
 </template>
 
 <script>
-// import ScaleBox from "vue3-scale-box";
-//
-// export default {
-//   components: { ScaleBox },
-// };
+
 </script>
 
 <style lang="scss">
@@ -35,17 +28,11 @@ body,
   text-align: center;
   color: var(--light-grey-custom);
   margin-top: 40px;
+  font-size: calc(100vw * 26 / 1920);
 }
 #appMain {
   height: 100%;
   background-color: var(--dark-grey-custom);
 
 }
-
-//main {
-//  background-image: url('./assets/img/background.jpg');
-//  background-size: contain;
-//  background-position: center center;
-//  background-repeat: no-repeat;
-//}
 </style>
