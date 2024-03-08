@@ -63,7 +63,71 @@
               <div class="foot-col-1">
                 <div class="weekly-1">left</div>
                 <div class="weekly-2">
-                  <div class="weekly-title">教师学员每周数据</div></div>
+                  <div class="weekly-title">教师学员每周数据</div>
+                  <el-row class="weekly-row">
+                    <div class="weekly-col">
+                      <div class="border-left">
+                        <span></span>
+                      </div>
+                      <div class="sharp-tag">已上：[0]人</div>
+                      <div class="border-right">
+                        <span></span>
+                      </div>
+                    </div>
+
+                    <div class="weekly-col">
+                      <div class="border-left">
+                        <span></span>
+                      </div>
+                      <div class="sharp-tag">未上：[0]人</div>
+                      <div class="border-right">
+                        <span></span>
+                      </div>
+                    </div>
+                  </el-row>
+                  <el-row class="weekly-row">
+                    <div class="weekly-col">
+                      <div class="border-left">
+                        <span></span>
+                      </div>
+                      <div class="sharp-tag">请假：[0]人</div>
+                      <div class="border-right">
+                        <span></span>
+                      </div>
+                    </div>
+
+                    <div class="weekly-col">
+                      <div class="border-left">
+                        <span></span>
+                      </div>
+                      <div class="sharp-tag">旷课：[0]人</div>
+                      <div class="border-right">
+                        <span></span>
+                      </div>
+                    </div>
+                  </el-row>
+                  <el-row class="weekly-row">
+                    <div class="weekly-col">
+                      <div class="border-left">
+                        <span></span>
+                      </div>
+                      <div class="sharp-tag">调课：[0]人</div>
+                      <div class="border-right">
+                        <span></span>
+                      </div>
+                    </div>
+
+                    <div class="weekly-col">
+                      <div class="border-left">
+                        <span></span>
+                      </div>
+                      <div class="sharp-tag">停课：[0]人</div>
+                      <div class="border-right">
+                        <span></span>
+                      </div>
+                    </div>
+                  </el-row>
+                </div>
                 <div class="weekly-3">
                   <div class="left-arrow">
                     <img :src="require(`@/assets/img/arrowLeft.png`)"
@@ -85,16 +149,16 @@
                 <div class="monthly-2">
                   <div class="monthly-title">教师学员每月数据</div>
                   <el-row class="monthly-row">
-                    <el-col :span="12" class="monthly-col-left">招生［0］人</el-col>
-                    <el-col :span="12" class="monthly-col-right">续费［0］人</el-col>
+                    <el-col :span="12" class="monthly-col-left">招生[0］人</el-col>
+                    <el-col :span="12" class="monthly-col-right">续费[0］人</el-col>
                   </el-row>
                   <el-row class="monthly-row">
-                    <el-col :span="12" class="monthly-col-left">请假［0］人</el-col>
-                    <el-col :span="12" class="monthly-col-right">旷课［0］人</el-col>
+                    <el-col :span="12" class="monthly-col-left">请假[0］人</el-col>
+                    <el-col :span="12" class="monthly-col-right">旷课[0］人</el-col>
                   </el-row>
                   <el-row class="monthly-row">
-                    <el-col :span="12" class="monthly-col-left">停课［0］人</el-col>
-                    <el-col :span="12" class="monthly-col-right">退学［0］人</el-col>
+                    <el-col :span="12" class="monthly-col-left">停课[0］人</el-col>
+                    <el-col :span="12" class="monthly-col-right">退学[0］人</el-col>
                   </el-row>
                 </div>
                 <div class="monthly-3">right</div>

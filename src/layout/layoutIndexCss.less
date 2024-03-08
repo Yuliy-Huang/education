@@ -326,12 +326,14 @@
       border-radius: 4px;
       cursor: pointer;
     }
+
     .nav-date {
       display: inline-block;
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
     }
+
     .school-info {
       position: absolute;
       right: 67px;
@@ -345,6 +347,7 @@
       border: 0.95px solid var(--black-custom-default);
       border-radius: 4px;
     }
+
     .top-button1 {
       position: absolute;
       right: 36px;
@@ -358,6 +361,7 @@
       border-radius: 4px;
       cursor: pointer;
     }
+
     .top-button2 {
       position: absolute;
       right: 5px;
@@ -548,6 +552,7 @@
           letter-spacing: 0.2em;
           position: relative;
           text-align: center;
+
           .head-title {
             padding-bottom: 1px;
             background-color: var(--dark-grey-custom-2);
@@ -592,11 +597,8 @@
             background-color: var(--dark-grey-custom-2);
             border: 1px solid var(--black-custom-default);
             border-radius: 2px;
-            //border-right-style: solid;
-            //border-width: 3px;
-            //border-color: var(--dark-grey-custom);
             grid-column-start: 1;
-            grid-column-end: 50;
+            grid-column-end: 65;
             grid-row-start: 1;
             grid-row-end: 26;
           }
@@ -607,16 +609,78 @@
             background-color: var(--dark-grey-custom-2);
             border: 1px solid var(--black-custom-default);
             border-radius: 2px;
-            grid-column-start: 50;
+            grid-column-start: 65;
             grid-column-end: 100;
             grid-row-start: 1;
             grid-row-end: 25;
+
             .weekly-title {
+              //border-bottom: 0.95px solid var(--black-custom-default);
               height: 28%;
               display: flex;
               justify-content: center;
               align-items: center;
               text-align: center;
+            }
+
+            .weekly-row {
+              height: 24%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              text-align: center;
+
+              .weekly-col {
+                display: inline-flex;
+                margin: 0 auto;
+                .border-left {
+                  width: 0;
+                  height: 0;
+                  border-bottom: 13px solid transparent;
+                  border-right: 13px solid var(--black-custom-default);
+                  border-top: 13px solid transparent;
+                  position: relative;
+                }
+                .border-left span {
+                  display: block;
+                  width: 0;
+                  height: 0;
+                  border-bottom: 12px solid transparent;
+                  border-right: 12px solid var(--grey-custom);
+                  border-top: 12px solid transparent;
+                  position: absolute;
+                  left: 1px;
+                  top: -12px;
+                }
+                .sharp-tag {
+                  border-top: 0.95px solid var(--black-custom-default);
+                  border-bottom: 0.95px solid var(--black-custom-default);
+                  display: inline-block;
+                  position: relative;
+                  background: var(--grey-custom);
+                  padding: 0 8px;
+                }
+                .border-right {
+                  width: 0;
+                  height: 0;
+                  border-bottom: 13px solid transparent;
+                  border-left: 13px solid var(--black-custom-default);
+                  border-top: 13px solid transparent;
+                  position: relative;
+                }
+                .border-right span {
+                  display: block;
+                  width: 0;
+                  height: 0;
+                  border-bottom: 12px solid transparent;
+                  border-left: 12px solid var(--grey-custom);
+                  border-top: 12px solid transparent;
+                  position: absolute;
+                  right: 1px;
+                  top: -12px;
+                }
+              }
+
             }
           }
 
@@ -625,7 +689,7 @@
             background-color: var(--grey-custom);
             border: 1px solid var(--black-custom-default);
             border-radius: 2px;
-            grid-column-start: 50;
+            grid-column-start: 65;
             grid-column-end: 100;
             grid-row-start: 25;
             grid-row-end: 26;
@@ -708,6 +772,7 @@
               align-items: center;
               text-align: center;
             }
+
             .monthly-row {
               border-top: 0.95px solid var(--black-custom-default);
               height: 24%;
@@ -715,6 +780,7 @@
               justify-content: center;
               align-items: center;
               text-align: center;
+
               .monthly-col-left {
                 border-right: 0.95px solid var(--black-custom-default);
                 display: flex;
@@ -722,6 +788,7 @@
                 align-items: center;
                 text-align: center;
               }
+
               .monthly-col-right {
                 display: flex;
                 justify-content: center;
@@ -749,7 +816,7 @@
             grid-column-start: 1;
             grid-column-end: 15;
             grid-row-start: 23;
-            grid-row-end: 26;
+            grid-row-end: 24;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -820,12 +887,14 @@
 
       .foot-line {
         bottom: 3px;
+
         .line-1 {
           border: 0.1px #E71F1A solid;
           width: 32.8%;
           display: inline-block;
           margin-left: 5px;
         }
+
         .line-2 {
           border: 0.1px #F4D622 solid;
           width: 32.9%;
@@ -833,7 +902,8 @@
           margin-left: 4px;
           margin-right: 4px;
         }
-        .line-3{
+
+        .line-3 {
           border: 0.1px #6DC4C4 solid;
           width: 32.8%;
           display: inline-block;
