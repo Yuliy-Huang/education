@@ -59,7 +59,7 @@ const constantRoutes = [
                 },
                 component: () =>
                     import(
-                        "@/views/homePage.vue"
+                        "@/views/systemSetting/indexPage.vue"
                         ),
             },
         ]
@@ -83,7 +83,7 @@ const constantRoutes = [
                 },
                 component: () =>
                     import(
-                        "@/views/homePage.vue"
+                        "@/views/academicStaff/indexPage.vue"
                         ),
             },
         ]
@@ -107,7 +107,7 @@ const constantRoutes = [
                 },
                 component: () =>
                     import(
-                        "@/views/homePage.vue"
+                        "@/views/substituteTeacher/indexPage.vue"
                         ),
             },
         ]
@@ -131,7 +131,7 @@ const constantRoutes = [
                 },
                 component: () =>
                     import(
-                        "@/views/homePage.vue"
+                        "@/views/campusStudent/indexPage.vue"
                         ),
             },
         ]
@@ -155,7 +155,7 @@ const constantRoutes = [
                 },
                 component: () =>
                     import(
-                        "@/views/homePage.vue"
+                        "@/views/queryManagement/indexPage.vue"
                         ),
             },
         ]
@@ -179,7 +179,7 @@ const constantRoutes = [
                 },
                 component: () =>
                     import(
-                        "@/views/homePage.vue"
+                        "@/views/archiveManagement/indexPage.vue"
                         ),
             },
         ]
@@ -203,7 +203,7 @@ const constantRoutes = [
                 },
                 component: () =>
                     import(
-                        "@/views/homePage.vue"
+                        "@/views/dailyFiling/indexPage.vue"
                         ),
             },
         ]
@@ -227,7 +227,7 @@ const constantRoutes = [
                 },
                 component: () =>
                     import(
-                        "@/views/homePage.vue"
+                        "@/views/detailView/indexPage.vue"
                         ),
             },
         ]
@@ -251,7 +251,7 @@ const constantRoutes = [
                 },
                 component: () =>
                     import(
-                        "@/views/homePage.vue"
+                        "@/views/productView/indexPage.vue"
                         ),
             },
         ]
@@ -275,7 +275,7 @@ const constantRoutes = [
                 },
                 component: () =>
                     import(
-                        "@/views/homePage.vue"
+                        "@/views/financialStatistics/indexPage.vue"
                         ),
             },
         ]
@@ -299,7 +299,7 @@ const constantRoutes = [
                 },
                 component: () =>
                     import(
-                        "@/views/homePage.vue"
+                        "@/views/clockIn/indexPage.vue"
                         ),
             },
         ]
@@ -323,7 +323,7 @@ const constantRoutes = [
                 },
                 component: () =>
                     import(
-                        "@/views/homePage.vue"
+                        "@/views/campusAccount/indexPage.vue"
                         ),
             },
         ]
