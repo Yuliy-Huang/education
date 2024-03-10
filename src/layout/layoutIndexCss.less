@@ -570,9 +570,6 @@
           width: 30px;
           /* 从左下到右上，从蓝色开始渐变、到50%位置是透明色渐变开始、最后以透明色结束 */
           background: linear-gradient(45deg, var(--dark-grey-custom-2), var(--dark-grey-custom-2) 39%, #393939 40%, #393939 50%, transparent 50%, transparent 100%);
-          /* 或者： background: linear-gradient(to right top, blue, blue 50%, transparent 50%, transparent 100%); */
-          //background-image: linear-gradient(45deg, yellow 50%, red 50%);
-          /* 等价于background-image: linear-gradient(45deg, yellow 0 50%, red 50% 100%);  */
         }
       }
 
@@ -845,12 +842,30 @@
             margin-bottom: 2px;
             margin-right: 3px;
             background-color: var(--dark-grey-custom-2);
+            //background-color: var(--white-custom);
             border: 1px solid var(--black-custom-default);
             border-radius: 2px;
             grid-column-start: 1;
             grid-column-end: 32;
             grid-row-start: 1;
             grid-row-end: 25;
+            .year-title {
+              height: 28%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              text-align: center;
+              border-bottom: 1px solid var(--black-custom-default);
+            }
+            .year-chart {
+              width: 100%;
+              height: 72%;
+              background-image: url('../assets/img/dashedLine.jpg');
+              background-size: cover;
+              background-position: center center;
+              background-repeat: no-repeat;
+            }
+
           }
 
           .year-3 {

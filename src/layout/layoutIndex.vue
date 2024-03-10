@@ -169,7 +169,10 @@
             </el-col>
             <el-col :span="8">
               <div class="foot-col-3">
-                <div class="year-1">教师学员全年数据</div>
+                <div class="year-1">
+                  <div class="year-title">教师学员全年数据</div>
+                  <div ref="yearChart" class="year-chart"></div>
+                </div>
                 <div class="year-2">right</div>
                 <div class="year-3">
                   <div class="year-bottom" v-for="item in yearList" :key="item">{{ item }}</div>
@@ -199,6 +202,7 @@ import {
 import route from "../router";
 import {getNowTime} from "@/utils/dateFormat";
 import {Close, Back} from '@element-plus/icons-vue'
+import * as echarts from 'echarts'
 
 const currentRoleMenu = ref([])
 const currentPagePath = ref("");
@@ -243,6 +247,7 @@ const initMenu = async () => {
 const monthList = ref(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'])
 const yearList = ref(['招生', '续费', '请假', '旷课', '停课', '退学'])
 
+const yearChart = ref(null);
 
 onMounted(() => {
   nextTick(() => {
@@ -251,6 +256,53 @@ onMounted(() => {
     username.value = localStorage.getItem('username')
     userIcon.value = localStorage.getItem('userIcon') === 'null' ? '' : localStorage.getItem('userIcon')
     initMenu();
+    const option = {
+      grid: {
+        top: '36%',
+        left: '-5%',
+        right: '-1%',
+        bottom: '-22%',
+        containLabel: true
+      },
+      xAxis: {
+        type: 'category',
+        data: ['招生', '续费', '请假', '旷课', '停课', '退学'],
+        show: false,
+      },
+      yAxis: {
+        type: 'value',
+        show: false,
+      },
+      series: [{
+        data: [40, 35, 45, 37, 30, 14],
+        type: 'bar',
+        barWidth: '45%',
+        itemStyle: {
+          normal: {
+            label: {
+              formatter: '{c}' + '人',
+              show: true,
+              position: "top",
+              borderWidth: 0.95, // 文字四角边框宽度
+              padding: 2, // 文字四角的内边距
+              textStyle: {
+                fontSize: "12",
+                color: "#676767"
+              }
+            },
+            color: '#222322',
+            borderWidth: 0.95,
+            borderColor: "#000000",
+          },
+        }
+      }]
+    };
+
+    const chartInstance = echarts.init(yearChart.value);
+    chartInstance.setOption(option);
+    window.addEventListener('resize', function () {
+      chartInstance.resize();
+    });
   });
 });
 
