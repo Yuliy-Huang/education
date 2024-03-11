@@ -27,13 +27,13 @@
       </div>
     </div>
     <div class="setting-content">
-      <tableComponent :user-column="columns" :isShowOperation="true"></tableComponent>
+      <tableComponent :user-column="columns" :table-data="tableData" :is-show-operation="true" :load-func="loadFunc"></tableComponent>
     </div>
   </div>
 </template>
 
 <script setup>
-import {onMounted, ref, watch} from 'vue';
+import {onMounted, reactive, ref, watch} from 'vue';
 import tableComponent from "@/components/tableComponent.vue"
 
 const titleList = ref([
@@ -81,15 +81,34 @@ const changeActiveTag = (v) => {
 
 const columns = [{
   label: '员工姓名',
+  prop: 'name'
 }, {
-  label: '校区职位'
+  label: '校区职位',
+  prop: 'position'
 }, {
-  label: '登陆电话'
+  label: '登陆电话',
+  prop: 'phone'
 }, {
-  label: '登录密码'
+  label: '登录密码',
+  prop: 'password'
 }]
-</script>
 
+const tableData = reactive([
+  {name: '田刚', position: '教务', phone: '15799995675', password: '666666'},
+  {name: '张三', position: '前台', phone: '13588887766', password: '888888'},
+  {name: '田刚', position: '教务', phone: '15799995675', password: '666666'},
+  {name: '张三', position: '前台', phone: '13588887766', password: '888888'},
+  {name: '田刚', position: '教务', phone: '15799995675', password: '666666'},
+  {name: '张三', position: '前台', phone: '13588887766', password: '888888'},
+  {name: '田刚', position: '教务', phone: '15799995675', password: '666666'},
+  {name: '张三', position: '前台', phone: '13588887766', password: '888888'},
+])
+
+const loadFunc = () => {
+
+}
+
+</script>
 <style lang="less">
 @import "@/assets/css/systemSettingCss";
 </style>

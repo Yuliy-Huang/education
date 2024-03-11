@@ -1,5 +1,10 @@
 <template>
-  <el-table :data="tableData" style="width: 100%" :cell-class-name="setClass" :header-cell-class-name="setClass">
+  <el-table v-el-table-infinite-scroll="loadFunc"
+            :data="tableData"
+            style="width: 100%"
+            height="300px"
+            :cell-class-name="setClass"
+            :header-cell-class-name="setClass">
     <el-table-column
         v-for="(item, index) in userColumn"
         :key="index"
@@ -37,7 +42,8 @@
 </template>
 
 <script setup>
-import {defineProps, toRefs} from "vue"
+import {defineProps, toRefs, watch} from "vue"
+import { default as vElTableInfiniteScroll } from "el-table-infinite-scroll";
 
 const props = defineProps({
   tableData: {
@@ -56,30 +62,34 @@ const props = defineProps({
     type: Object, default: () => {
     }
   },
+  loadFunc: {
+    type: Function,
+    required: true,
+  }
 })
 const {tableData} = toRefs(props);
 const {userColumn} = toRefs(props);
 const {isShowOperation} = toRefs(props);
 const {operationList} = toRefs(props);
 
+watch (tableData, () => {
+  if (tableData.value.length < 8) {
+    while (tableData.value.length < 8) {
+      tableData.value.push(null);
+    }
+  }
+}, { immediate: true })
+
+
 const setClass = (data) => {
+  if (data.columnIndex === 0) {
+    return 'addRightBorder'
+  }
   if (!isShowOperation && data.columnIndex !== userColumn.value.length - 1) {
-    return 'addBorder'
+    return 'addRightBorder'
   }
-  if (isShowOperation) {
-    return 'addBorder'
-  }
-  if (data.columnIndex === 0 && data.rowIndex === 0) {
-    return 'addLeftTop'
-  }
-  if (data.columnIndex === userColumn.value.length - 1 && data.rowIndex === 0) {
-    return 'addRightTop'
-  }
-  if (data.columnIndex === 0 && data.rowIndex === tableData.value.length - 1) {
-    return 'addLeftBottom'
-  }
-  if (data.columnIndex === userColumn.value.length - 1 && data.rowIndex === tableData.value.length - 1) {
-    return 'addRightBottom'
+  if (isShowOperation && data.columnIndex !== userColumn.value.length) {
+    return 'addRightBorder'
   }
 }
 </script>

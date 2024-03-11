@@ -47,21 +47,13 @@
   --el-header-height:  calc(100vh * 27 / 1080);
 }
 
-.addBorder {
+.addRightBorder {
   border-right: 1px solid var(--white-custom-2) !important;
 }
 
-.addLeftTop {
-  border-top-left-radius: 4px !important;
-}
-.addRightTop {
-  border-top-right-radius: 4px !important;
-}
-.addLeftBottom {
-  border-bottom-left-radius: 4px !important;
-}
-.addRightBottom {
-  border-bottom-right-radius: 4px !important;
+.el-scrollbar {
+  height: calc(100vh - 223px - 100vh * 300 / 1080) !important;
+  border: none !important;
 }
 
 .el-table {
@@ -75,17 +67,13 @@
   font-weight: normal;
 }
 
-.el-table--fit {
-  //padding: 20px;
-}
-
 .el-table, .el-table__expanded-cell {
   background-color: var(--black-custom-transparence);
 }
 
 .el-table tr {
   background-color: var(--black-custom-transparence) !important;
-  height: calc((100vh - 223px - 100vh * 300 / 1080) / 8);
+  //height: calc((100vh - 223px - 100vh * 300 / 1080) / 9) !important;
 }
 
 .el-table--enable-row-transition .el-table__body td, .el-table .cell {
@@ -101,7 +89,7 @@
 }
 
 .el-table td.el-table__cell, .el-table th.el-table__cell.is-leaf {
-  border-bottom: 1px solid var(--white-custom-2);
+  //border-bottom: 1px solid var(--white-custom-2);
 }
 
 .el-table__empty-text {
@@ -603,6 +591,7 @@
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
+    //background-color: transparent;
 
     .foot-wrapper {
       width: calc(100% - 8px);
