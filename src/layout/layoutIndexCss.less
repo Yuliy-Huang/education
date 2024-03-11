@@ -12,7 +12,6 @@
   --el-border-color-hover: #4ABDBC;
   --el-color-primary: #4ABDBC;
   --el-color-primary-light-3: #4ABDBC;
-  --el-fill-color-light: #eef2f2;
 
   --blue-custom: #AED4E0;
   --very-dark-green-custom: #0C646C;
@@ -20,13 +19,15 @@
   --light-green-custom: #4ABDBC;
 
   --grey-custom: #222322;
-  --light-grey-custom: #676767;
+  --light-grey-custom: #676B6C;
   --light-grey-custom-2: #232323;
   --dark-grey-custom: #393939;
   --dark-grey-custom-2: #1a1a1a;
   --black-custom-default: #000000;
+  --black-custom-transparence: rgba(0, 0, 0, 0.2);
   --black-custom: #191919;
   --white-custom: #ffffff;
+  --white-custom-2: #FFFFFF33;
 
   --dark-orange-custom: rgba(238, 111, 7, 0.5);
   --light-orange-custom: rgba(224, 130, 56, 0.8);
@@ -35,13 +36,76 @@
   --el-menu-item-height: 40px;
 
   --el-menu-bg-color: var(--black-custom);
-  --el-menu-hover-bg-color: var(--black-custom);
+  --el-menu-hover-bg-color: transparent;
   --el-fill-color-blank: var(--grey-custom);
+  --el-border-color-lighter: var(--white-custom-2);
+  --el-fill-color-light: var(--dark-grey-custom-2);
 }
 
 .el-header {
   --el-header-padding: 0;
-  --el-header-height: calc(100vw * 27 / 1080);
+  --el-header-height:  calc(100vh * 27 / 1080);
+}
+
+.addBorder {
+  border-right: 1px solid var(--white-custom-2) !important;
+}
+
+.addLeftTop {
+  border-top-left-radius: 4px !important;
+}
+.addRightTop {
+  border-top-right-radius: 4px !important;
+}
+.addLeftBottom {
+  border-bottom-left-radius: 4px !important;
+}
+.addRightBottom {
+  border-bottom-right-radius: 4px !important;
+}
+
+.el-table {
+  color: var(--light-grey-custom);
+  background-color: var(--black-custom-transparence);
+  border-radius: 4px;
+  font-size: 1em;
+}
+
+.el-table thead th {
+  font-weight: normal;
+}
+
+.el-table--fit {
+  //padding: 20px;
+}
+
+.el-table, .el-table__expanded-cell {
+  background-color: var(--black-custom-transparence);
+}
+
+.el-table tr {
+  background-color: var(--black-custom-transparence) !important;
+  height: calc(100vh * 65 / 1080);
+}
+
+.el-table--enable-row-transition .el-table__body td, .el-table .cell {
+  background-color: var(--black-custom-transparence);
+}
+
+.el-table th.el-table__cell {
+  background-color: var(--black-custom-transparence);
+}
+
+.el-table__inner-wrapper::before {
+  background-color: transparent;
+}
+
+.el-table td.el-table__cell, .el-table th.el-table__cell.is-leaf {
+  border-bottom: 1px solid var(--white-custom-2);
+}
+
+.el-table__empty-text {
+  color: var(--light-grey-custom);
 }
 
 
@@ -97,6 +161,11 @@
 
 .el-menu-item.is-active {
   font-weight: 500;
+
+  .el-tag--plain.el-tag--info {
+    //color: var(--dark-grey-custom-2);
+    background-color: var(--dark-grey-custom);
+  }
 }
 
 .card-tag {
@@ -130,6 +199,10 @@
   font-size: calc(100vw * 22 / 1920);
   color: var(--light-grey-custom);
   padding: 0 32px;
+}
+
+.el-tag--plain.el-tag--info:hover, .el-tag--plain.el-tag--info:focus {
+  background-color: var(--white-custom-2);
 }
 
 //.el-tag__content {
@@ -399,6 +472,7 @@
     }
 
     .el-menu-demo {
+      //width: calc(100vh - 100vh * 23 / 1080);
       width: calc(100% - calc(100vw * 23 / 1080));
       float: right;
     }
@@ -575,6 +649,7 @@
 
       .foot-row {
         height: calc(100vw * 145 / 1080);
+        bottom: 0;
 
         .foot-col-1 {
           background-color: var(--dark-grey-custom);
@@ -630,6 +705,7 @@
               .weekly-col {
                 display: inline-flex;
                 margin: 0 auto;
+
                 .border-left {
                   width: 0;
                   height: 0;
@@ -638,6 +714,7 @@
                   border-top: 13px solid transparent;
                   position: relative;
                 }
+
                 .border-left span {
                   display: block;
                   width: 0;
@@ -649,6 +726,7 @@
                   left: 1px;
                   top: -12px;
                 }
+
                 .sharp-tag {
                   border-top: 0.95px solid var(--black-custom-default);
                   border-bottom: 0.95px solid var(--black-custom-default);
@@ -657,6 +735,7 @@
                   background: var(--grey-custom);
                   padding: 0 8px;
                 }
+
                 .border-right {
                   width: 0;
                   height: 0;
@@ -665,6 +744,7 @@
                   border-top: 13px solid transparent;
                   position: relative;
                 }
+
                 .border-right span {
                   display: block;
                   width: 0;
@@ -849,6 +929,7 @@
             grid-column-end: 32;
             grid-row-start: 1;
             grid-row-end: 25;
+
             .year-title {
               height: 28%;
               display: flex;
@@ -857,6 +938,7 @@
               text-align: center;
               border-bottom: 1px solid var(--black-custom-default);
             }
+
             .year-chart {
               width: 100%;
               height: 72%;
