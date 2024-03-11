@@ -85,7 +85,7 @@
 
 .el-table tr {
   background-color: var(--black-custom-transparence) !important;
-  height: calc(100vh * 65 / 1080);
+  height: calc((100vh - 223px - 100vh * 300 / 1080) / 8);
 }
 
 .el-table--enable-row-transition .el-table__body td, .el-table .cell {
@@ -147,7 +147,7 @@
   border-color: var(--black-custom-default);
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px;
-  height: calc(100vw * 27 / 1080);
+  height: calc(100vh * 46 / 1080);
   align-items: center;
   //overflow-x: auto;
   //scrollbar-width: none; /* firefox */
@@ -377,7 +377,7 @@
   }
 
   .common-head {
-    height: calc(100vw * 27 / 1080);
+    height: calc(100vh * 46 / 1080);
     margin-left: 6px;
     margin-right: 6px;
   }
@@ -458,7 +458,7 @@
       border-width: 1.3px;
       border-style: solid none solid solid;
       border-color: var(--black-custom-default);
-      height: calc(100vw * 27 / 1080);
+      height: calc(100vh * 46 / 1080);
       width: calc(100vw * 23 / 1080);
       float: left;
       background-color: var(--el-menu-bg-color);
@@ -648,7 +648,7 @@
       }
 
       .foot-row {
-        height: calc(100vw * 145 / 1080);
+        height: 195px;
         bottom: 0;
 
         .foot-col-1 {
