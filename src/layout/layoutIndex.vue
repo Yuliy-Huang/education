@@ -5,7 +5,7 @@
         <div class="menu_wrapper">
           <div class="svg-div">
             <img :src="require(`@/assets/img/block.png`)"
-                 @click="showNav = !showNav"
+                 @click="jump2Home"
                  class="svg-left"
                  alt=""/>
           </div>
@@ -17,39 +17,45 @@
                    :default-active="currentPagePath"
                    :collapse-transition="true"
                    :unique-opened="true">
-            <div v-if="!showNav" class="notification">动态通知[{{ notificationNum }}]</div>
-            <div v-if="!showNav" class="nav-date">{{ nowDate }}</div>
-            <div v-if="!showNav" class="school-info">ID: {{ schoolId }}</div>
-            <div v-if="!showNav" class="top-button1">
-              <el-icon>
-                <Back/>
-              </el-icon>
-            </div>
-            <div v-if="!showNav" class="top-button2">
-              <el-icon>
-                <Close/>
-              </el-icon>
-            </div>
-            <div v-for="(item, index) in currentRoleMenu"
-                 :key="index">
-              <el-menu-item
-                  v-if="showNav && item.children && item.name !== '404' && !item.meta.isHidden"
-                  :index="item.path">
-                <el-tag
-                    :key="item.path"
-                    type="info"
-                    effect="plain"
-                >
-                  {{ item.meta.title ? item.meta.title : item.name }}
-                </el-tag>
-              </el-menu-item>
-            </div>
+            <template v-if="!showNav">
+              <div class="notification">动态通知[{{ notificationNum }}]</div>
+              <div class="nav-date">{{ nowDate }}</div>
+              <div class="school-info">ID: {{ schoolId }}</div>
+              <div class="top-button1">
+                <el-icon>
+                  <Back/>
+                </el-icon>
+              </div>
+              <div class="top-button2">
+                <el-icon>
+                  <Close/>
+                </el-icon>
+              </div>
+            </template>
+            <template v-else>
+              <div v-for="(item, index) in currentRoleMenu"
+                   :key="index">
+                <el-menu-item
+                    v-if="item.children && item.name !== '404' && !item.meta.isHidden"
+                    :class="item.redirect === currentPagePath ? 'is-active': ''"
+                    :index="item.path">
+                  <el-tag
+                      :key="item.path"
+                      type="info"
+                      effect="plain"
+                  >
+                    {{ item.meta.title ? item.meta.title : item.name }}
+                  </el-tag>
+                </el-menu-item>
+              </div>
+            </template>
           </el-menu>
         </div>
       </el-header>
       <el-main class="content_wrapper">
         <router-view></router-view>
-        <div class="foot-wrapper">
+<!--        <div class="foot-wrapper">-->
+        <div class="foot-wrapper" style="display: none;">
           <el-row class="foot-head-row">
             <el-col :span="4" class="foot-head-1">
               <div class="head-title">管理端数据控制平台</div>
@@ -251,6 +257,9 @@ const yearChart = ref(null);
 
 onMounted(() => {
   nextTick(() => {
+    // console.log('onMounted --- local showNav : ', localStorage.getItem('showNav'))
+    showNav.value = !!(localStorage.getItem('showNav') && localStorage.getItem('showNav') === '1')
+    // console.log('onMounted --- showNav.value : ', showNav.value)
     nowDate.value = getNowTime()
     currentPagePath.value = router.currentRoute._rawValue.path;
     username.value = localStorage.getItem('username')
@@ -311,16 +320,10 @@ watch(
     // eslint-disable-next-line no-unused-vars
     () => {
       currentPagePath.value = router.currentRoute.value.path;
+      // console.log('watch ---currentPagePath : ', currentPagePath.value)
     },
     {immediate: true}
 );
-
-window.addEventListener('setItemEvent', function (e) {
-  if (e.key === 'userIcon') {
-    userIcon.value = e.newValue
-  }
-})
-
 
 const handleOpen = (key, keyPath) => {
   console.log('handleOpen handleOpen');
@@ -331,6 +334,14 @@ const handleClose = (key, keyPath) => {
   console.log(key, keyPath);
 };
 
+const jump2Home = () => {
+  showNav.value = !showNav.value
+  localStorage.setItem('showNav', showNav.value ? '1': '0')
+  console.log('jump --- showNav.value : ', showNav.value)
+  if (!showNav.value) {
+    route.push('/home')
+  }
+}
 
 </script>
 <style lang="less">

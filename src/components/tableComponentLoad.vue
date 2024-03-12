@@ -1,8 +1,7 @@
 <template>
-  <el-table v-el-table-infinite-scroll="loadFunc"
+  <el-table v-el-table-infinite-scroll="loadMore"
             :data="tableData"
             style="width: 100%"
-            height="300px"
             :cell-class-name="setClass"
             :header-cell-class-name="setClass">
     <el-table-column
@@ -42,7 +41,7 @@
 </template>
 
 <script setup>
-import {defineProps, toRefs, watch} from "vue"
+import {defineProps, toRefs, ref, computed, watch} from "vue"
 import { default as vElTableInfiniteScroll } from "el-table-infinite-scroll";
 
 const props = defineProps({
@@ -61,10 +60,6 @@ const props = defineProps({
   operationList: {
     type: Object, default: () => {
     }
-  },
-  loadFunc: {
-    type: Function,
-    required: true,
   }
 })
 const {tableData} = toRefs(props);
@@ -73,25 +68,33 @@ const {isShowOperation} = toRefs(props);
 const {operationList} = toRefs(props);
 
 watch (tableData, () => {
-  if (tableData.value.length < 8) {
-    while (tableData.value.length < 8) {
-      tableData.value.push(null);
-    }
+  while (tableData.value.length < 8) {
+    tableData.value.push({});
   }
 }, { immediate: true })
-
-
 const setClass = (data) => {
-  if (data.columnIndex === 0) {
-    return 'addRightBorder'
-  }
-  if (!isShowOperation && data.columnIndex !== userColumn.value.length - 1) {
-    return 'addRightBorder'
-  }
-  if (isShowOperation && data.columnIndex !== userColumn.value.length) {
+  if (data.columnIndex === 0 || !isShowOperation && data.columnIndex !== userColumn.value.length - 1 || isShowOperation && data.columnIndex !== userColumn.value.length) {
     return 'addRightBorder'
   }
 }
+
+const count = ref(0)
+const loading = ref(false)
+const noMore = computed(() => count.value >= tableData.value.length)
+const loadMore = () => {
+  if (!noMore.value && !loading.value) {
+    loading.value = true
+    setTimeout(() => {
+      if (count.value + 8 < tableData.value.length) {
+        count.value += 8
+      } else {
+        count.value = tableData.value.length
+      }
+      loading.value = false
+    }, 1000)
+  }
+}
+
 </script>
 <style scoped>
 </style>

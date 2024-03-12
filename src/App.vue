@@ -1,6 +1,6 @@
 <template>
   <div id="appMain">
-    <router-view />
+    <router-view/>
   </div>
 </template>
 
@@ -21,8 +21,9 @@ body,
   height: 100%;
   margin: 0 !important;
 }
+
 #app {
-  font: 12px/1.5 tahoma,arial,'Hiragino Sans GB','\5b8b\4f53',sans-serif;
+  font: 12px/1.5 tahoma, arial, 'Hiragino Sans GB', '\5b8b\4f53', sans-serif;
   //font-family: Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -31,6 +32,7 @@ body,
   margin-top: 40px;
   font-size: calc(100vw * 22 / 1920);
 }
+
 #appMain {
   height: 100%;
   background-color: var(--dark-grey-custom);

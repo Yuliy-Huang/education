@@ -1,0 +1,42 @@
+.edu-terminal {
+  height: 450px;
+  overflow: hidden;
+  background-color: var(--black-custom-transparence);
+
+  .first-row {
+    margin-top: calc(100vh * 140 / 1080);
+  }
+  .second-row {
+    margin-top: calc(100vh * 30 / 1080);
+  }
+  .last-row {
+    margin-top: calc(100vh * 65 / 1080);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    .el-button {
+      width: calc(100vw * 200 / 1080);
+      height: calc(100vw * 30 / 1080);
+      background-color: var(--light-grey-custom-3);
+      border-radius: 3px;
+    }
+  }
+
+  .el-input {
+    width: calc(100vw * 200 / 1080);
+    border: 1px solid var(--white-custom-2);
+    background-color: var(--light-grey-custom-3);
+    height: calc(100vw * 30 / 1080);
+    border-radius: 3px;
+
+    .el-input__inner {
+      text-align: center;
+    }
+
+    .el-input__inner::placeholder {
+      color: var(--light-grey-custom);
+    }
+  }
+
+}
