@@ -14,7 +14,7 @@
         :align="item.align ? item.align : 'center'"
     />
     <el-table-column v-if="isShowOperation"
-                     label="操作"
+                     label="操作设置"
                      :width=operationWidth
                      align="center">
       <template #default="scope">
@@ -25,7 +25,7 @@
                   :type="btn.type"
                   plain
                   @click="btn.callBack(scope.row)"
-                  style="width: 80px; height: 30px;"
+                  style="width: 80px; height: 24px;"
                   size="small">{{ btn.title }}
               </el-button>
               <el-button
@@ -39,13 +39,17 @@
               </el-button>
             </span>
         </template>
+        <template v-if="scope.$index === notNullLength && isShowAdd">
+          <el-icon style="font-size: small; cursor: pointer;" @click="clickAdd"><Plus /></el-icon>
+        </template>
       </template>
     </el-table-column>
   </el-table>
 </template>
 
 <script setup>
-import {defineProps, toRefs, ref, computed, watch, onMounted} from "vue"
+import {defineProps, toRefs, ref, computed, watch, onMounted, defineEmits} from "vue"
+import {Plus} from '@element-plus/icons-vue'
 import {default as vElTableInfiniteScroll} from "el-table-infinite-scroll";
 
 const props = defineProps({
@@ -64,12 +68,17 @@ const props = defineProps({
   operationList: {
     type: Object, default: () => {
     }
-  }
+  },
+  isShowAdd: {
+    type: Boolean,
+    default: false
+  },
 })
 const {tableData} = toRefs(props);
 const {userColumn} = toRefs(props);
 const {isShowOperation} = toRefs(props);
 const {operationList} = toRefs(props);
+const {isShowAdd} = toRefs(props);
 const tableOnceRef = ref(null)
 const tableWidth = ref(0)
 const operationWidth = computed(() => tableWidth.value / (userColumn.value.length + 1) + 30 + 'px')
@@ -87,7 +96,11 @@ const notNullLength = computed(() => {
   return tableData.value.filter(item => item).length
 })
 watch(tableData, () => {
-  while (tableData.value.length < 8) {
+  if (tableData.value.length < 10) {
+    while (tableData.value.length < 10) {
+      tableData.value.push('');
+    }
+  } else {
     tableData.value.push('');
   }
 }, {immediate: true})
@@ -105,14 +118,19 @@ const loadMore = () => {
   if (!noMore.value && !loading.value) {
     loading.value = true
     setTimeout(() => {
-      if (count.value + 8 < tableData.value.length) {
-        count.value += 8
+      if (count.value + 10 < tableData.value.length) {
+        count.value += 10
       } else {
         count.value = tableData.value.length
       }
       loading.value = false
     }, 1000)
   }
+}
+
+const emit = defineEmits(['addFunc']);
+const clickAdd = () => {
+  emit('addFunc');
 }
 
 </script>

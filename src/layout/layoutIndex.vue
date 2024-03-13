@@ -9,16 +9,17 @@
                  class="svg-left"
                  alt=""/>
           </div>
-          <el-menu class="el-menu-demo"
+          <el-menu :class="showNav? 'el-menu-demo' : 'no-nav-menu'"
                    mode="horizontal"
                    :router="true"
                    @open="handleOpen"
                    @close="handleClose"
+                   @select="handleSelect"
                    :default-active="currentPagePath"
                    :collapse-transition="true"
                    :unique-opened="true">
             <template v-if="!showNav">
-              <div class="notification">动态通知[{{ notificationNum }}]</div>
+              <div class="notification">动态通知[<span style="color: #8a2be2ad;">{{ notificationNum }}</span>]</div>
               <div class="nav-date">{{ nowDate }}</div>
               <div class="school-info">ID: {{ schoolId }}</div>
               <div class="top-button1">
@@ -52,7 +53,7 @@
           </el-menu>
         </div>
       </el-header>
-      <el-main class="content_wrapper">
+      <el-main :class="globalVars.isDim === '1' ? 'content_wrapper_dim' : 'content_wrapper'">
         <router-view></router-view>
 <!--        <div class="foot-wrapper">-->
         <div class="foot-wrapper" style="display: none;">
@@ -204,11 +205,19 @@ import {
   onMounted,
   ref,
   watch,
+  inject,
 } from "vue";
 import route from "../router";
 import {getNowTime} from "@/utils/dateFormat";
 import {Close, Back} from '@element-plus/icons-vue'
 import * as echarts from 'echarts'
+
+const globalVars = inject('globalVars')
+
+console.log('globalVars : ', globalVars)
+watch(() => globalVars.isDim, (newValue, oldValue) => {
+  console.log(`globalVars.isDim changed from ${oldValue} to ${newValue}`);
+});
 
 const currentRoleMenu = ref([])
 const currentPagePath = ref("");
@@ -334,10 +343,17 @@ const handleClose = (key, keyPath) => {
   console.log(key, keyPath);
 };
 
+const handleSelect = (key) => {
+  if (currentPagePath.value.search(key.split('/')[1]) === -1){
+    // 停留在当前页面
+    globalVars.isDim = '0'
+  }
+}
+
 const jump2Home = () => {
   showNav.value = !showNav.value
+  globalVars.isDim = '0'
   localStorage.setItem('showNav', showNav.value ? '1': '0')
-  console.log('jump --- showNav.value : ', showNav.value)
   if (!showNav.value) {
     route.push('/home')
   }
