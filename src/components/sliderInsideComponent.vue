@@ -1,34 +1,34 @@
 <template>
-  <div class="slider-div">
-    <div class="setting-head">
-      <div class="arrow-left-div">
-        <span class="inner-img-div" @click="reduceShowTag">
+  <div class="slider-inside-div">
+    <div class="slide-inside-head">
+      <div class="arrow-left">
+        <span class="inside-img-div" @click="reduceShowTag">
           <img :src="require(`@/assets/img/arrowLeft.png`)"
                style="width: 20px; height: 12px;"
                alt=""/>
         </span>
       </div>
       <template v-for="(item, index) in showTags" :key="index">
-        <div :class="activeTag === item ? 'title-div-active' : 'title-div'">
-          <span class="inner-div" @click="changeTag(item)">{{ item }}</span>
+        <div :class="activeTag === item ? 'inside-title-div-active' : 'inside-title-div'">
+          <span class="inside-div" @click="changeTag(item)">{{ item }}</span>
         </div>
       </template>
       <template v-if="showTags.length < 4">
-        <div :class="activeTag === item ? 'title-div-active' : 'title-div'"
+        <div :class="activeTag === item ? 'inside-title-div-active' : 'inside-title-div'"
              v-for="(item, index) in (4-showTags.length)"
              :key="index">
-          <span class="inner-div"></span>
+          <span class="inside-div"></span>
         </div>
       </template>
-      <div class="arrow-right-div">
-        <span class="inner-img-div" @click="addShowTag">
+      <div class="arrow-right">
+        <span class="inside-img-div" @click="addShowTag">
           <img :src="require(`@/assets/img/arrowRight.png`)"
                style="width: 20px; height: 12px;"
                alt=""/>
         </span>
       </div>
     </div>
-    <div :class="showInsideSlider ? 'setting-content-show-slider' : 'setting-content'" v-if="activeTag !== null">
+    <div class="setting-inside-content" v-if="activeTag !== null">
       <loginSetting v-if="activeTag === '岗位人员登录设置' && !showEdit" @updateShowEdit="updateEdit"/>
       <loginSettingEdit v-if="activeTag === '岗位人员登录设置' && showEdit" @updateShowEdit="updateEdit"/>
       <permissionSetting v-if="activeTag === '岗位人员权限设置'"/>
@@ -102,16 +102,8 @@ const emit = defineEmits(['updateShowEdit', 'changeActiveTag']);
 const updateEdit = () => {
   emit('updateShowEdit');
 }
-const showInsideSlider = ref(false)
 const changeTag = (v) => {
   emit('changeActiveTag', v);
-  switch (v) {
-    case '岗位人员权限设置':
-      showInsideSlider.value = true
-      break
-    default:
-      showInsideSlider.value = false
-  }
 }
 const showTags = ref([])
 onMounted(() => {
@@ -124,5 +116,5 @@ watch(showNum, () => {
 
 </script>
 <style lang="less">
-@import "@/assets/css/sliderComponentCss";
+@import "@/assets/css/sliderInsideComponentCss";
 </style>
