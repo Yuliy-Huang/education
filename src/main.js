@@ -8,6 +8,7 @@ import elTableInfiniteScroll from 'el-table-infinite-scroll';
 
 const globalVars = reactive({
     isDim: '0',
+    showSub: '0',
 })
 
 const app = createApp(App)

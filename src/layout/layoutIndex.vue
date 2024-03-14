@@ -347,6 +347,7 @@ const handleSelect = (key) => {
   if (currentPagePath.value.search(key.split('/')[1]) === -1){
     // 停留在当前页面
     globalVars.isDim = '0'
+    globalVars.showSub = '0'
   }
 }
 
@@ -361,7 +362,7 @@ const jump2Home = () => {
 
 </script>
 <style lang="less">
-@import "./layoutIndexCss.less";
+@import "../assets/css/layoutIndexCss.less";
 </style>
 
 

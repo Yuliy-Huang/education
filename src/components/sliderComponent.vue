@@ -29,17 +29,17 @@
       </div>
     </div>
     <div :class="showInsideSlider ? 'setting-content-show-slider' : 'setting-content'" v-if="activeTag !== null">
-      <loginSetting v-if="activeTag === '岗位人员登录设置' && !showEdit" @updateShowEdit="updateEdit"/>
-      <loginSettingEdit v-if="activeTag === '岗位人员登录设置' && showEdit" @updateShowEdit="updateEdit"/>
+      <loginSetting v-if="activeTag === '岗位人员登录设置' && !showEdit" @updateEdit="updateEdit"/>
+      <loginSettingEdit v-if="activeTag === '岗位人员登录设置' && showEdit" @updateEdit="updateEdit"/>
       <permissionSetting v-if="activeTag === '岗位人员权限设置'"/>
-      <eduTeminalLoginSetting v-if="activeTag === '教务端登录设置'"/>
+      <eduTerminalLoginSetting v-if="activeTag === '教务端登录设置'"/>
       <allMajorNames v-if="activeTag === '填写所有专业名称'"/>
       <renewalNotificationSetting v-if="activeTag === '提前续费通知设置'"/>
       <frontDescPhoneSetting v-if="activeTag === '前台电话添加设置'"/>
       <signInPermissionSetting v-if="activeTag === '上课签到权限设置'"/>
       <studentPaymentSetting v-if="activeTag === '学员缴费收款设置'"/>
       <advanceClassNotificationSetting v-if="activeTag === '提前上课通知设置'"/>
-      <professinalGradeSetting v-if="activeTag === '专业考级等级输入'"/>
+      <professionalGradeSetting v-if="activeTag === '专业考级等级输入'"/>
       <parentAppShoppingSetting v-if="activeTag === '家长端APP购物设置'"/>
       <desktopBackgroundSetting v-if="activeTag === '桌面系统背景设置'"/>
       <instructionVideoExplanation v-if="activeTag === '使用说明视频讲解'"/>
@@ -51,18 +51,18 @@
   </div>
 </template>
 <script setup>
-import {defineEmits, defineProps, onMounted, ref, toRefs, watch} from "vue";
+import {defineEmits, defineProps, inject, onMounted, ref, toRefs, watch} from "vue";
 import loginSetting from '@/views/systemSetting/loginSetting/loginSetting.vue'
 import loginSettingEdit from '@/views/systemSetting/loginSetting/loginSettingEdit.vue'
 import permissionSetting from '@/views/systemSetting/postPermission/permissionSetting.vue'
-import eduTeminalLoginSetting from '@/views/systemSetting/eduTerminal/eduTeminalLoginSetting.vue'
+import eduTerminalLoginSetting from '@/views/systemSetting/eduTerminal/eduTerminalLoginSetting.vue'
 import allMajorNames from '@/views/systemSetting/allMajorNames.vue'
 import renewalNotificationSetting from '@/views/systemSetting/renewalNotificationSetting.vue'
 import frontDescPhoneSetting from '@/views/systemSetting/frontDescPhoneSetting.vue'
 import signInPermissionSetting from '@/views/systemSetting/signInPermissionSetting.vue'
 import studentPaymentSetting from '@/views/systemSetting/studentPaymentSetting.vue'
 import advanceClassNotificationSetting from '@/views/systemSetting/advanceClassNotificationSetting.vue'
-import professinalGradeSetting from '@/views/systemSetting/professinalGradeSetting.vue'
+import professionalGradeSetting from '@/views/systemSetting/professionalGradeSetting.vue'
 import parentAppShoppingSetting from '@/views/systemSetting/parentAppShoppingSetting.vue'
 import desktopBackgroundSetting from '@/views/systemSetting/desktopBackgroundSetting.vue'
 import instructionVideoExplanation from '@/views/systemSetting/instructionVideoExplanation.vue'
@@ -72,10 +72,6 @@ import viewDataByYear from '@/views/systemSetting/viewDataByYear.vue'
 import liveVideoSetting from '@/views/systemSetting/liveVideoSetting.vue'
 
 const props = defineProps({
-  showNum: {
-    type: Number,
-    default: 0
-  },
   titleList: {
     type: Array,
     default: () => {}
@@ -89,7 +85,9 @@ const props = defineProps({
     default: false
   }
 })
-const {showNum, titleList} = toRefs(props)
+const {titleList, activeTag} = toRefs(props)
+
+const showNum = ref(0)
 const addShowTag = () => {
   showNum.value = showNum.value + 4 <= titleList.value.length ? showNum.value + 4 : Math.floor((titleList.value.length - 1) / 4) * 4
 }
@@ -101,10 +99,13 @@ const reduceShowTag = () => {
 const emit = defineEmits(['updateShowEdit', 'changeActiveTag']);
 const updateEdit = () => {
   emit('updateShowEdit');
+
 }
 const showInsideSlider = ref(false)
+const globalVars = inject('globalVars')
+
 const changeTag = (v) => {
-  emit('changeActiveTag', v);
+  globalVars.showSub = v === activeTag.value ? globalVars.showSub: '0'
   switch (v) {
     case '岗位人员权限设置':
       showInsideSlider.value = true
@@ -112,6 +113,7 @@ const changeTag = (v) => {
     default:
       showInsideSlider.value = false
   }
+  emit('changeActiveTag', v);
 }
 const showTags = ref([])
 onMounted(() => {

@@ -1,7 +1,6 @@
 <template>
   <div class="system-setting">
     <sliderCompnent
-        :show-num="showNum"
         :title-list="titleList"
         :active-tag="activeTag"
         :show-edit="showEdit"
@@ -48,21 +47,24 @@ const titleList = ref([
   '视频会议直播设置',
 ])
 const activeTag = ref(null)
-const showNum = ref(0)
 const showEdit = ref(false)
 
 const updateShowEdit = () => {
-  console.log('0000 updateShowEdit : ', showEdit.value)
   showEdit.value = !showEdit.value
-  console.log('1111 updateShowEdit : ', showEdit.value)
 }
 
 const globalVars = inject('globalVars')
 
 const changeActiveTag = (v) => {
+  showEdit.value = activeTag.value === v ? showEdit.value : false
+  switch (v) {
+    case '岗位人员权限设置':
+      globalVars.isDim = globalVars.showSub === '0' ? '0' : '1'
+      break
+    default:
+      globalVars.isDim = '1'
+  }
   activeTag.value = v
-  console.log('activeTag : ', activeTag.value)
-  globalVars.isDim = '1'
 }
 
 const close2NotDim = () => {

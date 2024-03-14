@@ -30,10 +30,10 @@
 <script setup>
 import {defineEmits, reactive} from "vue";
 
-const emit = defineEmits(['updateShowEdit']);
+const emit = defineEmits(['updateEdit']);
 
 const saveFunc = () => {
-  emit('updateShowEdit');
+  emit('updateEdit');
 }
 
 const form = reactive({

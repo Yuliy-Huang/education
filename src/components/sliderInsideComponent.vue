@@ -29,67 +29,26 @@
       </div>
     </div>
     <div class="setting-inside-content" v-if="activeTag !== null">
-      <loginSetting v-if="activeTag === '岗位人员登录设置' && !showEdit" @updateShowEdit="updateEdit"/>
-      <loginSettingEdit v-if="activeTag === '岗位人员登录设置' && showEdit" @updateShowEdit="updateEdit"/>
-      <permissionSetting v-if="activeTag === '岗位人员权限设置'"/>
-      <eduTeminalLoginSetting v-if="activeTag === '教务端登录设置'"/>
-      <allMajorNames v-if="activeTag === '填写所有专业名称'"/>
-      <renewalNotificationSetting v-if="activeTag === '提前续费通知设置'"/>
-      <frontDescPhoneSetting v-if="activeTag === '前台电话添加设置'"/>
-      <signInPermissionSetting v-if="activeTag === '上课签到权限设置'"/>
-      <studentPaymentSetting v-if="activeTag === '学员缴费收款设置'"/>
-      <advanceClassNotificationSetting v-if="activeTag === '提前上课通知设置'"/>
-      <professinalGradeSetting v-if="activeTag === '专业考级等级输入'"/>
-      <parentAppShoppingSetting v-if="activeTag === '家长端APP购物设置'"/>
-      <desktopBackgroundSetting v-if="activeTag === '桌面系统背景设置'"/>
-      <instructionVideoExplanation v-if="activeTag === '使用说明视频讲解'"/>
-      <campusDataExport v-if="activeTag === '校区所有数据导出'"/>
-      <otherCampusSwitching v-if="activeTag === '其他校区切换选择'"/>
-      <viewDataByYear v-if="activeTag === '各年份数据查看'"/>
-      <liveVideoSetting v-if="activeTag === '视频会议直播设置'"/>
+      <permissionSettingPerson  @updateShowEdit="updateEdit"/>
     </div>
   </div>
 </template>
 <script setup>
-import {defineEmits, defineProps, onMounted, ref, toRefs, watch} from "vue";
-import loginSetting from '@/views/systemSetting/loginSetting/loginSetting.vue'
-import loginSettingEdit from '@/views/systemSetting/loginSetting/loginSettingEdit.vue'
-import permissionSetting from '@/views/systemSetting/postPermission/permissionSetting.vue'
-import eduTeminalLoginSetting from '@/views/systemSetting/eduTerminal/eduTeminalLoginSetting.vue'
-import allMajorNames from '@/views/systemSetting/allMajorNames.vue'
-import renewalNotificationSetting from '@/views/systemSetting/renewalNotificationSetting.vue'
-import frontDescPhoneSetting from '@/views/systemSetting/frontDescPhoneSetting.vue'
-import signInPermissionSetting from '@/views/systemSetting/signInPermissionSetting.vue'
-import studentPaymentSetting from '@/views/systemSetting/studentPaymentSetting.vue'
-import advanceClassNotificationSetting from '@/views/systemSetting/advanceClassNotificationSetting.vue'
-import professinalGradeSetting from '@/views/systemSetting/professinalGradeSetting.vue'
-import parentAppShoppingSetting from '@/views/systemSetting/parentAppShoppingSetting.vue'
-import desktopBackgroundSetting from '@/views/systemSetting/desktopBackgroundSetting.vue'
-import instructionVideoExplanation from '@/views/systemSetting/instructionVideoExplanation.vue'
-import campusDataExport from '@/views/systemSetting/campusDataExport.vue'
-import otherCampusSwitching from '@/views/systemSetting/otherCampusSwitching.vue'
-import viewDataByYear from '@/views/systemSetting/viewDataByYear.vue'
-import liveVideoSetting from '@/views/systemSetting/liveVideoSetting.vue'
+import {defineProps, inject, onMounted, ref, toRefs, watch} from "vue";
+import permissionSettingPerson from '@/views/systemSetting/postPermission/permissionSettingPerson.vue'
 
 const props = defineProps({
-  showNum: {
-    type: Number,
-    default: 0
-  },
   titleList: {
     type: Array,
     default: () => {}
   },
-  activeTag: {
-    type: String,
-    default: null
-  },
-  showEdit: {
-    type: Boolean,
-    default: false
-  }
 })
-const {showNum, titleList} = toRefs(props)
+const {titleList} = toRefs(props)
+
+const activeTag = ref(null)
+const showEdit = ref(false)
+const showNum = ref(0)
+
 const addShowTag = () => {
   showNum.value = showNum.value + 4 <= titleList.value.length ? showNum.value + 4 : Math.floor((titleList.value.length - 1) / 4) * 4
 }
@@ -98,13 +57,19 @@ const reduceShowTag = () => {
   showNum.value = showNum.value - 4 >= 0 ? showNum.value - 4 : 0
 }
 
-const emit = defineEmits(['updateShowEdit', 'changeActiveTag']);
 const updateEdit = () => {
-  emit('updateShowEdit');
+  showEdit.value = !showEdit.value
 }
+
+const globalVars = inject('globalVars')
+
 const changeTag = (v) => {
-  emit('changeActiveTag', v);
+  globalVars.showSub = '1'
+  activeTag.value = v
+  globalVars.isDim = '1'
+  console.log('inside --- activeTag : ', activeTag.value)
 }
+
 const showTags = ref([])
 onMounted(() => {
   showTags.value = titleList.value.slice(showNum.value, showNum.value + 4)

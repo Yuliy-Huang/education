@@ -8,9 +8,9 @@
 import tableComponentOnce from "@/components/tableComponentOnce.vue"
 import {reactive, defineEmits} from "vue";
 
-const emit = defineEmits(['updateShowEdit']);
+const emit = defineEmits(['updateEdit']);
 const addFunc = () => {
-  emit('updateShowEdit');
+  emit('updateEdit');
 }
 
 const delFunc = () => {
