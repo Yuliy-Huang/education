@@ -347,7 +347,7 @@ router.beforeEach(async (to, from, next) => {
     //     const setSearchKey = (searchKey) => store.commit('setSearchKey', searchKey);
     //     setSearchKey('')
     //
-    //     const token = localStorage.getItem('accessToken')
+    //     const token = sessionStorage.getItem('accessToken')
     //     if (token) {
     //         const dynamicCreateRoute = store.state.dynamicCreateRoute
     //         if (!dynamicCreateRoute || !router.hasRoute('My Community')) {

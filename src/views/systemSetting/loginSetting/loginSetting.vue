@@ -13,6 +13,10 @@ const addFunc = () => {
   emit('updateShowEdit');
 }
 
+const delFunc = () => {
+  console.log('delFuncdelFuncdelFunc')
+}
+
 const columns = [{
   label: '员工姓名',
   prop: 'name'
@@ -28,8 +32,8 @@ const columns = [{
 }]
 
 const operationList = [
-  {title: '编辑', type: 'info'},
-  {title: '删除', type: 'info'},
+  {title: '编辑', type: 'info', callBack: addFunc},
+  {title: '删除', type: 'info', callBack: delFunc},
 ]
 
 const tableData = reactive([

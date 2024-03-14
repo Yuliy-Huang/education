@@ -266,13 +266,13 @@ const yearChart = ref(null);
 
 onMounted(() => {
   nextTick(() => {
-    // console.log('onMounted --- local showNav : ', localStorage.getItem('showNav'))
-    showNav.value = !!(localStorage.getItem('showNav') && localStorage.getItem('showNav') === '1')
+    // console.log('onMounted --- local showNav : ', sessionStorage.getItem('showNav'))
+    showNav.value = !!(sessionStorage.getItem('showNav') && sessionStorage.getItem('showNav') === '1')
     // console.log('onMounted --- showNav.value : ', showNav.value)
     nowDate.value = getNowTime()
     currentPagePath.value = router.currentRoute._rawValue.path;
-    username.value = localStorage.getItem('username')
-    userIcon.value = localStorage.getItem('userIcon') === 'null' ? '' : localStorage.getItem('userIcon')
+    username.value = sessionStorage.getItem('username')
+    userIcon.value = sessionStorage.getItem('userIcon') === 'null' ? '' : sessionStorage.getItem('userIcon')
     initMenu();
     const option = {
       grid: {
@@ -353,7 +353,7 @@ const handleSelect = (key) => {
 const jump2Home = () => {
   showNav.value = !showNav.value
   globalVars.isDim = '0'
-  localStorage.setItem('showNav', showNav.value ? '1': '0')
+  sessionStorage.setItem('showNav', showNav.value ? '1': '0')
   if (!showNav.value) {
     route.push('/home')
   }

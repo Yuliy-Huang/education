@@ -82,11 +82,11 @@ const doLogin = () => {
   // }).then((res) => {
   //   if (res.errCode === 0) {
   //     ElMessage.success(res.msg)
-  //     localStorage.setItem('username', res.data.userName)
-  //     localStorage.setItem('account', account.value)
-  //     localStorage.setItem('accessToken', res.data.access_token)
-  //     localStorage.setItem('isAdmin', res.data.isAdmin)
-  //     localStorage.setItem('userIcon', res.data.userIcon)
+  //     sessionStorage.setItem('username', res.data.userName)
+  //     sessionStorage.setItem('account', account.value)
+  //     sessionStorage.setItem('accessToken', res.data.access_token)
+  //     sessionStorage.setItem('isAdmin', res.data.isAdmin)
+  //     sessionStorage.setItem('userIcon', res.data.userIcon)
   //     router.push('/home')
   //   } else {
   //     ElMessage.error(res.msg)
