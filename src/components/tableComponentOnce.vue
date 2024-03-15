@@ -74,11 +74,7 @@ const props = defineProps({
     default: false
   },
 })
-const {tableData} = toRefs(props);
-const {userColumn} = toRefs(props);
-const {isShowOperation} = toRefs(props);
-const {operationList} = toRefs(props);
-const {isShowAdd} = toRefs(props);
+const {tableData, userColumn, isShowOperation, operationList, isShowAdd} = toRefs(props);
 const tableOnceRef = ref(null)
 const tableWidth = ref(0)
 const operationWidth = computed(() => tableWidth.value / (userColumn.value.length + 1) + 30 + 'px')

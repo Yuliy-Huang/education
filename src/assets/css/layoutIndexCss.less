@@ -19,7 +19,7 @@
   --light-grey-custom: rgba(103, 107, 108, 0.79);
   --light-grey-custom-transparent: rgba(103, 107, 108, 0.5);
   --light-grey-custom-2: #232323;
-  --light-grey-custom-3: #353434a3;
+  --light-grey-custom-3: #5e5e5ec9;
   --dark-grey-custom: #393939;
   --dark-grey-custom-2: rgba(26, 26, 26, 0.73);
   --dark-grey-custom-3: #252526c7;
@@ -54,12 +54,13 @@
 
 .el-header {
   --el-header-padding: 0;
-  --el-header-height:  calc(100vh * 27 / 1080);
+  --el-header-height: calc(100vh * 27 / 1080);
 }
 
-.el-checkbox__input.is-checked .el-checkbox__inner{
+.el-checkbox__input.is-checked .el-checkbox__inner {
   background-color: var(--light-green-custom) !important;
 }
+
 .el-checkbox__input.is-checked .el-checkbox__inner::after {
   transform: rotate(45deg) scaleY(0);
   border-color: var(--light-green-custom);
@@ -133,7 +134,7 @@
   color: var(--light-grey-custom);
 }
 
-.el-table--enable-row-hover .el-table__body tr:hover>td.el-table__cell {
+.el-table--enable-row-hover .el-table__body tr:hover > td.el-table__cell {
   background-color: #1a1a1a8c;
 }
 
@@ -304,8 +305,9 @@
 .el-button.is-plain {
   border-color: var(--border-white) !important;
 }
+
 .el-button {
-  color: #5e5e5ec9 !important;
+  color: var(--light-grey-custom-3) !important;
 }
 
 .el-button--primary:focus, .el-button--primary:hover {
@@ -315,7 +317,7 @@
   border-radius: 16px;
   font-size: calc(100vw * 22 / 1920);
   border: 0.5px solid var(--black-custom);;
-  background-color: var(--white-custom);
+  //background-color: var(--white-custom);
   color: var(--black-custom);
 }
 
@@ -325,7 +327,7 @@
   padding: 16px 24px 16px 24px;
   border-radius: 16px;
   font-size: calc(100vw * 22 / 1920);
-  background-color: var(--white-custom);
+  //background-color: var(--white-custom);
   color: var(--black-custom);
   border: 0.5px solid var(--black-custom);;
 }
@@ -361,7 +363,7 @@
   padding: 16px 24px 16px 24px;
   border-radius: 16px;
   font-size: calc(100vw * 22 / 1920);
-  background-color: var(--white-custom);
+  //background-color: var(--white-custom);
   border: 0.5px solid var(--black-custom);;
   color: var(--black-custom);
 }
@@ -632,7 +634,7 @@
 
     .el-button:focus, .el-button:hover {
       color: var(--light-green-custom);
-      background: var(--dark-green-custom);
+      //background: var(--dark-green-custom);
       box-shadow: 2px 2px 5px 0 var(--dark-grey-custom);
     }
 
@@ -644,7 +646,7 @@
 
     .el-button.is-disabled:focus, .el-button.is-disabled:hover {
       color: var(--grey-custom);
-      background-color: var(--white-custom);
+      //background-color: var(--white-custom);
       box-shadow: none;
     }
   }

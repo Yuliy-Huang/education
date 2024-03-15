@@ -9,8 +9,8 @@
         </span>
       </div>
       <template v-for="(item, index) in showTags" :key="index">
-        <div :class="activeTag === item ? 'title-div-active' : 'title-div'">
-          <span class="inner-div" @click="changeTag(item)">{{ item }}</span>
+        <div :class="activeTag === item ? 'title-div-active' : 'title-div'" @click="changeTag(item)">
+          <span class="inner-div">{{ item }}</span>
         </div>
       </template>
       <template v-if="showTags.length < 4">
