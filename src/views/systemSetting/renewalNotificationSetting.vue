@@ -1,30 +1,42 @@
 <template>
-  <table-component-once :user-column="columns" :table-data="tableData"
-                        :is-show-operation="true"></table-component-once>
+  <div class="renewal">
+    <div class="notification-div">
+      <div class="left-text">
+        提前续费通知时间设定
+      </div>
+      <bracketComponent/>
+      <div class="right-text-div">
+        <div class="right-text-top">
+          第一次&nbsp;<el-input v-model="firstWeek"/>&nbsp;周&nbsp;
+          <el-switch
+              v-model="firstSwitch"
+              class="ml-2"
+              style="--el-switch-on-color: var(--light-green-custom); --el-switch-off-color: var(--dark-grey-custom-3);"
+          />
+        </div>
+        <div class="right-text-bottom">
+          第二次&nbsp;<el-input v-model="secondWeek"/>&nbsp;周&nbsp;
+          <el-switch
+              v-model="secondSwitch"
+              class="ml-2"
+              style="--el-switch-on-color: var(--light-green-custom); --el-switch-off-color: var(--dark-grey-custom-3);"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 <script setup>
-import tableComponentOnce from "@/components/tableComponentOnce.vue"
-import {reactive} from "vue";
+import {ref} from 'vue'
+import bracketComponent from '@/components/bracketComponent.vue'
 
+const firstWeek = ref('')
+const secondWeek = ref('')
 
-const columns = [{
-  label: '员工姓名',
-  prop: 'name'
-}, {
-  label: '校区职位',
-  prop: 'position'
-}, {
-  label: '登陆电话',
-  prop: 'phone'
-}, {
-  label: '登录密码',
-  prop: 'password'
-}]
-
-const tableData = reactive([
-  {name: '田刚', position: '教务', phone: '15799995675', password: '666666'},
-  {name: '张三', position: '前台', phone: '13588887766', password: '888888'},
-])
-
+const firstSwitch = ref(true)
+const secondSwitch = ref(false)
 
 </script>
+<style lang="less">
+@import "@/assets/css/renewalNotificationSettingCss";
+</style>
