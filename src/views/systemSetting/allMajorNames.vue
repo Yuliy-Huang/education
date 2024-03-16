@@ -6,7 +6,7 @@
 <script setup>
 import cellComponent from "@/components/cellComponent.vue"
 
-const majorList = ['钢琴', '吉他', '数学', '英语', '书法']
+const majorList = ['钢琴', '吉他']
 
 </script>
 <style lang="less">

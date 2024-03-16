@@ -10,7 +10,46 @@
   .front-setting {
     height: 40%;
     width: 30%;
-    border: 1px solid var(--white-custom-2);
+    //border: 1px solid var(--white-custom-2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 
+    .phone-form {
+
+      .el-input {
+        width: calc(100vw * 150 / 1080);
+        background-color: #4f4f4f30;
+        height: calc(100vw * 24 / 1080);
+        border-radius: 3px;
+
+        .el-input__inner {
+          text-align: center;
+        }
+
+        .el-input__inner::placeholder {
+          color: var(--light-grey-custom-transparent);
+        }
+      }
+
+      .button-div {
+        margin-top: 10px;
+
+        .el-form-item__content {
+          justify-content: flex-end;
+          margin-top: 10px;
+        }
+      }
+
+      .el-button {
+        width: calc(100vw * 150 / 1080);
+        height: calc(100vw * 24 / 1080);
+        background-color: #4f4f4f30;
+        border-radius: 3px;
+        float: right;
+      }
+
+    }
   }
 }

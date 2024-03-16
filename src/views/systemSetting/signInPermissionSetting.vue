@@ -1,30 +1,37 @@
 <template>
-  <table-component-once :user-column="columns" :table-data="tableData"
-                        :is-show-operation="true"></table-component-once>
+  <div class="sign-in">
+    <div class="sign-in-div">
+      <div class="first-row">
+        <span>前台教务签到权限设置</span>
+        <el-switch
+            v-model="firstSwitch"
+            class="ml-2 row-switch"
+            style="--el-switch-on-color: var(--light-green-custom); --el-switch-off-color: var(--dark-grey-custom-3);"
+        />
+      </div>
+      <div class="second-row">
+        <span>代课教师签到权限设置</span>
+        <el-switch
+            v-model="secondSwitch"
+            class="ml-2 row-switch"
+            style="--el-switch-on-color: var(--light-green-custom); --el-switch-off-color: var(--dark-grey-custom-3);"
+        />
+      </div>
+      <div class="button-div">
+        <el-button plain @click="saveFunc">确 定 保 存</el-button>
+      </div>
+    </div>
+  </div>
 </template>
 <script setup>
-import tableComponentOnce from "@/components/tableComponentOnce.vue"
-import {reactive} from "vue";
+import {ref} from "vue";
 
-
-const columns = [{
-  label: '员工姓名',
-  prop: 'name'
-}, {
-  label: '校区职位',
-  prop: 'position'
-}, {
-  label: '登陆电话',
-  prop: 'phone'
-}, {
-  label: '登录密码',
-  prop: 'password'
-}]
-
-const tableData = reactive([
-  {name: '田刚', position: '教务', phone: '15799995675', password: '666666'},
-  {name: '张三', position: '前台', phone: '13588887766', password: '888888'},
-])
-
+const firstSwitch = ref(true)
+const secondSwitch = ref(false)
+const saveFunc = () => {
+}
 
 </script>
+<style lang="less">
+@import "@/assets/css/signInPermissionSettingCss";
+</style>
