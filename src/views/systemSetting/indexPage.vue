@@ -1,6 +1,6 @@
 <template>
   <div class="system-setting">
-    <sliderCompnent
+    <sliderComponent
         :title-list="titleList"
         :active-tag="activeTag"
         :show-edit="showEdit"
@@ -24,7 +24,7 @@
 
 <script setup>
 import {ref, inject} from 'vue';
-import sliderCompnent from '@/components/sliderComponent.vue'
+import sliderComponent from '@/components/sliderComponent.vue'
 import {Back, Close} from "@element-plus/icons-vue";
 
 const titleList = ref([

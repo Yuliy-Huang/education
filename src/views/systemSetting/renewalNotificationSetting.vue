@@ -7,7 +7,7 @@
       <bracketComponent/>
       <div class="right-text-div">
         <div class="right-text-top">
-          第一次&nbsp;<el-input v-model="firstWeek"/>&nbsp;周&nbsp;
+          第一次&nbsp;<el-input v-model="firstWeek"/>&nbsp;&nbsp;周&nbsp;&nbsp;
           <el-switch
               v-model="firstSwitch"
               class="ml-2"
@@ -15,7 +15,7 @@
           />
         </div>
         <div class="right-text-bottom">
-          第二次&nbsp;<el-input v-model="secondWeek"/>&nbsp;周&nbsp;
+          第二次&nbsp;<el-input v-model="secondWeek"/>&nbsp;&nbsp;周&nbsp;&nbsp;
           <el-switch
               v-model="secondSwitch"
               class="ml-2"

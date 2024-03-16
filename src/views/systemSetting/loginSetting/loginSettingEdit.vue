@@ -5,19 +5,19 @@
     </div>
     <div class="form-div">
       <el-form :model="form" label-width="auto" style="max-width: 600px" class="setting-form">
-        <el-form-item label="员 工 姓 名">
+        <el-form-item label="员 工 姓 名" class="div-required">
           <el-input v-model="form.name" />
         </el-form-item>
-        <el-form-item label="校 区 职 位">
+        <el-form-item label="校 区 职 位" class="div-required">
           <el-input v-model="form.position" />
         </el-form-item>
-        <el-form-item label="登 陆 电 话">
+        <el-form-item label="登 陆 电 话" class="div-required">
           <el-input v-model="form.phone" />
         </el-form-item>
-        <el-form-item label="输 入 密 码">
+        <el-form-item label="输 入 密 码" class="div-required">
           <el-input v-model="form.password" placeholder="六位数密码" />
         </el-form-item>
-        <el-form-item label="确 认 密 码">
+        <el-form-item label="确 认 密 码" class="div-required">
           <el-input v-model="form.password_confirm" placeholder="六位数密码" />
         </el-form-item>
         <el-form-item class="button-item">

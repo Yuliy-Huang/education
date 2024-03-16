@@ -362,7 +362,7 @@ const jump2Home = () => {
 
 </script>
 <style lang="less">
-@import "../assets/css/layoutIndexCss.less";
+@import "layoutIndexCss.less";
 </style>
 
 
