@@ -1,47 +1,42 @@
 <template>
-  <div class="academic-staff">
-    <div class="home">
-      <div class="one-block">
-        <div class="up-block">教务档案存档</div>
-        <div class="down-block">
-          <div class="link-mid" v-for="idx in 13" :key="idx"></div>
-          <span>3</span>
-          <div class="link-mid" v-for="idx in 13" :key="idx"></div>
-        </div>
+  <div class="system-setting">
+    <staffEditComponent :page-type="pageType" @changeTab="changeTab"/>
+
+    <div class="system-setting-side">
+      <div class="top-button" @click="close2NotDim">
+        <el-icon>
+          <Close/>
+        </el-icon>
       </div>
-      <div class="one-block">
-        <div class="up-block">教务档案查看</div>
-        <div class="down-block">
-          <div class="link-mid" v-for="idx in 13" :key="idx"></div>
-          <span>1</span>
-          <div class="link-mid" v-for="idx in 13" :key="idx"></div>
-        </div>
-      </div>
-      <div class="one-block">
-        <div class="up-block">教务档案修改</div>
-        <div class="down-block">
-          <div class="link-mid" v-for="idx in 13" :key="idx"></div>
-          <span>2</span>
-          <div class="link-mid" v-for="idx in 13" :key="idx"></div>
-        </div>
-      </div>
-      <div class="one-block">
-        <div class="up-block">教务离职办理</div>
-        <div class="down-block">
-          <div class="link-mid" v-for="idx in 13" :key="idx"></div>
-          <span>1</span>
-          <div class="link-mid" v-for="idx in 13" :key="idx"></div>
-        </div>
+      <div class="top-button-1" @click="back2LastDiv" >
+        <el-icon>
+          <Back/>
+        </el-icon>
       </div>
     </div>
   </div>
 </template>
+
 <script setup>
+import {ref} from 'vue';
+import staffEditComponent from './staffEdit.vue'
+import {Back, Close} from "@element-plus/icons-vue";
 
-import {inject} from "vue";
+const pageType = ref('home')
+const showEdit = ref(false)
 
-const globalVars = inject('globalVars')
-globalVars.isDim = '1'
+const changeTab = (v) => {
+  pageType.value = v
+  console.log('index --- pagetype : ', pageType.value)
+}
+
+const close2NotDim = () => {
+  pageType.value = 'home'
+}
+
+const back2LastDiv = () => {
+  showEdit.value = false
+}
 
 </script>
 <style lang="less">

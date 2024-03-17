@@ -6,6 +6,7 @@
         @updateShowEdit="updateShowEdit"
         @changeActiveTag="changeActiveTag"
     />
+
     <div class="system-setting-side">
       <div class="top-button" @click="close2NotDim">
         <el-icon>
