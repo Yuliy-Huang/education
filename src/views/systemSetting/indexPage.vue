@@ -1,7 +1,6 @@
 <template>
   <div class="system-setting">
     <sliderComponent
-        :title-list="titleList"
         :active-tag="activeTag"
         :show-edit="showEdit"
         @updateShowEdit="updateShowEdit"
@@ -27,25 +26,6 @@ import {ref, inject} from 'vue';
 import sliderComponent from '@/components/sliderComponent.vue'
 import {Back, Close} from "@element-plus/icons-vue";
 
-const titleList = ref([
-  '岗位人员登录设置',
-  '岗位人员权限设置',
-  '教务端登录设置',
-  '填写所有专业名称',
-  '提前续费通知设置',
-  '前台电话添加设置',
-  '上课签到权限设置',
-  '学员缴费收款设置',
-  '提前上课通知设置',
-  '专业考级等级输入',
-  '家长端APP购物设置',
-  '桌面系统背景设置',
-  '使用说明视频讲解',
-  '校区所有数据导出',
-  '其他校区切换选择',
-  '各年份数据查看',
-  '视频会议直播设置',
-])
 const activeTag = ref(null)
 const showEdit = ref(false)
 

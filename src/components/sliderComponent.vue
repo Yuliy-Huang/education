@@ -28,30 +28,15 @@
         </span>
       </div>
     </div>
-    <div :class="showInsideSlider ? 'setting-content-show-slider' : 'setting-content'" v-if="activeTag !== null">
-      <loginSetting v-if="activeTag === '岗位人员登录设置' && !showEdit" @updateEdit="updateEdit"/>
-      <loginSettingEdit v-if="activeTag === '岗位人员登录设置' && showEdit" @updateEdit="updateEdit"/>
-      <permissionSetting v-if="activeTag === '岗位人员权限设置'"/>
-      <eduTerminalLoginSetting v-if="activeTag === '教务端登录设置'"/>
-      <allMajorNames v-if="activeTag === '填写所有专业名称'"/>
-      <renewalNotificationSetting v-if="activeTag === '提前续费通知设置'"/>
-      <frontDescPhoneSetting v-if="activeTag === '前台电话添加设置'"/>
-      <signInPermissionSetting v-if="activeTag === '上课签到权限设置'"/>
-      <studentPaymentSetting v-if="activeTag === '学员缴费收款设置'"/>
-      <advanceClassNotificationSetting v-if="activeTag === '提前上课通知设置'"/>
-      <professionalGradeSetting v-if="activeTag === '专业考级等级输入'"/>
-      <parentAppShoppingSetting v-if="activeTag === '家长端APP购物设置'"/>
-      <desktopBackgroundSetting v-if="activeTag === '桌面系统背景设置'"/>
-      <instructionVideoExplanation v-if="activeTag === '使用说明视频讲解'"/>
-      <campusDataExport v-if="activeTag === '校区所有数据导出'"/>
-      <otherCampusSwitching v-if="activeTag === '其他校区切换选择'"/>
-      <viewDataByYear v-if="activeTag === '各年份数据查看'"/>
-      <liveVideoSetting v-if="activeTag === '视频会议直播设置'"/>
-    </div>
+    <keep-alive :exclude="['loginSetting', 'loginSettingEdit', 'permissionSetting']"
+                :class="showInsideSlider ? 'setting-content-show-slider' : 'setting-content'"
+                v-if="activeTag !== null">
+      <component :is="currentCom" @updateEdit="updateEdit"/>
+    </keep-alive>
   </div>
 </template>
 <script setup>
-import {defineEmits, defineProps, inject, onMounted, ref, toRefs, watch} from "vue";
+import {defineEmits, defineProps, inject, markRaw, onMounted, ref, toRefs, watch} from "vue";
 import loginSetting from '@/views/systemSetting/loginSetting/loginSetting.vue'
 import loginSettingEdit from '@/views/systemSetting/loginSetting/loginSettingEdit.vue'
 import permissionSetting from '@/views/systemSetting/postPermission/permissionSetting.vue'
@@ -72,10 +57,6 @@ import viewDataByYear from '@/views/systemSetting/viewDataByYear.vue'
 import liveVideoSetting from '@/views/systemSetting/liveVideoSetting.vue'
 
 const props = defineProps({
-  titleList: {
-    type: Array,
-    default: () => {}
-  },
   activeTag: {
     type: String,
     default: null
@@ -85,16 +66,51 @@ const props = defineProps({
     default: false
   }
 })
-const {titleList, activeTag} = toRefs(props)
+const {activeTag, showEdit} = toRefs(props)
 
-const showNum = ref(0)
+const titleList = ref([
+  {name: '岗位人员登录设置', comName: showEdit.value ? markRaw(loginSettingEdit) : markRaw(loginSetting)},
+  {name: '岗位人员权限设置', comName: markRaw(permissionSetting)},
+  {name: '教务端登录设置', comName: markRaw(eduTerminalLoginSetting)},
+  {name: '填写所有专业名称', comName: markRaw(allMajorNames)},
+  {name: '提前续费通知设置', comName: markRaw(renewalNotificationSetting)},
+  {name: '前台电话添加设置', comName: markRaw(frontDescPhoneSetting)},
+  {name: '上课签到权限设置', comName: markRaw(signInPermissionSetting)},
+  {name: '学员缴费收款设置', comName: markRaw(studentPaymentSetting)},
+  {name: '提前上课通知设置', comName: markRaw(advanceClassNotificationSetting)},
+  {name: '专业考级等级输入', comName: markRaw(professionalGradeSetting)},
+  {name: '家长端APP购物设置', comName: markRaw(parentAppShoppingSetting)},
+  {name: '桌面系统背景设置', comName: markRaw(desktopBackgroundSetting)},
+  {name: '使用说明视频讲解', comName: markRaw(instructionVideoExplanation)},
+  {name: '校区所有数据导出', comName: markRaw(campusDataExport)},
+  {name: '其他校区切换选择', comName: markRaw(otherCampusSwitching)},
+  {name: '各年份数据查看', comName: markRaw(viewDataByYear)},
+  {name: '视频会议直播设置', comName: markRaw(liveVideoSetting)},
+])
+
+const showIndex = ref(0)
+const showTags = ref([])
+const currentCom = ref(null)
 const addShowTag = () => {
-  showNum.value = showNum.value + 4 <= titleList.value.length ? showNum.value + 4 : Math.floor((titleList.value.length - 1) / 4) * 4
+  showIndex.value = showIndex.value + 4 <= titleList.value.length ? showIndex.value + 4 : Math.floor((titleList.value.length - 1) / 4) * 4
 }
 
 const reduceShowTag = () => {
-  showNum.value = showNum.value - 4 >= 0 ? showNum.value - 4 : 0
+  showIndex.value = showIndex.value - 4 >= 0 ? showIndex.value - 4 : 0
 }
+
+onMounted(() => {
+  showTags.value = titleList.value.slice(showIndex.value, showIndex.value + 4).map(item => {
+    return item.name
+  })
+})
+watch(showIndex, () => {
+  showTags.value = showIndex.value + 4 <= titleList.value.length ? titleList.value.slice(showIndex.value, showIndex.value + 4).map(item => {
+    return item.name
+  }) : titleList.value.slice(showIndex.value, titleList.value.length).map(item => {
+    return item.name
+  })
+})
 
 const emit = defineEmits(['updateShowEdit', 'changeActiveTag']);
 const updateEdit = () => {
@@ -105,7 +121,15 @@ const showInsideSlider = ref(false)
 const globalVars = inject('globalVars')
 
 const changeTag = (v) => {
-  globalVars.showSub = v === activeTag.value ? globalVars.showSub: '0'
+  globalVars.showSub = v === activeTag.value ? globalVars.showSub : '0'
+
+  for (let i = 0; i < titleList.value.length; i++) {
+    if (titleList.value[i].name === v) {
+      currentCom.value = titleList.value[i].comName
+      break
+    }
+  }
+
   switch (v) {
     case '岗位人员权限设置':
       showInsideSlider.value = true
@@ -115,13 +139,6 @@ const changeTag = (v) => {
   }
   emit('changeActiveTag', v);
 }
-const showTags = ref([])
-onMounted(() => {
-  showTags.value = titleList.value.slice(showNum.value, showNum.value + 4)
-})
-watch(showNum, () => {
-  showTags.value = showNum.value + 4 <= titleList.value.length ? titleList.value.slice(showNum.value, showNum.value + 4) : titleList.value.slice(showNum.value, titleList.value.length)
-})
 
 
 </script>

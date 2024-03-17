@@ -29,16 +29,19 @@ module.exports = defineConfig({
   publicPath: './',
   outputDir: 'dist',
   assetsDir: 'static',
-  // devServer: {
-  //   proxy: {
-  //     '/api': {
-  //       target: "https://api.education.com/api",
-  //       changOrigin:true,
-  //       secure: true,
-  //       pathRewrite:{
-  //         '^/api': ''
-  //       }
-  //     },
-  //   },
-  // },
+  devServer: {
+    client: {
+      overlay: false,
+    },
+    proxy: {
+      '/api': {
+        target: "https://www.baidu.com",
+        changOrigin:true,
+        secure: true,
+        pathRewrite:{
+          '^/api': ''
+        }
+      },
+    },
+  },
 })
