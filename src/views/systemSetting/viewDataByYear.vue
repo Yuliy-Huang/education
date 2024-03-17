@@ -1,30 +1,22 @@
 <template>
-  <table-component-once :user-column="columns" :table-data="tableData"
-                        :is-show-operation="true"></table-component-once>
+  <div class="view-data">
+    <div class="years">
+      <div v-for="idx in 10" :key="idx" class="single-year">
+        <el-button plain>
+          {{currentYear - (10 - idx)}}年校区所有数据
+        </el-button>
+      </div>
+    </div>
+  </div>
 </template>
 <script setup>
-import tableComponentOnce from "@/components/tableComponentOnce.vue"
-import {reactive} from "vue";
+import {ref} from 'vue'
 
-
-const columns = [{
-  label: '员工姓名',
-  prop: 'name'
-}, {
-  label: '校区职位',
-  prop: 'position'
-}, {
-  label: '登陆电话',
-  prop: 'phone'
-}, {
-  label: '登录密码',
-  prop: 'password'
-}]
-
-const tableData = reactive([
-  {name: '田刚', position: '教务', phone: '15799995675', password: '666666'},
-  {name: '张三', position: '前台', phone: '13588887766', password: '888888'},
-])
-
+const currentYear = ref(new Date().getFullYear())
+console.log('currentYear : ', currentYear.value)
+console.log(typeof currentYear.value)
 
 </script>
+<style lang="less">
+@import "@/assets/css/viewDataByYearCss";
+</style>
