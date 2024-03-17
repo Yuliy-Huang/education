@@ -126,5 +126,5 @@ watch(showDiv, () => {
 
 </script>
 <style lang="less">
-@import "@/assets/css/sliderInsideComponentCss";
+@import "@/assets/css/systemSetting/sliderInsideComponentCss";
 </style>

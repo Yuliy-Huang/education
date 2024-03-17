@@ -24,7 +24,7 @@
 
 <script setup>
 import {ref, inject} from 'vue';
-import sliderComponent from '@/components/sliderComponent.vue'
+import sliderComponent from '@/views/systemSetting/component/sliderComponent.vue'
 import {Back, Close} from "@element-plus/icons-vue";
 
 const activeTag = ref(null)

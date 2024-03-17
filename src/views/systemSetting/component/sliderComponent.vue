@@ -28,12 +28,12 @@
         </span>
       </div>
     </div>
-    <keep-alive :exclude="['loginSetting', 'loginSettingEdit', 'permissionSetting']"
+    <keep-alive :exclude="['loginSetting', 'loginSettingEdit', 'permissionSettingIndex']"
                 :class="showInsideSlider ? 'setting-content-show-slider' : 'setting-content'"
                 v-if="activeTag !== null">
-      <component :is="loginSetting" @updateEdit="updateEdit" v-if="activeTag === '岗位人员登录设置' && !showEdit"/>
-      <component :is="loginSettingEdit" @updateEdit="updateEdit" v-else-if="activeTag === '岗位人员登录设置' && showEdit"/>
-      <component :is="currentCom" v-else/>
+      <component :is="loginSetting" :key="activeTag" @updateEdit="updateEdit" v-if="activeTag === '岗位人员登录设置' && !showEdit"/>
+      <component :is="loginSettingEdit" :key="activeTag + ':' + showEdit.toString()" @updateEdit="updateEdit" v-else-if="activeTag === '岗位人员登录设置' && showEdit"/>
+      <component :is="currentCom" :key="activeTag + ':' + showEdit.toString()" v-else/>
     </keep-alive>
   </div>
 </template>
@@ -41,7 +41,7 @@
 import {defineEmits, defineProps, inject, markRaw, onMounted, ref, toRefs, watch} from "vue";
 import loginSetting from '@/views/systemSetting/loginSetting/loginSetting.vue'
 import loginSettingEdit from '@/views/systemSetting/loginSetting/loginSettingEdit.vue'
-import permissionSetting from '@/views/systemSetting/postPermission/permissionSetting.vue'
+import permissionSettingIndex from '@/views/systemSetting/postPermission/permissionSettingIndex.vue'
 import eduTerminalLoginSetting from '@/views/systemSetting/eduTerminal/eduTerminalLoginSetting.vue'
 import allMajorNames from '@/views/systemSetting/allMajorNames.vue'
 import renewalNotificationSetting from '@/views/systemSetting/renewalNotificationSetting.vue'
@@ -72,7 +72,7 @@ const {activeTag, showEdit} = toRefs(props)
 
 const titleList = ref([
   {name: '岗位人员登录设置', comName: null},
-  {name: '岗位人员权限设置', comName: markRaw(permissionSetting)},
+  {name: '岗位人员权限设置', comName: markRaw(permissionSettingIndex)},
   {name: '教务端登录设置', comName: markRaw(eduTerminalLoginSetting)},
   {name: '填写所有专业名称', comName: markRaw(allMajorNames)},
   {name: '提前续费通知设置', comName: markRaw(renewalNotificationSetting)},
@@ -146,5 +146,5 @@ const changeTag = (v) => {
 
 </script>
 <style lang="less">
-@import "@/assets/css/sliderComponentCss";
+@import "@/assets/css/systemSetting/sliderComponentCss";
 </style>

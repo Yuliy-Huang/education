@@ -3,8 +3,8 @@
   <sliderNextComponent :show-div="showDiv" @changeShowDiv="changeShowDiv" v-if="showNextSlider"/>
 </template>
 <script setup>
-import sliderInsideComponent from "@/components/sliderInsideComponent.vue"
-import sliderNextComponent from "@/components/sliderNextComponent.vue"
+import sliderInsideComponent from "@/views/systemSetting/component/sliderInsideComponent.vue"
+import sliderNextComponent from "@/views/systemSetting/component/sliderNextComponent.vue"
 import {ref} from "vue";
 
 const employeeList = ref([
