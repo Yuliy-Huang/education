@@ -111,6 +111,6 @@ const form = ref({
 })
 
 </script>
-<style lang="less">
+<style scoped lang="less">
 @import "@/assets/css/systemSetting/permissionSystemCss";
 </style>

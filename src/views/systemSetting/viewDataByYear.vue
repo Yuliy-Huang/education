@@ -17,6 +17,6 @@ console.log('currentYear : ', currentYear.value)
 console.log(typeof currentYear.value)
 
 </script>
-<style lang="less">
+<style scoped lang="less">
 @import "@/assets/css/systemSetting/viewDataByYearCss";
 </style>

@@ -58,6 +58,6 @@ const back2LastDiv = () => {
 }
 
 </script>
-<style lang="less">
+<style scoped lang="less">
 @import "@/assets/css/systemSetting/indexCss";
 </style>

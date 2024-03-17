@@ -74,6 +74,6 @@ const infoModify = () => {
 
 
 </script>
-<style lang="less">
+<style scoped lang="less">
 @import "@/assets/css/academicStaff/indexCss";
 </style>

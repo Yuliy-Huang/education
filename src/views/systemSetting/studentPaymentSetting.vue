@@ -30,6 +30,6 @@ const changeQR2 = () => {
 }
 
 </script>
-<style lang="less">
+<style scoped lang="less">
 @import "@/assets/css/systemSetting/studentPaymentSettingCss";
 </style>

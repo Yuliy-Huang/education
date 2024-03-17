@@ -28,6 +28,6 @@ const blockList = ref([
 ])
 
 </script>
-<style lang="less">
+<style scoped lang="less">
 @import "@/assets/css/systemSetting/permissionStaffCss";
 </style>
