@@ -10,5 +10,5 @@ const majorList = ['系统设置使用讲解', '教务员工使用讲解']
 
 </script>
 <style lang="less">
-@import "@/assets/css/allMajorNamesCss";
+@import "@/assets/css/systemSetting/allMajorNamesCss";
 </style>

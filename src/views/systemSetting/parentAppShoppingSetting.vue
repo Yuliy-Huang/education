@@ -24,5 +24,5 @@ const saveFunc = () => {
 
 </script>
 <style lang="less">
-@import "@/assets/css/signInPermissionSettingCss";
+@import "@/assets/css/systemSetting/signInPermissionSettingCss";
 </style>

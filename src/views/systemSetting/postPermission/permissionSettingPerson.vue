@@ -21,8 +21,8 @@ import {ref} from 'vue'
 const moduleList = ref([
   '系统设置', '教务员工', '代课老师',
   '校区学院', '查询管理', '管理存档',
-  '日常归档', '明细查看', '财务统计',
-  '上班打卡', '校区结账', ''
+  '日常归档', '明细查看', '商品查看',
+  '财务统计', '上班打卡', '校区结账'
 ])
 const form = ref({
   key1: '',
@@ -33,5 +33,5 @@ const form = ref({
 
 </script>
 <style lang="less">
-@import "@/assets/css/permissionSettingPersonCss";
+@import "@/assets/css/systemSetting/permissionSettingPersonCss";
 </style>

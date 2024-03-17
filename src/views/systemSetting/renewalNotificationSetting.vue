@@ -38,5 +38,5 @@ const secondSwitch = ref(false)
 
 </script>
 <style lang="less">
-@import "@/assets/css/renewalNotificationSettingCss";
+@import "@/assets/css/systemSetting/renewalNotificationSettingCss";
 </style>

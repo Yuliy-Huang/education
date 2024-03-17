@@ -28,5 +28,5 @@ const saveFunc = () => {
 
 </script>
 <style lang="less">
-@import "@/assets/css/frontDescPhoneSettingCss";
+@import "@/assets/css/systemSetting/frontDescPhoneSettingCss";
 </style>

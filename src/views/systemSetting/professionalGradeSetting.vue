@@ -10,5 +10,5 @@ const majorList = ['1级', '2级', '3级', '4级', '5级', '6级']
 
 </script>
 <style lang="less">
-@import "@/assets/css/allMajorNamesCss";
+@import "@/assets/css/systemSetting/allMajorNamesCss";
 </style>

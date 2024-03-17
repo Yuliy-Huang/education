@@ -10,5 +10,5 @@ const majorList = ['钢琴', '吉他']
 
 </script>
 <style lang="less">
-@import "@/assets/css/allMajorNamesCss";
+@import "@/assets/css/systemSetting/allMajorNamesCss";
 </style>

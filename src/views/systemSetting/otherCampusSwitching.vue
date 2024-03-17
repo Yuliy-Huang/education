@@ -10,5 +10,5 @@ const majorList = ['博尔思音乐培训学校', '嘉兴美术培训学校', '�
 
 </script>
 <style lang="less">
-@import "@/assets/css/allMajorNamesCss";
+@import "@/assets/css/systemSetting/allMajorNamesCss";
 </style>

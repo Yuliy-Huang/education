@@ -46,5 +46,5 @@ const beforeAvatarUpload = (rawFile) => {
 }
 </script>
 <style lang="less">
-@import "@/assets/css/desktopBacgroundSettingCss";
+@import "@/assets/css/systemSetting/desktopBacgroundSettingCss";
 </style>

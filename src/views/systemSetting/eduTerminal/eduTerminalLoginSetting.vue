@@ -31,5 +31,5 @@ const saveFunc = () => {
 
 </script>
 <style lang="less">
-@import "@/assets/css/eduTerminalLoginSettingCss";
+@import "@/assets/css/systemSetting/eduTerminalLoginSettingCss";
 </style>

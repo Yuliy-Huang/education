@@ -26,5 +26,5 @@ const firstSwitch = ref('1')
 
 </script>
 <style lang="less">
-@import "@/assets/css/liveVideoSettingCss";
+@import "@/assets/css/systemSetting/liveVideoSettingCss";
 </style>

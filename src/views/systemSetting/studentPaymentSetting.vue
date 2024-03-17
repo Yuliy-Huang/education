@@ -31,5 +31,5 @@ const changeQR2 = () => {
 
 </script>
 <style lang="less">
-@import "@/assets/css/studentPaymentSettingCss";
+@import "@/assets/css/systemSetting/studentPaymentSettingCss";
 </style>

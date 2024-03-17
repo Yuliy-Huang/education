@@ -14,5 +14,5 @@ const saveFunc = () => {
 
 </script>
 <style lang="less">
-@import "@/assets/css/campusDataExportCss";
+@import "@/assets/css/systemSetting/campusDataExportCss";
 </style>

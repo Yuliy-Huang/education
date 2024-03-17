@@ -46,5 +46,5 @@ const form = reactive({
 
 </script>
 <style lang="less">
-@import "@/assets/css/loginSettingEditCss";
+@import "@/assets/css/systemSetting/loginSettingEditCss";
 </style>
