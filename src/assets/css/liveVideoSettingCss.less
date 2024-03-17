@@ -1,0 +1,55 @@
+.live-video {
+  height: 450px;
+  background-color: var(--black-custom-transparence);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+
+  .live-video-div {
+    height: 40%;
+    width: 30%;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    align-items: center;
+    text-align: center;
+
+    .switch-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+
+      .el-radio-button {
+        background-color: var(--dark-grey-custom-3) !important;
+      }
+    }
+
+    .second-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      .row-switch {
+        margin-left: 20px;
+      }
+
+
+
+    }
+
+    .text-div {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+
+      .el-form-item__content {
+        justify-content: flex-end;
+        margin-top: 20px;
+      }
+    }
+  }
+}

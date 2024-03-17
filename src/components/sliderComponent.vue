@@ -52,7 +52,7 @@ import parentAppShoppingSetting from '@/views/systemSetting/parentAppShoppingSet
 import desktopBackgroundSetting from '@/views/systemSetting/desktopBackgroundSetting.vue'
 import instructionVideoExplanation from '@/views/systemSetting/instructionVideoExplanation.vue'
 import campusDataExport from '@/views/systemSetting/campusDataExport.vue'
-import otherCampusSwitching from '@/views/systemSetting/otherCampusSwitching.vue'
+// import otherCampusSwitching from '@/views/systemSetting/otherCampusSwitching.vue'
 import viewDataByYear from '@/views/systemSetting/viewDataByYear.vue'
 import liveVideoSetting from '@/views/systemSetting/liveVideoSetting.vue'
 
@@ -83,7 +83,7 @@ const titleList = ref([
   {name: '桌面系统背景设置', comName: markRaw(desktopBackgroundSetting)},
   {name: '使用说明视频讲解', comName: markRaw(instructionVideoExplanation)},
   {name: '校区所有数据导出', comName: markRaw(campusDataExport)},
-  {name: '其他校区切换选择', comName: markRaw(otherCampusSwitching)},
+  // {name: '其他校区切换选择', comName: markRaw(otherCampusSwitching)},
   {name: '各年份数据查看', comName: markRaw(viewDataByYear)},
   {name: '视频会议直播设置', comName: markRaw(liveVideoSetting)},
 ])
@@ -92,7 +92,7 @@ const showIndex = ref(0)
 const showTags = ref([])
 const currentCom = ref(null)
 const addShowTag = () => {
-  showIndex.value = showIndex.value + 4 <= titleList.value.length ? showIndex.value + 4 : Math.floor((titleList.value.length - 1) / 4) * 4
+  showIndex.value = showIndex.value + 4 < titleList.value.length ? showIndex.value + 4 : Math.floor((titleList.value.length - 1) / 4) * 4
 }
 
 const reduceShowTag = () => {
@@ -105,7 +105,7 @@ onMounted(() => {
   })
 })
 watch(showIndex, () => {
-  showTags.value = showIndex.value + 4 <= titleList.value.length ? titleList.value.slice(showIndex.value, showIndex.value + 4).map(item => {
+  showTags.value = showIndex.value + 4 < titleList.value.length ? titleList.value.slice(showIndex.value, showIndex.value + 4).map(item => {
     return item.name
   }) : titleList.value.slice(showIndex.value, titleList.value.length).map(item => {
     return item.name

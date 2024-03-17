@@ -50,7 +50,7 @@ const showEdit = ref(false)
 const showNum = ref(0)
 
 const addShowTag = () => {
-  showNum.value = showNum.value + 4 <= titleList.value.length ? showNum.value + 4 : Math.floor((titleList.value.length - 1) / 4) * 4
+  showNum.value = showNum.value + 4 < titleList.value.length ? showNum.value + 4 : Math.floor((titleList.value.length - 1) / 4) * 4
 }
 
 const reduceShowTag = () => {
@@ -75,7 +75,7 @@ onMounted(() => {
   showTags.value = titleList.value.slice(showNum.value, showNum.value + 4)
 })
 watch(showNum, () => {
-  showTags.value = showNum.value + 4 <= titleList.value.length ? titleList.value.slice(showNum.value, showNum.value + 4) : titleList.value.slice(showNum.value, titleList.value.length)
+  showTags.value = showNum.value + 4 < titleList.value.length ? titleList.value.slice(showNum.value, showNum.value + 4) : titleList.value.slice(showNum.value, titleList.value.length)
 })
 
 

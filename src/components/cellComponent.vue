@@ -3,12 +3,12 @@
     <div class="box-row" v-for="row in 12" :key="row">
       <template v-for="col in 4" :key="col-1">
         <div :class="col-1 !== 3 ? 'left': 'last'"
-             v-if="row === addButtonRow && addButtonCol === col-1 && pageType !== 'campus'">
+             v-if="row === addButtonRow && addButtonCol === col-1 && pageType === 'major'">
           <el-icon style="font-size: small; cursor: pointer;" @click="clickAdd">
             <Plus/>
           </el-icon>
         </div>
-        <div :class="col-1 === 3 ? 'last': 'left'" @click="deleteConfirm" v-else-if="pageType === 'campus'"
+        <div :class="col-1 === 3 ? 'last': 'left'" @click="deleteConfirm" v-else-if="pageType === 'campus' || pageType === 'instruction'"
              :style="newData[row-1] && newData[row-1][col-1] ? 'cursor: pointer' : ''">
           {{ newData[row - 1] && newData[row - 1][col - 1] ? newData[row - 1][col - 1] : '' }}
         </div>

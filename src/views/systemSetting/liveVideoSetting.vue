@@ -1,30 +1,30 @@
 <template>
-  <table-component-once :user-column="columns" :table-data="tableData"
-                        :is-show-operation="true"></table-component-once>
+  <div class="live-video">
+    <div class="live-video-div">
+      <div class="switch-row">
+        <el-radio-group v-model="firstSwitch">
+          <el-radio-button label="" value="0" />
+          <el-radio-button label="" value="1" />
+        </el-radio-group>
+<!--        <el-switch-->
+<!--            v-model="firstSwitch"-->
+<!--            class="ml-2"-->
+<!--            style="&#45;&#45;el-switch-on-color: var(&#45;&#45;light-green-custom); &#45;&#45;el-switch-off-color: var(&#45;&#45;dark-grey-custom-3);"-->
+<!--        />-->
+      </div>
+      <div class="text-div">
+        <span>是否打开视频会议直播</span>
+      </div>
+    </div>
+  </div>
 </template>
 <script setup>
-import tableComponentOnce from "@/components/tableComponentOnce.vue"
-import {reactive} from "vue";
+import {ref} from "vue";
 
-
-const columns = [{
-  label: '员工姓名',
-  prop: 'name'
-}, {
-  label: '校区职位',
-  prop: 'position'
-}, {
-  label: '登陆电话',
-  prop: 'phone'
-}, {
-  label: '登录密码',
-  prop: 'password'
-}]
-
-const tableData = reactive([
-  {name: '田刚', position: '教务', phone: '15799995675', password: '666666'},
-  {name: '张三', position: '前台', phone: '13588887766', password: '888888'},
-])
+const firstSwitch = ref('1')
 
 
 </script>
+<style lang="less">
+@import "@/assets/css/liveVideoSettingCss";
+</style>
