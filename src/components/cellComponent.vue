@@ -9,7 +9,7 @@
           </el-icon>
         </div>
         <div :class="col-1 === 3 ? 'last': 'left'" @click="deleteConfirm" v-else-if="pageType === 'campus' || pageType === 'instruction'"
-             :style="newData[row-1] && newData[row-1][col-1] ? 'cursor: pointer' : ''">
+             :style="{'cursor': newData[row-1] && newData[row-1][col-1] ? 'pointer': ''}">
           {{ newData[row - 1] && newData[row - 1][col - 1] ? newData[row - 1][col - 1] : '' }}
         </div>
         <div :class="col-1 === 3 ? 'last': 'left'" @click="deleteConfirm" v-else

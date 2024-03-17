@@ -9,7 +9,7 @@
                  class="svg-left"
                  alt=""/>
           </div>
-          <el-menu :class="showNav? 'el-menu-demo' : 'no-nav-menu'"
+          <el-menu :class="{'el-menu-demo': showNav, 'no-nav-menu': !showNav}"
                    mode="horizontal"
                    :router="true"
                    @open="handleOpen"
@@ -38,7 +38,7 @@
                    :key="index">
                 <el-menu-item
                     v-if="item.children && item.name !== '404' && !item.meta.isHidden"
-                    :class="item.redirect === currentPagePath ? 'is-active': ''"
+                    :class="{'is-active': item.redirect === currentPagePath}"
                     :index="item.path">
                   <el-tag
                       :key="item.path"

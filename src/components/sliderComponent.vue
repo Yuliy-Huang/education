@@ -31,7 +31,9 @@
     <keep-alive :exclude="['loginSetting', 'loginSettingEdit', 'permissionSetting']"
                 :class="showInsideSlider ? 'setting-content-show-slider' : 'setting-content'"
                 v-if="activeTag !== null">
-      <component :is="currentCom" @updateEdit="updateEdit"/>
+      <component :is="loginSetting" @updateEdit="updateEdit" v-if="activeTag === '岗位人员登录设置' && !showEdit"/>
+      <component :is="loginSettingEdit" @updateEdit="updateEdit" v-else-if="activeTag === '岗位人员登录设置' && showEdit"/>
+      <component :is="currentCom" v-else/>
     </keep-alive>
   </div>
 </template>
@@ -69,7 +71,7 @@ const props = defineProps({
 const {activeTag, showEdit} = toRefs(props)
 
 const titleList = ref([
-  {name: '岗位人员登录设置', comName: showEdit.value ? markRaw(loginSettingEdit) : markRaw(loginSetting)},
+  {name: '岗位人员登录设置', comName: null},
   {name: '岗位人员权限设置', comName: markRaw(permissionSetting)},
   {name: '教务端登录设置', comName: markRaw(eduTerminalLoginSetting)},
   {name: '填写所有专业名称', comName: markRaw(allMajorNames)},
@@ -122,11 +124,12 @@ const globalVars = inject('globalVars')
 
 const changeTag = (v) => {
   globalVars.showSub = v === activeTag.value ? globalVars.showSub : '0'
-
-  for (let i = 0; i < titleList.value.length; i++) {
-    if (titleList.value[i].name === v) {
-      currentCom.value = titleList.value[i].comName
-      break
+  if (v !== '岗位人员登录设置') {
+    for (let i = 0; i < titleList.value.length; i++) {
+      if (titleList.value[i].name === v) {
+        currentCom.value = titleList.value[i].comName
+        break
+      }
     }
   }
 
