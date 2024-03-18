@@ -27,7 +27,7 @@
           </div>
         </div>
         <div class="one-block">
-          <div class="up-block" @click="infoModify">教务离职办理</div>
+          <div class="up-block" @click="infoDimission">教务离职办理</div>
           <div class="down-block">
             <div class="link-mid" v-for="idx in 13" :key="idx"></div>
             <span>1</span>
@@ -36,13 +36,15 @@
         </div>
       </div>
 
-      <staffEditComponent v-else/>
+      <staffArchiveComponent v-else-if="pageType === 'infoArchive'"/>
+
+
     </div>
   </div>
 </template>
 <script setup>
 import {inject, defineProps, defineEmits, toRefs} from "vue";
-import staffEditComponent from "./staffEditComponent.vue"
+import staffArchiveComponent from "./staffArchiveComponent.vue"
 const props = defineProps({
   pageType: {
     type: String,
@@ -66,6 +68,10 @@ const infoSee = () => {
 
 const infoModify = () => {
   emit('changeTab', 'infoModify')
+}
+
+const infoDimission = () => {
+  emit('changeTab', 'infoDimission')
 }
 
 
