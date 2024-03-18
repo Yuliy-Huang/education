@@ -1,6 +1,6 @@
 <template>
   <div class="system-setting">
-    <staffEditComponent :page-type="pageType" @changeTab="changeTab"/>
+    <staffHome :page-type="pageType" @changeTab="changeTab"/>
 
     <div class="system-setting-side">
       <div class="top-button" @click="close2NotDim">
@@ -19,12 +19,10 @@
 
 <script setup>
 import {ref} from 'vue';
-import staffEditComponent from './staffEdit.vue'
+import staffHome from './staffHome.vue'
 import {Back, Close} from "@element-plus/icons-vue";
 
 const pageType = ref('home')
-const showEdit = ref(false)
-
 const changeTab = (v) => {
   pageType.value = v
 }
@@ -34,10 +32,10 @@ const close2NotDim = () => {
 }
 
 const back2LastDiv = () => {
-  showEdit.value = false
+  pageType.value = 'home'
 }
 
 </script>
 <style scoped lang="less">
-@import "@/assets/css/academicStaff/indexCss";
+@import "@/assets/css/systemSetting/indexCss";
 </style>

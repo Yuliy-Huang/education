@@ -58,22 +58,19 @@ const globalVars = inject('globalVars')
 globalVars.isDim = '1'
 
 const infoArchive = () => {
-  pageType.value = 'home'
   emit('changeTab', 'infoArchive')
 }
 
 const infoSee = () => {
-  pageType.value = 'home'
   emit('changeTab', 'infoSee')
 }
 
 const infoModify = () => {
-  pageType.value = 'home'
   emit('changeTab', 'infoModify')
 }
 
 
 </script>
 <style scoped lang="less">
-@import "@/assets/css/academicStaff/indexCss";
+@import "@/assets/css/academicStaff/staffHomeCss";
 </style>
