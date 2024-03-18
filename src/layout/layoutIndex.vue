@@ -19,7 +19,7 @@
                    :collapse-transition="true"
                    :unique-opened="true">
             <template v-if="!showNav">
-              <div class="notification">动态通知[<span style="color: #8a2be2ad;">{{ notificationNum }}</span>]</div>
+              <div class="notification">动态通知[<span style="color: var(--dark-purple);">{{ notificationNum }}</span>]</div>
               <div class="nav-date">{{ nowDate }}</div>
               <div class="school-info">ID: {{ schoolId }}</div>
               <div class="top-button1">

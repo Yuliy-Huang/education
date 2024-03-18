@@ -35,9 +35,8 @@
           </div>
         </div>
       </div>
-      <div class="edit" v-else>
-        <staffEditComponent />
-      </div>
+
+      <staffEditComponent v-else/>
     </div>
   </div>
 </template>
