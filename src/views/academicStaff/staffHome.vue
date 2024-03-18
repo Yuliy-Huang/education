@@ -36,14 +36,14 @@
         </div>
       </div>
       <div class="edit" v-else>
-
+        <staffEditComponent />
       </div>
     </div>
   </div>
 </template>
 <script setup>
 import {inject, defineProps, defineEmits, toRefs} from "vue";
-
+import staffEditComponent from "./staffEditComponent.vue"
 const props = defineProps({
   pageType: {
     type: String,
