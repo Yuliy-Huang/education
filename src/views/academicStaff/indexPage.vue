@@ -27,7 +27,6 @@ const showEdit = ref(false)
 
 const changeTab = (v) => {
   pageType.value = v
-  console.log('index --- pagetype : ', pageType.value)
 }
 
 const close2NotDim = () => {

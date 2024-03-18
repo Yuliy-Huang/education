@@ -54,10 +54,8 @@ const handleCheckAllChange = (val) => {
   isIndeterminate.value = false
 }
 
-const changeSingle = (value) => {
-  console.log('changeSingle -- value : ', value)
+const changeSingle = () => {
   const checkedCount = checkList.value.filter(item => item).length
-  console.log('changeSingle -- checkedCount : ', checkedCount)
   checkAll.value = checkedCount === blockList.value.length
   isIndeterminate.value = checkedCount > 0 && checkedCount < blockList.value.length
 }
