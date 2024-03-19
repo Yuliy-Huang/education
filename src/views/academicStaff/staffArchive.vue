@@ -177,5 +177,5 @@ const textarea = ref('')
 
 </script>
 <style lang="less">
-@import "@/assets/css/academicStaff/staffArchiveComponentCss";
+@import "@/assets/css/academicStaff/staffArchiveCss";
 </style>

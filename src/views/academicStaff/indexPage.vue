@@ -1,9 +1,11 @@
 <template>
   <div class="system-setting">
     <div class="staff">
-      <div class="academic-staff">
-        <component :is="currentCom" :page-type="pageType" @changeTab="changeTab"/>
-      </div>
+      <keep-alive>
+        <div class="academic-staff">
+          <component :is="currentCom" :page-type="pageType" @changeTab="changeTab"/>
+        </div>
+      </keep-alive>
     </div>
 
     <div class="system-setting-side">
@@ -25,11 +27,11 @@
 import {markRaw, ref, watch} from 'vue';
 import {Back, Close} from "@element-plus/icons-vue";
 import staffHome from './staffHome.vue'
-import staffArchiveComponent from "./component/staffArchiveComponent.vue"
-import staffListComponent from "./component/staffListComponent.vue"
-import staffInfoSeeComponent from "./component/staffInfoSeeComponent.vue"
-import staffInfoSeeSalaryComponent from "./component/staffInfoSeeSalaryComponent.vue"
-import staffInfoSeeCheckInComponent from "./component/staffInfoSeeCheckInComponent.vue"
+import staffArchiveComponent from "./staffArchive.vue"
+import staffListComponent from "./staffList.vue"
+import staffInfoSeeComponent from "./staffInfoSee.vue"
+import staffInfoSeeSalaryComponent from "./staffInfoSeeSalary.vue"
+import staffInfoSeeCheckInComponent from "./staffInfoSeeCheckIn.vue"
 
 const pageType = ref('home')
 const changeTab = (v) => {

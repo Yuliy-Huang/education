@@ -150,5 +150,5 @@ const jump2Detail = (v) => {
 
 </script>
 <style lang="less">
-@import "@/assets/css/academicStaff/staffInfoSeeComponentCss";
+@import "@/assets/css/academicStaff/staffInfoSeeCss";
 </style>

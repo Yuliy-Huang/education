@@ -48,5 +48,5 @@ const form1 = reactive({
 
 </script>
 <style lang="less">
-@import "@/assets/css/academicStaff/staffInfoSeeSalaryComponentCss";
+@import "@/assets/css/academicStaff/staffInfoSeeSalaryCss";
 </style>

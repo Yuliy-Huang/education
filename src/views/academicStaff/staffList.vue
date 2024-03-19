@@ -42,5 +42,5 @@ const clickCell = () => {
 
 </script>
 <style lang="less">
-@import "@/assets/css/academicStaff/staffListComponentCss";
+@import "@/assets/css/academicStaff/staffListCss";
 </style>
