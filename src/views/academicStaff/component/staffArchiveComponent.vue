@@ -15,7 +15,7 @@
               <Plus/>
             </el-icon>
           </el-upload>
-          <div class="avatar-text"><span class="avatar-span-text">点击重新上传照片</span></div>
+          <div class="avatar-text-left"><span class="avatar-span-text">点击重新上传照片</span></div>
         </div>
         <div class="info-div">
           <el-form :model="form" label-width="auto" class="info-form">
@@ -74,19 +74,21 @@
       </div>
       <div class="col4">
         <div class="qr-div">
-          <el-upload class="avatar-upload"
-                     accept="image/*"
-                     action="#"
-                     :show-file-list="false"
-                     :before-upload="beforeAvatarUpload"
-          >
-            <img v-if="imageUrl" :src="imageUrl" class="avatar" alt=""/>
-            <el-icon v-else class="avatar-uploader-icon">
-              <Plus/>
-            </el-icon>
-          </el-upload>
-          <div class="upload-bottom">请添加教务教师<br />工资收款二维码</div>
-          <div class="avatar-text">
+          <div class="upload-img-div">
+            <el-upload class="avatar-upload"
+                       accept="image/*"
+                       action="#"
+                       :show-file-list="false"
+                       :before-upload="beforeAvatarUpload"
+            >
+              <img v-if="imageUrl" :src="imageUrl" class="avatar" alt=""/>
+              <el-icon v-else class="avatar-uploader-icon">
+                <Plus/>
+              </el-icon>
+            </el-upload>
+            <div class="upload-bottom">请添加教务教师<br />工资收款二维码</div>
+          </div>
+          <div class="avatar-text-right">
             <span class="avatar-span-dot">
               <span class="dot-purple"></span>
               微信

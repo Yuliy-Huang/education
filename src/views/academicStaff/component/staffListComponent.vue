@@ -28,13 +28,13 @@ const props = defineProps({
 const {pageType} = toRefs(props)
 const emits = defineEmits(['changeTab']);
 
-const staffList = ref(['李文斌［前台］', '张三毛【经理］'])
+const staffList = ref(['张三［前台］', '李四毛【经理］'])
 const searchValue = ref('')
 
 const clickCell = () => {
   console.log('**** staffList --- clickCell -- pageType.value : ', pageType.value)
   if (pageType.value === 'infoModify') {
-    emits('changeTab', 'infoArchive')
+    emits('changeTab', 'infoArchiveModify')
   } else if (pageType.value === 'infoSee') {
     emits('changeTab', 'infoSeeFile')
   }

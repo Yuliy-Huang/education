@@ -1,7 +1,7 @@
 <template>
     <div class="home">
       <div class="one-block">
-        <div class="up-block" @click="changePage('infoArchive')">教务档案存档</div>
+        <div class="up-block" @click="changePage('infoArchiveAdd')">教务档案存档</div>
         <div class="down-block">
           <div class="link-mid" v-for="idx in 13" :key="idx"></div>
           <span>3</span>

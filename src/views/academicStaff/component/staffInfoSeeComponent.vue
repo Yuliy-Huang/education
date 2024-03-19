@@ -32,7 +32,7 @@
             <span class="form-span">{{ form1.major }}</span>
           </el-form-item>
           <el-form-item label="现在职位：" class="div-no-required">
-            <span class="form-span">{{ form1.positon }}</span>
+            <span class="form-span">{{ form1.position }}</span>
           </el-form-item>
           <el-form-item label="联系电话：" class="div-no-required">
             <span class="form-span">{{ form1.phone }}</span>
@@ -47,29 +47,18 @@
       </div>
       <div class="col3">
         <div class="detail-button">
-          <el-button plain>工资明细</el-button>
+          <el-button plain @click="jump2Detail('infoSeeSalary')">工资明细</el-button>
         </div>
         <div class="detail-button">
-          <el-button plain>考勤查看</el-button>
+          <el-button plain @click="jump2Detail('infoSeeCheckIn')">考勤查看</el-button>
         </div>
         <div class="detail-button">
-          <el-button plain>入职备注</el-button>
+          <el-button plain @click="jump2Detail('infoSeeComment')">入职备注</el-button>
         </div>
       </div>
       <div class="col4">
         <div class="qr-div">
-          <el-upload class="avatar-upload"
-                     accept="image/*"
-                     action="#"
-                     :show-file-list="false"
-                     :before-upload="beforeAvatarUpload"
-          >
-            <img v-if="imageUrl" :src="imageUrl" class="avatar" alt=""/>
-            <el-icon v-else class="avatar-uploader-icon">
-              <Plus/>
-            </el-icon>
-          </el-upload>
-          <div class="upload-bottom">请添加教务教师<br/>工资收款二维码</div>
+          <img :src="imageUrl" class="avatar-img" alt=""/>
           <div class="avatar-text">
             <span class="avatar-span-dot">
               <span class="dot-purple"></span>
@@ -90,20 +79,11 @@
 </template>
 <script setup>
 
-import {ElMessage, ElMessageBox} from "element-plus";
-import {h, reactive, ref} from "vue";
-import {Plus} from "@element-plus/icons-vue";
+import {ElMessageBox} from "element-plus";
+import {defineEmits, h, reactive, ref} from "vue";
 
+// const imageUrl = ref(require(`@/assets/img/qr/img.jpg`))
 const imageUrl = ref('')
-const beforeAvatarUpload = (rawFile) => {
-  if (rawFile.size / 1024 / 1024 > 2) {
-    ElMessage.error('图片大小不能超过 2MB!')
-    return false
-  }
-  console.log('000 : ', rawFile)
-  imageUrl.value = URL.createObjectURL(rawFile)
-  return false
-}
 
 const form = reactive({
   no: 'A1004',
@@ -115,7 +95,7 @@ const form = reactive({
 
 const form1 = reactive({
   major: '艺术管理',
-  positon: '前台',
+  position: '前台',
   phone: '13878768542',
   school: '南京工商管理学院',
   address: '嘉兴市秀洲区12栋101室',
@@ -163,7 +143,10 @@ const saveFunc = () => {
 
       })
 }
-const textarea = ref('')
+const emits = defineEmits(['changeTab']);
+const jump2Detail = (v) => {
+  emits('changeTab', v)
+}
 
 </script>
 <style lang="less">
