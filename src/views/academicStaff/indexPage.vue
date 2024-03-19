@@ -24,14 +24,15 @@
 </template>
 
 <script setup>
-import {markRaw, ref, watch} from 'vue';
+import {markRaw, ref, watch, defineAsyncComponent} from 'vue';
 import {Back, Close} from "@element-plus/icons-vue";
 import staffHome from './staffHome.vue'
-import staffArchiveComponent from "./staffArchive.vue"
-import staffListComponent from "./staffList.vue"
-import staffInfoSeeComponent from "./staffInfoSee.vue"
-import staffInfoSeeSalaryComponent from "./staffInfoSeeSalary.vue"
-import staffInfoSeeCheckInComponent from "./staffInfoSeeCheckIn.vue"
+
+const staffArchive = defineAsyncComponent(() => import("./staffArchive.vue"))
+const staffList = defineAsyncComponent(() => import("./staffList.vue"))
+const staffInfoSee = defineAsyncComponent(() => import("./staffInfoSee.vue"))
+const staffInfoSeeSalary = defineAsyncComponent(() => import("./staffInfoSeeSalary.vue"))
+const staffInfoSeeCheckIn = defineAsyncComponent(() => import("./staffInfoSeeCheckIn.vue"))
 
 const pageType = ref('home')
 const changeTab = (v) => {
@@ -67,28 +68,28 @@ const currentCom = ref(markRaw(staffHome))
 watch(pageType, () => {
   switch (pageType.value) {
     case 'infoArchiveAdd':
-      currentCom.value = markRaw(staffArchiveComponent)
+      currentCom.value = markRaw(staffArchive)
       break
     case 'infoArchiveModify':
-      currentCom.value = markRaw(staffArchiveComponent)
+      currentCom.value = markRaw(staffArchive)
       break
     case 'infoModify':
-      currentCom.value = markRaw(staffListComponent)
+      currentCom.value = markRaw(staffList)
       break
     case 'infoSee':
-      currentCom.value = markRaw(staffListComponent)
+      currentCom.value = markRaw(staffList)
       break
     case 'infoSeeFile':
-      currentCom.value = markRaw(staffInfoSeeComponent)
+      currentCom.value = markRaw(staffInfoSee)
       break
     case 'infoSeeSalary':
-      currentCom.value = markRaw(staffInfoSeeSalaryComponent)
+      currentCom.value = markRaw(staffInfoSeeSalary)
       break
     case 'infoSeeCheckIn':
-      currentCom.value = markRaw(staffInfoSeeCheckInComponent)
+      currentCom.value = markRaw(staffInfoSeeCheckIn)
       break
     case 'infoSeeComment':
-      currentCom.value = markRaw(staffInfoSeeSalaryComponent)
+      currentCom.value = markRaw(staffInfoSeeSalary)
       break
     default:
       currentCom.value = markRaw(staffHome)

@@ -33,26 +33,27 @@
 </template>
 
 <script setup>
-import {ref, inject, markRaw} from 'vue';
+import {ref, inject, markRaw, defineAsyncComponent} from 'vue';
 import sliderComponent from '@/components/sliderComponent.vue'
 import {Back, Close} from "@element-plus/icons-vue";
 import loginSetting from '@/views/systemSetting/loginSetting/loginSetting.vue'
-import loginSettingEdit from '@/views/systemSetting/loginSetting/loginSettingEdit.vue'
-import permissionSettingIndex from '@/views/systemSetting/postPermission/permissionSettingIndex.vue'
-import eduTerminalLoginSetting from '@/views/systemSetting/eduTerminal/eduTerminalLoginSetting.vue'
-import allMajorNames from '@/views/systemSetting/allMajorNames.vue'
-import renewalNotificationSetting from '@/views/systemSetting/renewalNotificationSetting.vue'
-import frontDescPhoneSetting from '@/views/systemSetting/frontDescPhoneSetting.vue'
-import signInPermissionSetting from '@/views/systemSetting/signInPermissionSetting.vue'
-import studentPaymentSetting from '@/views/systemSetting/studentPaymentSetting.vue'
-import advanceClassNotificationSetting from '@/views/systemSetting/advanceClassNotificationSetting.vue'
-import professionalGradeSetting from '@/views/systemSetting/professionalGradeSetting.vue'
-import parentAppShoppingSetting from '@/views/systemSetting/parentAppShoppingSetting.vue'
-import desktopBackgroundSetting from '@/views/systemSetting/desktopBackgroundSetting.vue'
-import instructionVideoExplanation from '@/views/systemSetting/instructionVideoExplanation.vue'
-import campusDataExport from '@/views/systemSetting/campusDataExport.vue'
-import viewDataByYear from '@/views/systemSetting/viewDataByYear.vue'
-import liveVideoSetting from '@/views/systemSetting/liveVideoSetting.vue'
+
+const loginSettingEdit = defineAsyncComponent(() => import('@/views/systemSetting/loginSetting/loginSettingEdit.vue'))
+const permissionSettingIndex = defineAsyncComponent(() => import('@/views/systemSetting/postPermission/permissionSettingIndex.vue'))
+const eduTerminalLoginSetting = defineAsyncComponent(() => import('@/views/systemSetting/eduTerminal/eduTerminalLoginSetting.vue'))
+const allMajorNames = defineAsyncComponent(() => import('@/views/systemSetting/allMajorNames.vue'))
+const renewalNotificationSetting = defineAsyncComponent(() => import('@/views/systemSetting/renewalNotificationSetting.vue'))
+const frontDescPhoneSetting = defineAsyncComponent(() => import('@/views/systemSetting/frontDescPhoneSetting.vue'))
+const signInPermissionSetting = defineAsyncComponent(() => import('@/views/systemSetting/signInPermissionSetting.vue'))
+const studentPaymentSetting = defineAsyncComponent(() => import('@/views/systemSetting/studentPaymentSetting.vue'))
+const advanceClassNotificationSetting = defineAsyncComponent(() => import('@/views/systemSetting/advanceClassNotificationSetting.vue'))
+const professionalGradeSetting = defineAsyncComponent(() => import('@/views/systemSetting/professionalGradeSetting.vue'))
+const parentAppShoppingSetting = defineAsyncComponent(() => import('@/views/systemSetting/parentAppShoppingSetting.vue'))
+const desktopBackgroundSetting = defineAsyncComponent(() => import('@/views/systemSetting/desktopBackgroundSetting.vue'))
+const instructionVideoExplanation = defineAsyncComponent(() => import('@/views/systemSetting/instructionVideoExplanation.vue'))
+const campusDataExport = defineAsyncComponent(() => import('@/views/systemSetting/campusDataExport.vue'))
+const viewDataByYear = defineAsyncComponent(() => import('@/views/systemSetting/viewDataByYear.vue'))
+const liveVideoSetting = defineAsyncComponent(() => import('@/views/systemSetting/liveVideoSetting.vue'))
 
 const activeTag = ref(null)
 const showEdit = ref(false)
