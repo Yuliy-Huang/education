@@ -18,12 +18,12 @@
     </sliderComponent>
 
     <div class="system-setting-side">
-      <div class="top-button" @click="close2NotDim">
+      <div class="top-right-button" @click="close2NotDim">
         <el-icon>
           <Close/>
         </el-icon>
       </div>
-      <div class="top-button-1" @click="back2LastDiv">
+      <div class="top-right-button-1" @click="back2LastDiv">
         <el-icon>
           <Back/>
         </el-icon>
@@ -110,7 +110,6 @@ const titleList = ref([
   {name: '桌面系统背景设置', comName: markRaw(desktopBackgroundSetting)},
   {name: '使用说明视频讲解', comName: markRaw(instructionVideoExplanation)},
   {name: '校区所有数据导出', comName: markRaw(campusDataExport)},
-  // {name: '其他校区切换选择', comName: markRaw(otherCampusSwitching)},
   {name: '视频会议直播设置', comName: markRaw(liveVideoSetting)},
   {name: '各年份数据查看', comName: markRaw(viewDataByYear)},
 ])

@@ -1,60 +1,45 @@
-.staff {
-  padding: calc(100vh * 40 / 1080) 0 calc(100vh * 40 / 1080) calc(100vw * 106 / 1920) !important;
-  width: 100%;
-  display: grid;
-  grid-template-columns: calc(100% - 100vw * 106 / 1920) calc(100vw * 106 / 1920);
 
-  .academic-staff {
-    height: 450px;
-    background-color: var(--black-custom-transparence);
-    overflow: hidden;
+.home {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+
+  .one-block {
+    height: calc(100vh * 100 / 1080);
+    width: calc(100vw * 250 / 1920);
     border: 1px solid var(--white-custom-2);
     border-radius: 4px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    display: grid;
+    grid-template-rows: 4fr 1fr;
 
-    .home {
-      width: 70%;
-      height: 100%;
+    .up-block {
       display: flex;
       justify-content: space-around;
       align-items: center;
       text-align: center;
+      border-bottom: 1px solid var(--white-custom-2);
+      cursor: pointer;
+    }
 
-      .one-block {
-        height: calc(100vh * 100 / 1080);
-        width: calc(100vw * 250 / 1920);
-        border: 1px solid var(--white-custom-2);
-        border-radius: 4px;
-        display: grid;
-        grid-template-rows: 4fr 1fr;
+    .down-block {
+      display: flex;
+      justify-content: space-around;
+      padding: 0 3px;
 
-        .up-block {
-          display: flex;
-          justify-content: space-around;
-          align-items: center;
-          text-align: center;
-          border-bottom: 1px solid var(--white-custom-2);
-          cursor: pointer;
-        }
-        .down-block {
-          display: flex;
-          justify-content: space-around;
-          padding: 0 3px;
-          .link-mid {
-            border-left: 1px solid var(--white-custom-3);
-            margin: 5px 0;
-          }
-          span {
-            color: var(--light-purple);
-          }
-        }
+      .link-mid {
+        border-left: 1px solid var(--white-custom-3);
+        margin: 5px 0;
+      }
 
+      span {
+        color: var(--light-purple);
       }
     }
 
   }
-
 }
+
+

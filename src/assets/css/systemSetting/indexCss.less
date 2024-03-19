@@ -2,7 +2,25 @@
   width: 100%;
   display: grid;
   grid-template-columns: calc(100% - 100vw * 106 / 1920) calc(100vw * 106 / 1920);
-  //border: 0.95px solid var(--white-custom-2);
+
+  .staff {
+    padding: calc(100vh * 40 / 1080) 0 calc(100vh * 40 / 1080) calc(100vw * 106 / 1920) !important;
+    width: 100%;
+    display: grid;
+    grid-template-columns: calc(100% - 100vw * 106 / 1920) calc(100vw * 106 / 1920);
+
+    .academic-staff {
+      height: 450px;
+      background-color: var(--black-custom-transparence);
+      overflow: hidden;
+      border: 1px solid var(--white-custom-2);
+      border-radius: 4px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+  }
 
   .setting-content {
     background-color: var(--black-custom-transparence);
@@ -24,25 +42,26 @@
     padding-bottom: calc(100vh * 40 / 1080) !important;
     padding-left: calc(100vw * 12 / 1920) !important;
 
-    .top-button {
+    .top-right-button {
       background-color: var(--black-custom-default);
       height: calc(100vw * 28 / 1080);
       width: calc(100vw * 28 / 1080);
       display: flex;
       justify-content: center;
       align-items: center;
-      border: 0.95px solid var(--white-custom-2);
+      border: 1px solid var(--white-custom-2);
       border-radius: 4px;
       cursor: pointer;
     }
-    .top-button-1 {
+
+    .top-right-button-1 {
       background-color: var(--black-custom-default);
       height: calc(100vw * 28 / 1080);
       width: calc(100vw * 28 / 1080);
       display: flex;
       justify-content: center;
       align-items: center;
-      border: 0.95px solid var(--white-custom-2);
+      border: 1px solid var(--white-custom-2);
       border-radius: 4px;
       cursor: pointer;
       margin-top: calc(100vw * 7 / 1080);

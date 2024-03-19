@@ -1,14 +1,18 @@
 <template>
   <div class="system-setting">
-    <staffHome :page-type="pageType" @changeTab="changeTab"/>
+    <div class="staff">
+      <div class="academic-staff">
+        <component :is="currentCom" :page-type="pageType" @changeTab="changeTab"/>
+      </div>
+    </div>
 
     <div class="system-setting-side">
-      <div class="top-button" @click="close2NotDim">
+      <div class="top-right-button" @click="close2NotDim">
         <el-icon>
           <Close/>
         </el-icon>
       </div>
-      <div class="top-button-1" @click="back2LastDiv" >
+      <div class="top-right-button-1" @click="back2LastDiv">
         <el-icon>
           <Back/>
         </el-icon>
@@ -18,12 +22,16 @@
 </template>
 
 <script setup>
-import {ref} from 'vue';
-import staffHome from './staffHome.vue'
+import {markRaw, ref, watch} from 'vue';
 import {Back, Close} from "@element-plus/icons-vue";
+import staffHome from './staffHome.vue'
+import staffArchiveComponent from "./component/staffArchiveComponent.vue"
+import staffListComponent from "./component/staffListComponent.vue"
+import staffInfoSeeComponent from "./component/staffInfoSeeComponent.vue"
 
 const pageType = ref('home')
 const changeTab = (v) => {
+  console.log('index --- v : ', v)
   pageType.value = v
 }
 
@@ -34,6 +42,26 @@ const close2NotDim = () => {
 const back2LastDiv = () => {
   pageType.value = 'home'
 }
+
+const currentCom = ref(markRaw(staffHome))
+watch(pageType, () => {
+  switch (pageType.value) {
+    case 'infoArchive':
+      currentCom.value = markRaw(staffArchiveComponent)
+      break
+    case 'infoModify':
+      currentCom.value = markRaw(staffListComponent)
+      break
+    case 'infoSee':
+      currentCom.value = markRaw(staffListComponent)
+      break
+    case 'infoSeeFile':
+      currentCom.value = markRaw(staffInfoSeeComponent)
+      break
+    default:
+      currentCom.value = markRaw(staffHome)
+  }
+})
 
 </script>
 <style scoped lang="less">
