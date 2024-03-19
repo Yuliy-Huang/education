@@ -58,7 +58,7 @@
       </div>
       <div class="col4">
         <div class="qr-div">
-          <img :src="imageUrl" class="avatar-img" alt=""/>
+          <img :src="qrUrl" class="avatar-img" alt=""/>
           <div class="avatar-text">
             <span class="avatar-span-dot">
               <span class="dot-purple"></span>
@@ -82,8 +82,8 @@
 import {ElMessageBox} from "element-plus";
 import {defineEmits, h, reactive, ref} from "vue";
 
-// const imageUrl = ref(require(`@/assets/img/qr/img.jpg`))
-const imageUrl = ref('')
+const imageUrl = ref(require(`@/assets/img/qr/img.jpg`))
+const qrUrl = ref(require(`@/assets/img/qr/qr111.jpg`))
 
 const form = reactive({
   no: 'A1004',
