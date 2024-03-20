@@ -1,6 +1,6 @@
 <template>
   <div class="all-major">
-    <cell-component :data-list="majorList" :page-type="'instruction'"/>
+    <cell-component :data-list="majorList" :page-type="'instruction'" :show-del="false" :show-add="false"/>
   </div>
 </template>
 <script setup>

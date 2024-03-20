@@ -1,7 +1,7 @@
 <template>
   <div class="staff-setting">
     <div class="staff-div">
-      <keep-alive>
+      <keep-alive :exclude="['staffInfoSeeDetail']">
         <div :class="isSeparate ? 'academic-staff-separate' : 'academic-staff'">
           <component :is="currentCom" :page-type="pageType" @changeTab="changeTab"/>
         </div>
@@ -31,8 +31,7 @@ import staffHome from './staffHome.vue'
 const staffArchive = defineAsyncComponent(() => import("./staffArchive.vue"))
 const staffList = defineAsyncComponent(() => import("./staffList.vue"))
 const staffInfoSee = defineAsyncComponent(() => import("./staffInfoSee.vue"))
-const staffInfoSeeSalary = defineAsyncComponent(() => import("./staffInfoSeeSalary.vue"))
-const staffInfoSeeCheckIn = defineAsyncComponent(() => import("./staffInfoSeeCheckIn.vue"))
+const staffInfoSeeDetail = defineAsyncComponent(() => import("./staffInfoSeeDetail.vue"))
 
 const pageType = ref('home')
 const isSeparate= ref(false)
@@ -82,13 +81,9 @@ watch(pageType, () => {
       currentCom.value = markRaw(staffInfoSee)
       break
     case 'infoSeeSalary':
-      currentCom.value = markRaw(staffInfoSeeSalary)
-      break
     case 'infoSeeCheckIn':
-      currentCom.value = markRaw(staffInfoSeeCheckIn)
-      break
     case 'infoSeeComment':
-      currentCom.value = markRaw(staffInfoSeeSalary)
+      currentCom.value = markRaw(staffInfoSeeDetail)
       break
     default:
       currentCom.value = markRaw(staffHome)

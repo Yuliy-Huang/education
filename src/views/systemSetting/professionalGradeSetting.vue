@@ -1,6 +1,6 @@
 <template>
   <div class="all-major">
-    <cell-more-component :data-list="majorList"/>
+    <cell-more-component :data-list="majorList" :row-count="10"/>
   </div>
 </template>
 <script setup>

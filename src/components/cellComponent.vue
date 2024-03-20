@@ -1,18 +1,19 @@
 <template>
   <div class="box-table">
-    <div class="box-row" v-for="row in 12" :key="row">
-      <template v-for="col in 4" :key="col-1">
-        <div :class="col-1 !== 3 ? 'left': 'last'"
-             v-if="row === addButtonRow && addButtonCol === col-1 && pageType === 'major'">
+    <div class="box-row" v-for="row in rowCount" :key="row">
+      <template v-for="col in colCount" :key="col-1">
+        <div :class="col-1 !== colCount - 1 ? 'left': 'last'"
+             v-if="showAdd && row === addButtonRow && addButtonCol === col-1">
           <el-icon style="font-size: small; cursor: pointer;" @click="clickAdd">
             <Plus/>
           </el-icon>
         </div>
-        <div :class="col-1 === 3 ? 'last': 'left'" @click="deleteConfirm" v-else-if="pageType === 'campus' || pageType === 'instruction'"
+
+        <div :class="col-1 === colCount - 1 ? 'last': 'left'" @click="clickCellFunc" v-else-if="!showDel"
              :style="newData[row-1] && newData[row-1][col-1] ? 'cursor: pointer': ''">
           {{ newData[row - 1] && newData[row - 1][col - 1] ? newData[row - 1][col - 1] : '' }}
         </div>
-        <div :class="col-1 === 3 ? 'last': 'left'" @click="deleteConfirm" v-else
+        <div :class="col-1 === colCount - 1 ? 'last': 'left'" @click="clickCellFunc" v-else
              v-html="newData[row-1] && newData[row-1][col-1] ? newData[row-1][col-1] + ' <span style=\'cursor: pointer;\'>[删除]</span>' : ''">
         </div>
       </template>
@@ -33,20 +34,36 @@ const props = defineProps({
     type: String,
     default: '',
   },
+  colCount: {
+    type: Number,
+    default: 4,
+  },
+  rowCount: {
+    type: Number,
+    default: 12,
+  },
+  showAdd: {
+    type: Boolean,
+    default: true,
+  },
+  showDel: {
+    type: Boolean,
+    default: true,
+  },
 })
-const {dataList, pageType} = toRefs(props);
+const {dataList, pageType, colCount, rowCount} = toRefs(props);
 
 const newData = ref([])
-for (let i = 0; i < dataList.value.length; i += 4) {
-  if (i + 4 < dataList.value.length) {
-    newData.value.push(dataList.value.slice(i, i + 4))
+for (let i = 0; i < dataList.value.length; i += colCount.value) {
+  if (i + colCount.value < dataList.value.length) {
+    newData.value.push(dataList.value.slice(i, i + colCount.value))
   } else {
     newData.value.push(dataList.value.slice(i, dataList.value.length))
   }
 }
 
-const addButtonRow = Math.floor(dataList.value.length / 4) + 1
-const addButtonCol = dataList.value.length % 4
+const addButtonRow = Math.floor(dataList.value.length / colCount.value) + 1
+const addButtonCol = dataList.value.length % colCount.value
 
 const clickAdd = () => {
   ElMessageBox.prompt('新增专业', '', {
@@ -90,7 +107,7 @@ const vNode = () => {
   ]);
 }
 
-const deleteConfirm = (e) => {
+const clickCellFunc = (e) => {
   const tagName = e.target.tagName.toLowerCase()
   if (pageType.value === 'campus') {
     ElMessageBox({

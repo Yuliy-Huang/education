@@ -1,6 +1,6 @@
 <template>
   <div class="all-major">
-    <cell-component :data-list="majorList" :page-type="'campus'"/>
+    <cell-component :data-list="majorList" :page-type="'campus'" :show-del="false" :show-add="false"/>
   </div>
 </template>
 <script setup>
