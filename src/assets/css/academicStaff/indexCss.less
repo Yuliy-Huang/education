@@ -1,7 +1,30 @@
-.system-setting {
+.staff-setting {
   width: 100%;
   display: grid;
   grid-template-columns: calc(100% - 100vw * 106 / 1920) calc(100vw * 106 / 1920);
+
+  .staff-div {
+    padding: calc(100vh * 40 / 1080) 0 calc(100vh * 40 / 1080) calc(100vw * 106 / 1920) !important;
+
+    .academic-staff {
+      height: calc(450px + 100vw * 28 / 1080);
+      background-color: var(--black-custom-transparence);
+      border: 1px solid var(--white-custom-2);
+      border-radius: 4px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .academic-staff-separate {
+      height: calc(450px + 100vw * 28 / 1080);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+  }
 
   .setting-content {
     background-color: var(--black-custom-transparence);

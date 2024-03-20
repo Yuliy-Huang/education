@@ -43,7 +43,6 @@ const globalVars = inject('globalVars')
 globalVars.isDim = '1'
 
 const changePage = (v) => {
-  console.log('staffHome --- changePage --- v : ', v)
   emits('changeTab', v)
 }
 

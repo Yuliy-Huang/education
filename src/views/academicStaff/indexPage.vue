@@ -1,8 +1,8 @@
 <template>
-  <div class="system-setting">
-    <div class="staff">
+  <div class="staff-setting">
+    <div class="staff-div">
       <keep-alive>
-        <div class="academic-staff">
+        <div :class="isSeparate ? 'academic-staff-separate' : 'academic-staff'">
           <component :is="currentCom" :page-type="pageType" @changeTab="changeTab"/>
         </div>
       </keep-alive>
@@ -35,32 +35,31 @@ const staffInfoSeeSalary = defineAsyncComponent(() => import("./staffInfoSeeSala
 const staffInfoSeeCheckIn = defineAsyncComponent(() => import("./staffInfoSeeCheckIn.vue"))
 
 const pageType = ref('home')
+const isSeparate= ref(false)
 const changeTab = (v) => {
-  console.log('index --- v : ', v)
   pageType.value = v
+  isSeparate.value = ['infoSeeSalary', 'infoSeeCheckIn', 'infoSeeComment'].includes(v);
 }
 
 const close2NotDim = () => {
-  pageType.value = 'home'
+  changeTab('home')
 }
 
 const back2LastDiv = () => {
-  console.log('back2LastDiv ---- pageType.value : ', pageType.value)
   switch (pageType.value) {
     case 'infoArchiveModify':
-      pageType.value = 'infoModify'
+      changeTab('infoModify')
       break
     case 'infoSeeFile':
-      pageType.value = 'infoSee'
+      changeTab('infoSee')
       break
     case 'infoSeeSalary':
     case 'infoSeeCheckIn':
     case 'infoSeeComment':
-      pageType.value = 'infoSeeFile'
-      console.log('switch pageType.value : ', pageType.value)
+      changeTab('infoSeeFile')
       break
     default:
-      pageType.value = 'home'
+      changeTab('home')
   }
 }
 
@@ -98,5 +97,5 @@ watch(pageType, () => {
 
 </script>
 <style scoped lang="less">
-@import "@/assets/css/systemSetting/indexCss";
+@import "@/assets/css/academicStaff/indexCss";
 </style>

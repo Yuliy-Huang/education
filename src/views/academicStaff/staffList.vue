@@ -32,7 +32,6 @@ const staffList = ref(['张三［前台］', '李四毛【经理］'])
 const searchValue = ref('')
 
 const clickCell = () => {
-  console.log('**** staffList --- clickCell -- pageType.value : ', pageType.value)
   if (pageType.value === 'infoModify') {
     emits('changeTab', 'infoArchiveModify')
   } else if (pageType.value === 'infoSee') {
