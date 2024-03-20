@@ -1,19 +1,27 @@
 <template>
   <div class="box-table">
-    <div class="box-row" v-for="row in rowCount" :key="row">
+    <div :class="colCount === 4 ? 'box-row' : 'box-row-seven'" v-for="row in rowCount" :key="row">
       <template v-for="col in colCount" :key="col-1">
-        <div :class="col-1 !== colCount - 1 ? 'left': 'last'"
+        <div :class="[col-1 !== colCount - 1 ? 'left' : 'last', colCount === 4 ? 'col-four' : 'col-seven']"
              v-if="showAdd && row === addButtonRow && addButtonCol === col-1">
           <el-icon style="font-size: small; cursor: pointer;" @click="clickAdd">
             <Plus/>
           </el-icon>
         </div>
 
-        <div :class="col-1 === colCount - 1 ? 'last': 'left'" @click="clickCellFunc" v-else-if="!showDel"
+        <div :class="[col-1 === colCount - 1 ? 'last': 'left', colCount === 4 ? 'col-four' : 'col-seven']"
+             @click="clickCellFunc" v-else-if="!showDel"
              :style="newData[row-1] && newData[row-1][col-1] ? 'cursor: pointer': ''">
-          {{ newData[row - 1] && newData[row - 1][col - 1] ? newData[row - 1][col - 1] : '' }}
+          <div class="inside-cell">
+            <template v-if="newData[row - 1] && newData[row - 1][col - 1]">
+              <div class="dot-green" v-if="pageType === 'infoSeeCheckIn'"></div>
+              <span>{{ newData[row - 1][col - 1] }}</span>
+              <el-checkbox v-model="checkDate" style="margin-left: 10px; margin-top: 2px;" />
+            </template>
+          </div>
         </div>
-        <div :class="col-1 === colCount - 1 ? 'last': 'left'" @click="clickCellFunc" v-else
+        <div :class="[col-1 === colCount - 1 ? 'last': 'left', colCount === 4 ? 'col-four' : 'col-seven']"
+             @click="clickCellFunc" v-else
              v-html="newData[row-1] && newData[row-1][col-1] ? newData[row-1][col-1] + ' <span style=\'cursor: pointer;\'>[删除]</span>' : ''">
         </div>
       </template>
@@ -51,8 +59,9 @@ const props = defineProps({
     default: true,
   },
 })
-const {dataList, pageType, colCount, rowCount} = toRefs(props);
+const {dataList, pageType, colCount, rowCount, showDel} = toRefs(props);
 
+const checkDate = ref(false)
 const newData = ref([])
 for (let i = 0; i < dataList.value.length; i += colCount.value) {
   if (i + colCount.value < dataList.value.length) {
@@ -136,7 +145,7 @@ const clickCellFunc = (e) => {
         .catch(() => {
 
         })
-  } else if (tagName === 'span') {
+  } else if (tagName === 'span' && showDel.value) {
     ElMessageBox.confirm(
         '是 否 确 认 删 除',
         '',

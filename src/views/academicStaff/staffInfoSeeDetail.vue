@@ -22,7 +22,7 @@
         <div :class="['month', {'is-active': item === activeMonth}]" @click="activeMonth = item">{{ item }}月</div>
       </template>
     </div>
-    <component :is="currentComponent"></component>
+    <component :is="currentComponent" :year="year" :month="activeMonth"></component>
   </div>
 </template>
 <script setup>
@@ -36,7 +36,7 @@ const year = ref(nowYear)
 const changeYear = (v) => {
   v === 1 ? (year.value = year.value + 1 <= nowYear ? year.value + 1 : nowYear) : (year.value = year.value - 1 >= 1970 ? year.value - 1 : 1970)
 }
-const activeMonth = ref(1)
+const activeMonth = ref(new Date().getMonth() + 1)
 
 const props = defineProps({
   pageType: {

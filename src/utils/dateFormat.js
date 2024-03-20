@@ -33,3 +33,16 @@ export function getNowTime() {
 function addZero(s) {
     return s < 10 ? ('0' + s) : s;
 }
+
+export function traverseDaysInMonth(year, month) {
+    // const today = new Date();
+    // const year = today.getFullYear();
+    // const month = today.getMonth(); // 注意：getMonth() 返回的月份是从0开始的
+    let res = []
+    const daysInMonth = new Date(year, month, 0).getDate(); // 获取当月天数
+    for (let day = 1; day <= daysInMonth; day++) {
+        // const date = new Date(year, month - 1, day);
+        res.push(year + '.' + month + '.' + day); // 输出日期或者其他操作
+    }
+    return res
+}
