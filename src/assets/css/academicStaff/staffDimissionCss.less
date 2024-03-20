@@ -1,52 +1,46 @@
-.staff-edit {
-  width: 90%;
+.staff-dimission {
+  width: 60%;
   height: 100%;
   display: grid;
   grid-template-rows: 1.3fr 3fr 2.3fr;
 
-  .row1 {
-  }
+  .row1 {}
 
   .row2 {
     display: grid;
-    grid-template-columns: 4.5fr 3.6fr 3fr 2fr;
+    grid-template-columns: 1fr 1fr;
 
     .col1 {
+      padding: 0 30px;
+      border-left: 1px solid var(--white-custom-2);
       border-right: 1px solid var(--white-custom-2);
       display: grid;
-      grid-template-columns: 1fr 1.5fr;
+      grid-template-columns: 1fr 1fr;
       text-align: center;
       align-items: center;
 
       .avatar-div {
-        padding-right: 20px;
-        height: 100%;
-        display: grid;
-        //grid-template-rows: 2.4fr 1fr;
+        height: 96%;
+        width: 100%;
+        padding-right: 15px;
 
-        .avatar-upload {
-          height: 200px;
+        .avatar-img {
+          //height: 100%;
+          width: 100%;
+          background-position: center;
+          background-size: cover;
           background-color: var(--dark-grey-custom-3);
           border-radius: 4px;
           display: flex;
           justify-content: center;
           align-items: center;
-
-          .avatar {
-
-          }
-
-          .avatar-uploader-icon {
-            font-size: xx-large;
-          }
         }
 
-        .avatar-text-left {
-          //margin-top: 4px;
+        .avatar-text {
+          margin-top: 4px;
           display: flex;
           justify-content: center;
           align-items: center;
-
           .avatar-span-text {
             border-bottom: 1px solid var(--white-custom-2);
           }
@@ -54,91 +48,18 @@
       }
 
       .info-div {
-        padding: 0 20px 0 30px;
+        padding-left: 15px;
       }
     }
-
     .col2 {
       border-right: 1px solid var(--white-custom-2);
-      padding: 0 20px;
+      padding: 0 30px;
       display: flex;
       justify-content: center;
       align-items: center;
       text-align: center;
-    }
-
-    .col3 {
-      border-right: 1px solid var(--white-custom-2);
-      padding: 0 20px;
-      display: grid;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-
-      .col3-div {
-        .el-textarea__inner {
-          border: 1px solid var(--white-custom-2);
-          border-radius: 1px;
-        }
-
-        .el-textarea__inner::placeholder {
-          color: var(--light-grey-custom);
-        }
-      }
-    }
-
-    .col4 {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-
-      .qr-div {
-        padding-left: 20px;
-        width: 100%;
-        height: 100%;
-        display: grid;
-        grid-template-rows: 4fr 1fr;
-
-        .upload-img-div {
-          height: 100%;
-          .avatar-upload {
-            height: 150px;
-            background-color: var(--dark-grey-custom-3);
-            border-radius: 4px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            .avatar {
-            }
-            .avatar-uploader-icon {
-              font-size: xx-large;
-            }
-          }
-
-          .upload-bottom {
-            background-color: var(--dark-grey-custom);
-          }
-        }
-
-        .avatar-text-right {
-          margin-top: 4px;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-
-          .avatar-span-dot {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-          }
-        }
-      }
     }
   }
-
   .row3 {
     display: flex;
     justify-content: center;
@@ -153,7 +74,24 @@
     }
   }
 
+  .row3-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+    align-items: center;
+
+    .el-button {
+      width: calc(100vw * 200 / 1080);
+      height: calc(100vw * 30 / 1080);
+      background-color: var(--white-custom-transparent);
+      border-radius: 6px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
   .info-form {
+    width: 100%;
 
     .form-span {
       color: var(--light-grey-custom);

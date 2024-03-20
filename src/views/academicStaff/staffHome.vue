@@ -25,7 +25,7 @@
         </div>
       </div>
       <div class="one-block">
-        <div class="up-block" @click="changePage('infoDimission')">教务离职办理</div>
+        <div class="up-block" @click="changePage('staffDimission')">教务离职办理</div>
         <div class="down-block">
           <div class="link-mid" v-for="idx in 13" :key="idx"></div>
           <span>1</span>

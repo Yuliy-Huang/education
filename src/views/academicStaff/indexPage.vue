@@ -1,7 +1,7 @@
 <template>
   <div class="staff-setting">
     <div class="staff-div">
-      <keep-alive :exclude="['staffInfoSeeDetail']">
+      <keep-alive :exclude="['staffInfoSeeDetail', 'staffDimission']">
         <div :class="isSeparate ? 'academic-staff-separate' : 'academic-staff'">
           <component :is="currentCom" :page-type="pageType" @changeTab="changeTab"/>
         </div>
@@ -32,11 +32,14 @@ const staffArchive = defineAsyncComponent(() => import("./staffArchive.vue"))
 const staffList = defineAsyncComponent(() => import("./staffList.vue"))
 const staffInfoSee = defineAsyncComponent(() => import("./staffInfoSee.vue"))
 const staffInfoSeeDetail = defineAsyncComponent(() => import("./staffInfoSeeDetail.vue"))
+const staffDimission = defineAsyncComponent(() => import("./staffDimission.vue"))
+const staffDimissionDelete = defineAsyncComponent(() => import("./staffDimissionDelete.vue"))
 
 const pageType = ref('home')
 const isSeparate= ref(false)
 const changeTab = (v) => {
   pageType.value = v
+  console.log('changeTab ****** pageType.value : ', pageType.value)
   isSeparate.value = ['infoSeeSalary', 'infoSeeCheckIn', 'infoSeeComment'].includes(v);
 }
 
@@ -45,6 +48,7 @@ const close2NotDim = () => {
 }
 
 const back2LastDiv = () => {
+  console.log('back --- pageType.value : ', pageType.value)
   switch (pageType.value) {
     case 'infoArchiveModify':
       changeTab('infoModify')
@@ -56,6 +60,12 @@ const back2LastDiv = () => {
     case 'infoSeeCheckIn':
     case 'infoSeeComment':
       changeTab('infoSeeFile')
+      break
+    case 'staffDimissionDelete':
+      changeTab('staffConfirmDimission')
+      break
+    case 'staffConfirmDimission':
+      changeTab('staffDimission')
       break
     default:
       changeTab('home')
@@ -72,9 +82,8 @@ watch(pageType, () => {
       currentCom.value = markRaw(staffArchive)
       break
     case 'infoModify':
-      currentCom.value = markRaw(staffList)
-      break
     case 'infoSee':
+    case 'staffDimission':
       currentCom.value = markRaw(staffList)
       break
     case 'infoSeeFile':
@@ -84,6 +93,12 @@ watch(pageType, () => {
     case 'infoSeeCheckIn':
     case 'infoSeeComment':
       currentCom.value = markRaw(staffInfoSeeDetail)
+      break
+    case 'staffConfirmDimission':
+      currentCom.value = markRaw(staffDimission)
+      break
+    case 'staffDimissionDelete':
+      currentCom.value = markRaw(staffDimissionDelete)
       break
     default:
       currentCom.value = markRaw(staffHome)

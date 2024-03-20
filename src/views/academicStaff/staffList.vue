@@ -36,6 +36,8 @@ const clickCell = () => {
     emits('changeTab', 'infoArchiveModify')
   } else if (pageType.value === 'infoSee') {
     emits('changeTab', 'infoSeeFile')
+  }  else if (pageType.value === 'staffDimission') {
+    emits('changeTab', 'staffConfirmDimission')
   }
 }
 

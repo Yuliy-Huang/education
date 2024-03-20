@@ -88,7 +88,7 @@ const clickAdd = () => {
 
 const clickCellFunc = (e) => {
   const tagName = e.target.tagName.toLowerCase()
-  if (pageType.value === 'infoModify' || pageType.value === 'infoSee') {
+  if (pageType.value === 'infoModify' || pageType.value === 'infoSee' || pageType.value === 'staffDimission') {
     emits('clickCell')
   } else if (tagName === 'span') {
     ElMessageBox.confirm(
