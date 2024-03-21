@@ -18,32 +18,20 @@
           >
             <el-form-item
               label="编号："
-              class="div-no-required no-border-number"
+              class="no-border-number"
             >
               <span class="form-span">{{ form.no }}</span>
             </el-form-item>
-            <el-form-item
-              label="姓名："
-              class="div-no-required"
-            >
+            <el-form-item label="姓名：">
               <span class="form-span">{{ form.name }}</span>
             </el-form-item>
-            <el-form-item
-              label="性别："
-              class="div-no-required"
-            >
+            <el-form-item label="性别：">
               <span class="form-span">{{ form.sex }}</span>
             </el-form-item>
-            <el-form-item
-              label="出生："
-              class="div-no-required"
-            >
+            <el-form-item label="出生：">
               <span class="form-span">{{ form.birth }}</span>
             </el-form-item>
-            <el-form-item
-              label="籍贯："
-              class="div-no-required"
-            >
+            <el-form-item label="籍贯：">
               <span class="form-span">{{ form.place }}</span>
             </el-form-item>
           </el-form>
@@ -55,65 +43,111 @@
           label-width="auto"
           class="info-form"
         >
-          <el-form-item
-            label="专业："
-            class="div-no-required"
-          >
+          <el-form-item label="专业：">
             <span class="form-span">{{ form1.major }}</span>
           </el-form-item>
-          <el-form-item
-            label="教龄："
-            class="div-no-required"
-          >
+          <el-form-item label="教龄：">
             <span class="form-span">{{ form1.position }}</span>
           </el-form-item>
-          <el-form-item
-            label="电话："
-            class="div-no-required"
-          >
+          <el-form-item label="电话：">
             <span class="form-span">{{ form1.phone }}</span>
           </el-form-item>
-          <el-form-item
-            label="院校："
-            class="div-no-required"
-          >
+          <el-form-item label="院校：">
             <span class="form-span">{{ form1.school }}</span>
           </el-form-item>
-          <el-form-item
-            label="住址："
-            class="div-no-required"
-          >
+          <el-form-item label="住址：">
             <span class="form-span">{{ form1.address }}</span>
           </el-form-item>
         </el-form>
       </div>
       <div class="col3">
-        <div class="detail-button">
-          <el-button
-            plain
-            @click="jump2Detail('infoSeeSalary')"
-          >工资明细</el-button>
+        <div class="col3-inside-div">
+          <div class="detail-button">
+            <el-button
+              plain
+              @click="jump2Detail('infoSeeSalary')"
+            >工资明细</el-button>
+          </div>
+          <div class="detail-button">
+            <el-button
+              plain
+              @click="jump2Detail('infoSeeCheckIn')"
+            >考勤查看</el-button>
+          </div>
+          <div class="detail-button">
+            <el-button
+              plain
+              @click="jump2Detail('infoSeeComment')"
+            >入职备注</el-button>
+          </div>
+          <div class="detail-button">
+            <el-button
+              plain
+              @click="jump2Detail('infoSeeSalary')"
+            >匿名投诉</el-button>
+          </div>
+          <div class="detail-button">
+            <el-button
+              plain
+              @click="jump2Detail('infoSeeCheckIn')"
+            >评分查看</el-button>
+          </div>
+          <div class="detail-button">
+            <el-button
+              plain
+              @click="jump2Detail('infoSeeComment')"
+            >课时数据</el-button>
+          </div>
         </div>
-        <div class="detail-button">
-          <el-button
-            plain
-            @click="jump2Detail('infoSeeCheckIn')"
-          >考勤查看</el-button>
-        </div>
-        <div class="detail-button">
-          <el-button
-            plain
-            @click="jump2Detail('infoSeeComment')"
-          >入职备注</el-button>
+        <div class="col3-inside-div">
+          <div class="detail-button">
+            <el-button
+              plain
+              @click="jump2Detail('infoSeeSalary')"
+            >学员数据</el-button>
+          </div>
+          <div class="detail-button">
+            <el-button
+              plain
+              @click="jump2Detail('infoSeeCheckIn')"
+            >课费分成</el-button>
+          </div>
+          <div class="detail-button">
+            <el-button
+              plain
+              @click="jump2Detail('infoSeeComment')"
+            >上课统计</el-button>
+          </div>
+          <div class="detail-button">
+            <el-button
+              plain
+              @click="jump2Detail('infoSeeSalary')"
+            >学员档案</el-button>
+          </div>
+          <div class="detail-button">
+            <el-button
+              plain
+              @click="jump2Detail('infoSeeCheckIn')"
+            >课时共计</el-button>
+          </div>
+          <div class="detail-button">
+            <el-button
+              plain
+              @click="jump2Detail('infoSeeComment')"
+            >课表查看</el-button>
+          </div>
         </div>
       </div>
       <div class="col4">
         <div class="qr-div">
-          <img
-            :src="qrUrl"
-            class="avatar-img"
-            alt=""
-          />
+          <div class="upload-img-div">
+            <img
+              :src="qrUrl"
+              class="avatar-img"
+              alt=""
+            />
+            <div class="upload-bottom">此码是代课教师<br />工资收款二维码</div>
+          </div>
           <div class="avatar-text">
             <span class="avatar-span-dot">
               <span class="dot-purple"></span>
@@ -208,5 +242,5 @@ const jump2Detail = (v) => {
 
 </script>
 <style lang="less">
-@import "@/assets/css/academicStaff/staffInfoSeeCss";
+@import "@/assets/css/substituteTeacher/teacherInfoSeeCss.less";
 </style>

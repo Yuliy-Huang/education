@@ -1,6 +1,8 @@
 <template>
   <div class="staff-dimission">
-    <div class="row1"></div>
+    <div class="row1">
+      离职日期：2022年2月1日
+    </div>
     <div class="row2">
       <div class="col1">
         <div class="avatar-div">
@@ -18,32 +20,20 @@
           >
             <el-form-item
               label="编号："
-              class="div-no-required no-border-number"
+              class="no-border-number"
             >
               <span class="form-span">{{ form.no }}</span>
             </el-form-item>
-            <el-form-item
-              label="姓名："
-              class="div-no-required"
-            >
+            <el-form-item label="姓名：">
               <span class="form-span">{{ form.name }}</span>
             </el-form-item>
-            <el-form-item
-              label="性别："
-              class="div-no-required"
-            >
+            <el-form-item label="性别：">
               <span class="form-span">{{ form.sex }}</span>
             </el-form-item>
-            <el-form-item
-              label="出生："
-              class="div-no-required"
-            >
+            <el-form-item label="出生：">
               <span class="form-span">{{ form.birth }}</span>
             </el-form-item>
-            <el-form-item
-              label="籍贯："
-              class="div-no-required"
-            >
+            <el-form-item label="籍贯：">
               <span class="form-span">{{ form.place }}</span>
             </el-form-item>
           </el-form>
@@ -55,35 +45,66 @@
           label-width="auto"
           class="info-form"
         >
-          <el-form-item
-            label="专业："
-            class="div-no-required"
-          >
+          <el-form-item label="专业：">
             <span class="form-span">{{ form1.major }}</span>
           </el-form-item>
-          <el-form-item
-            label="教龄："
-            class="div-no-required"
-          >
+          <el-form-item label="教龄：">
             <span class="form-span">{{ form1.position }}</span>
           </el-form-item>
-          <el-form-item
-            label="电话："
-            class="div-no-required"
-          >
+          <el-form-item label="电话：">
             <span class="form-span">{{ form1.phone }}</span>
           </el-form-item>
-          <el-form-item
-            label="院校："
-            class="div-no-required"
-          >
+          <el-form-item label="院校：">
             <span class="form-span">{{ form1.school }}</span>
           </el-form-item>
-          <el-form-item
-            label="住址："
-            class="div-no-required"
-          >
+          <el-form-item label="住址：">
             <span class="form-span">{{ form1.address }}</span>
+          </el-form-item>
+        </el-form>
+      </div>
+      <div class="col2">
+        <el-form
+          :model="form2"
+          label-width="auto"
+          class="info-form"
+        >
+          <el-form-item label="工资底薪：">
+            <span class="form-span">{{ form2.major }}</span>
+          </el-form-item>
+          <el-form-item label="一对一课程：">
+            <span class="form-span">{{ form2.position }}</span>
+          </el-form-item>
+          <el-form-item label="一对多班级：">
+            <span class="form-span">{{ form2.phone }}</span>
+          </el-form-item>
+          <el-form-item label="一对一分成：">
+            <span class="form-span">{{ form2.school }}</span>
+          </el-form-item>
+          <el-form-item label="一对多分成：">
+            <span class="form-span">{{ form2.address }}</span>
+          </el-form-item>
+        </el-form>
+      </div>
+      <div class="col2">
+        <el-form
+          :model="form3"
+          label-width="auto"
+          class="info-form"
+        >
+          <el-form-item label="一对多固定课程：">
+            <span class="form-span">{{ form3.major }}</span>
+          </el-form-item>
+          <el-form-item label="大课人数：">
+            <span class="form-span">{{ form1.position }}</span>
+          </el-form-item>
+          <el-form-item label="小课人数：">
+            <span class="form-span">{{ form3.phone }}</span>
+          </el-form-item>
+          <el-form-item label="教师请假：">
+            <span class="form-span">{{ form3.school }}</span>
+          </el-form-item>
+          <el-form-item label="教师旷勤：">
+            <span class="form-span">{{ form3.address }}</span>
           </el-form-item>
         </el-form>
       </div>
@@ -92,7 +113,7 @@
       <el-button
         plain
         @click="saveFunc"
-      >确 定 离 职</el-button>
+      >确 认 离 职</el-button>
     </div>
   </div>
 </template>
@@ -117,6 +138,23 @@ const form1 = reactive({
   school: '中央音乐学院',
   address: '嘉兴市南湖区12栋101室',
 })
+
+const form2 = reactive({
+  major: '2000元',
+  position: '16节',
+  phone: '8节',
+  school: '60%每节课',
+  address: '0%每节课',
+})
+
+const form3 = reactive({
+  major: '0￥每节课',
+  position: '0人',
+  phone: '16人',
+  school: '2次',
+  address: '1次',
+})
+
 const emits = defineEmits(['changeTab']);
 
 const saveFunc = () => {

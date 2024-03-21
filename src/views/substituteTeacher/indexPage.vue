@@ -28,6 +28,7 @@ const staffInfoSee = defineAsyncComponent(() => import("./teacherInfoSee.vue"))
 const staffInfoSeeDetail = defineAsyncComponent(() => import("./teacherInfoSeeDetail.vue"))
 const staffDimission = defineAsyncComponent(() => import("./teacherDimission.vue"))
 const staffDimissionDelete = defineAsyncComponent(() => import("./teacherDimissionDelete.vue"))
+const teacherRoyalty = defineAsyncComponent(() => import('./teacherRoyalty.vue'))
 
 const pageType = ref('home')
 const isSeparate = ref(false)
@@ -68,6 +69,9 @@ const back2LastDiv = () => {
     case 'staffConfirmDimission':
       changeTab('staffDimission')
       break
+    case 'classRoyalty':
+      changeTab('infoArchiveAdd')
+      break
     default:
       changeTab('home')
   }
@@ -100,6 +104,9 @@ watch(pageType, () => {
       break
     case 'staffDimissionDelete':
       currentCom.value = markRaw(staffDimissionDelete)
+      break
+    case 'classRoyalty':
+      currentCom.value = markRaw(teacherRoyalty)
       break
     default:
       currentCom.value = markRaw(blocksComponent)

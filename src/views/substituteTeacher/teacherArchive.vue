@@ -120,7 +120,10 @@
               label="上课分成："
               class="div-required"
             >
-              <el-input v-model="form.name" />
+              <el-button
+                plain
+                @click="changeTab"
+              >点击进入</el-button>
             </el-form-item>
             <el-form-item
               label="入职时间："
@@ -187,9 +190,13 @@
 <script setup>
 
 import { ElInput, ElMessage, ElMessageBox } from "element-plus";
-import { h, reactive, ref } from "vue";
+import { h, reactive, ref, defineEmits } from "vue";
 import { Plus } from "@element-plus/icons-vue";
 
+const emits = defineEmits(['changeTab'])
+const changeTab = () => {
+  emits('changeTab', 'classRoyalty')
+}
 const imageUrl = ref('')
 const beforeAvatarUpload = (rawFile) => {
   if (rawFile.size / 1024 / 1024 > 2) {

@@ -11,6 +11,13 @@
     display: grid;
     grid-template-columns: 4.5fr 3.6fr 3fr 2fr;
 
+    .el-button {
+      width: calc(100vw * 100 / 1080);
+      height: calc(100vw * 22 / 1080);
+      background-color: var(--white-custom-transparent);
+      border-radius: 0;
+    }
+
     .col1 {
       border-right: 1px solid var(--white-custom-2);
       display: grid;
@@ -19,7 +26,7 @@
       align-items: center;
 
       .avatar-div {
-        padding-right: 20px;
+        // padding-right: 10px;
         height: 100%;
         display: grid;
         //grid-template-rows: 2.4fr 1fr;
@@ -54,7 +61,7 @@
       }
 
       .info-div {
-        padding: 0 20px 0 30px;
+        padding: 0 20px;
       }
     }
 
