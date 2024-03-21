@@ -4,7 +4,7 @@
       <el-input
         v-model="searchValue"
         style="width: 300px; height: 30px;"
-        placeholder="教务员工搜索"
+        :placeholder=placeholder
         size="small"
         :suffix-icon="Search"
       />
@@ -37,10 +37,14 @@ const props = defineProps({
   searchValue: {
     type: String,
     default: ''
+  },
+  placeholder: {
+    type: String,
+    default: ''
   }
 })
 
-const { pageType } = toRefs(props)
+const { pageType, searchValue, placeholder } = toRefs(props)
 const emits = defineEmits(['changeTab']);
 
 const clickCell = () => {

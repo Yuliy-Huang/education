@@ -3,8 +3,8 @@
     <div class="one-block">
       <div
         class="up-block"
-        @click="changePage('infoArchiveAdd')"
-      >教务档案存档</div>
+        @click="changePage(blockList[0].pageType)"
+      >{{ blockList[0].name }}</div>
       <div class="down-block">
         <div
           class="link-mid"
@@ -22,8 +22,8 @@
     <div class="one-block">
       <div
         class="up-block"
-        @click="changePage('infoSee')"
-      >教务档案查看</div>
+        @click="changePage(blockList[1].pageType)"
+      >{{ blockList[1].name }}</div>
       <div class="down-block">
         <div
           class="link-mid"
@@ -41,8 +41,8 @@
     <div class="one-block">
       <div
         class="up-block"
-        @click="changePage('infoModify')"
-      >教务档案修改</div>
+        @click="changePage(blockList[2].pageType)"
+      >{{ blockList[2].name }}</div>
       <div class="down-block">
         <div
           class="link-mid"
@@ -60,8 +60,8 @@
     <div class="one-block">
       <div
         class="up-block"
-        @click="changePage('staffDimission')"
-      >教务离职办理</div>
+        @click="changePage(blockList[3].pageType)"
+      >{{ blockList[3].name }}</div>
       <div class="down-block">
         <div
           class="link-mid"
