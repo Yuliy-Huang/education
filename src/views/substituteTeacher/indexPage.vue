@@ -1,6 +1,6 @@
 <template>
   <div>
-    teacher page
+    Archive Management
   </div>
 </template>
 

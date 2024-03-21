@@ -1,32 +1,18 @@
 <template>
-  <div class="staff-setting">
-    <div class="staff-div">
-      <keep-alive :exclude="['staffInfoSeeDetail', 'staffDimission']">
-        <div :class="isSeparate ? 'academic-staff-separate' : 'academic-staff'">
-          <component :is="currentCom" :page-type="pageType" @changeTab="changeTab"/>
-        </div>
-      </keep-alive>
-    </div>
-
-    <div class="system-setting-side">
-      <div class="top-right-button" @click="close2NotDim">
-        <el-icon>
-          <Close/>
-        </el-icon>
-      </div>
-      <div class="top-right-button-1" @click="back2LastDiv">
-        <el-icon>
-          <Back/>
-        </el-icon>
-      </div>
-    </div>
-  </div>
+  <pageStructureComponent
+    :pageType="'home'"
+    :isSeparate="false"
+    @close2NotDim="close2NotDim"
+    @back2LastDiv="back2LastDiv"
+  >
+    <component :is="currentCom" :page-type="pageType" @changeTab="changeTab"/>
+  </pageStructureComponent>
 </template>
 
 <script setup>
-import {markRaw, ref, watch, defineAsyncComponent} from 'vue';
-import {Back, Close} from "@element-plus/icons-vue";
-import staffHome from './staffHome.vue'
+import { markRaw, ref, watch, defineAsyncComponent } from 'vue';
+import pageStructureComponent from '@/components/pageStructureComponent'
+import blocksComponent from '@/components/blocksComponent.vue'
 
 const staffArchive = defineAsyncComponent(() => import("./staffArchive.vue"))
 const staffList = defineAsyncComponent(() => import("./staffList.vue"))
@@ -36,7 +22,7 @@ const staffDimission = defineAsyncComponent(() => import("./staffDimission.vue")
 const staffDimissionDelete = defineAsyncComponent(() => import("./staffDimissionDelete.vue"))
 
 const pageType = ref('home')
-const isSeparate= ref(false)
+const isSeparate = ref(false)
 const changeTab = (v) => {
   pageType.value = v
   console.log('changeTab ****** pageType.value : ', pageType.value)
@@ -72,7 +58,7 @@ const back2LastDiv = () => {
   }
 }
 
-const currentCom = ref(markRaw(staffHome))
+const currentCom = ref(markRaw(blocksComponent))
 watch(pageType, () => {
   switch (pageType.value) {
     case 'infoArchiveAdd':
@@ -101,11 +87,10 @@ watch(pageType, () => {
       currentCom.value = markRaw(staffDimissionDelete)
       break
     default:
-      currentCom.value = markRaw(staffHome)
+      currentCom.value = markRaw(blocksComponent)
   }
 })
 
 </script>
 <style scoped lang="less">
-@import "@/assets/css/academicStaff/indexCss";
 </style>
