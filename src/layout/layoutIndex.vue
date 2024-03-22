@@ -4,46 +4,53 @@
       <el-header class="common-head">
         <div class="menu_wrapper">
           <div class="svg-div">
-            <img :src="require(`@/assets/img/block.png`)"
-                 @click="jump2Home"
-                 class="svg-left"
-                 alt=""/>
+            <img
+              :src="require(`@/assets/img/block.png`)"
+              @click="jump2Home"
+              class="svg-left"
+              alt=""
+            />
           </div>
-          <el-menu :class="{'el-menu-demo': showNav, 'no-nav-menu': !showNav}"
-                   mode="horizontal"
-                   :router="true"
-                   @open="handleOpen"
-                   @close="handleClose"
-                   @select="handleSelect"
-                   :default-active="currentPagePath"
-                   :collapse-transition="true"
-                   :unique-opened="true">
+          <el-menu
+            :class="{'el-menu-demo': showNav, 'no-nav-menu': !showNav}"
+            mode="horizontal"
+            :router="true"
+            @open="handleOpen"
+            @close="handleClose"
+            @select="handleSelect"
+            :default-active="currentPagePath"
+            :collapse-transition="true"
+            :unique-opened="true"
+          >
             <template v-if="!showNav">
               <div class="notification">动态通知[<span style="color: var(--dark-purple);">{{ notificationNum }}</span>]</div>
               <div class="nav-date">{{ nowDate }}</div>
               <div class="school-info">ID: {{ schoolId }}</div>
               <div class="top-button1">
                 <el-icon>
-                  <Back/>
+                  <Back />
                 </el-icon>
               </div>
               <div class="top-button2">
                 <el-icon>
-                  <Close/>
+                  <Close />
                 </el-icon>
               </div>
             </template>
             <template v-else>
-              <div v-for="(item, index) in currentRoleMenu"
-                   :key="index">
+              <div
+                v-for="(item, index) in currentRoleMenu"
+                :key="index"
+              >
                 <el-menu-item
-                    v-if="item.children && item.name !== '404' && !item.meta.isHidden"
-                    :class="{'is-active': item.redirect === currentPagePath}"
-                    :index="item.path">
+                  v-if="item.children && item.name !== '404' && !item.meta.isHidden"
+                  :class="{'is-active': item.redirect === currentPagePath}"
+                  :index="item.path"
+                >
                   <el-tag
-                      :key="item.path"
-                      type="info"
-                      effect="plain"
+                    :key="item.path"
+                    type="info"
+                    effect="plain"
                   >
                     {{ item.meta.title ? item.meta.title : item.name }}
                   </el-tag>
@@ -55,13 +62,22 @@
       </el-header>
       <el-main :class="globalVars.isDim === '1' ? 'content_wrapper_dim' : 'content_wrapper'">
         <router-view></router-view>
-<!--        <div class="foot-wrapper">-->
-        <div class="foot-wrapper" style="display: none;">
+        <!--        <div class="foot-wrapper">-->
+        <div
+          class="foot-wrapper"
+          style="display: none;"
+        >
           <el-row class="foot-head-row">
-            <el-col :span="4" class="foot-head-1">
+            <el-col
+              :span="4"
+              class="foot-head-1"
+            >
               <div class="head-title">管理端数据控制平台</div>
             </el-col>
-            <el-col :span="1" class="foot-head-2">
+            <el-col
+              :span="1"
+              class="foot-head-2"
+            >
               <div class="block"></div>
             </el-col>
           </el-row>
@@ -137,15 +153,19 @@
                 </div>
                 <div class="weekly-3">
                   <div class="left-arrow">
-                    <img :src="require(`@/assets/img/arrowLeft.png`)"
-                         style="width: 24px; height: 14px;"
-                         alt=""/>
+                    <img
+                      :src="require(`@/assets/img/arrowLeft.png`)"
+                      style="width: 24px; height: 14px;"
+                      alt=""
+                    />
                   </div>
                   <div class="center-text">吉他教师：陈老师</div>
                   <div class="right-arrow">
-                    <img :src="require(`@/assets/img/arrowRight.png`)"
-                         style="width: 24px; height: 14px;"
-                         alt=""/>
+                    <img
+                      :src="require(`@/assets/img/arrowRight.png`)"
+                      style="width: 24px; height: 14px;"
+                      alt=""
+                    />
                   </div>
                 </div>
               </div>
@@ -156,21 +176,43 @@
                 <div class="monthly-2">
                   <div class="monthly-title">教师学员每月数据</div>
                   <el-row class="monthly-row">
-                    <el-col :span="12" class="monthly-col-left">招生[0］人</el-col>
-                    <el-col :span="12" class="monthly-col-right">续费[0］人</el-col>
+                    <el-col
+                      :span="12"
+                      class="monthly-col-left"
+                    >招生[0］人</el-col>
+                    <el-col
+                      :span="12"
+                      class="monthly-col-right"
+                    >续费[0］人</el-col>
                   </el-row>
                   <el-row class="monthly-row">
-                    <el-col :span="12" class="monthly-col-left">请假[0］人</el-col>
-                    <el-col :span="12" class="monthly-col-right">旷课[0］人</el-col>
+                    <el-col
+                      :span="12"
+                      class="monthly-col-left"
+                    >请假[0］人</el-col>
+                    <el-col
+                      :span="12"
+                      class="monthly-col-right"
+                    >旷课[0］人</el-col>
                   </el-row>
                   <el-row class="monthly-row">
-                    <el-col :span="12" class="monthly-col-left">停课[0］人</el-col>
-                    <el-col :span="12" class="monthly-col-right">退学[0］人</el-col>
+                    <el-col
+                      :span="12"
+                      class="monthly-col-left"
+                    >停课[0］人</el-col>
+                    <el-col
+                      :span="12"
+                      class="monthly-col-right"
+                    >退学[0］人</el-col>
                   </el-row>
                 </div>
                 <div class="monthly-3">right</div>
                 <div class="monthly-4">
-                  <div class="monthly-bottom" v-for="item in monthList" :key="item">{{ item }}</div>
+                  <div
+                    class="monthly-bottom"
+                    v-for="item in monthList"
+                    :key="item"
+                  >{{ item }}</div>
                 </div>
               </div>
             </el-col>
@@ -178,11 +220,18 @@
               <div class="foot-col-3">
                 <div class="year-1">
                   <div class="year-title">教师学员全年数据</div>
-                  <div ref="yearChart" class="year-chart"></div>
+                  <div
+                    ref="yearChart"
+                    class="year-chart"
+                  ></div>
                 </div>
                 <div class="year-2">right</div>
                 <div class="year-3">
-                  <div class="year-bottom" v-for="item in yearList" :key="item">{{ item }}</div>
+                  <div
+                    class="year-bottom"
+                    v-for="item in yearList"
+                    :key="item"
+                  >{{ item }}</div>
                 </div>
               </div>
             </el-col>
@@ -199,7 +248,7 @@
   </div>
 </template>
 <script setup>
-import {useRouter} from "vue-router"
+import { useRouter } from "vue-router"
 import {
   nextTick,
   onMounted,
@@ -208,8 +257,8 @@ import {
   inject,
 } from "vue";
 import route from "../router";
-import {getNowTime} from "@/utils/dateFormat";
-import {Close, Back} from '@element-plus/icons-vue'
+import { getNowTime } from "@/utils/dateFormat";
+import { Close, Back } from '@element-plus/icons-vue'
 import * as echarts from 'echarts'
 
 const globalVars = inject('globalVars')
@@ -325,13 +374,13 @@ onMounted(() => {
 });
 
 watch(
-    () => router.currentRoute.value.path,
-    // eslint-disable-next-line no-unused-vars
-    () => {
-      currentPagePath.value = router.currentRoute.value.path;
-      // console.log('watch ---currentPagePath : ', currentPagePath.value)
-    },
-    {immediate: true}
+  () => router.currentRoute.value.path,
+  // eslint-disable-next-line no-unused-vars
+  () => {
+    currentPagePath.value = router.currentRoute.value.path;
+    // console.log('watch ---currentPagePath : ', currentPagePath.value)
+  },
+  { immediate: true }
 );
 
 const handleOpen = (key, keyPath) => {
@@ -344,7 +393,7 @@ const handleClose = (key, keyPath) => {
 };
 
 const handleSelect = (key) => {
-  if (currentPagePath.value.search(key.split('/')[1]) === -1){
+  if (currentPagePath.value.search(key.split('/')[1]) === -1) {
     // 停留在当前页面
     globalVars.isDim = '0'
     globalVars.showSub = '0'
@@ -354,7 +403,7 @@ const handleSelect = (key) => {
 const jump2Home = () => {
   showNav.value = !showNav.value
   globalVars.isDim = '0'
-  sessionStorage.setItem('showNav', showNav.value ? '1': '0')
+  sessionStorage.setItem('showNav', showNav.value ? '1' : '0')
   if (!showNav.value) {
     route.push('/home')
   }
