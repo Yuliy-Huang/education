@@ -52,6 +52,8 @@ const teacherInfoSeeCheckIn = defineAsyncComponent(() => import("@/views/substit
 const teacherInfoSeeComment = defineAsyncComponent(() => import("@/views/substituteTeacher/teacherInfoSeeComment.vue"))
 const teacherInfoSeeComplaint = defineAsyncComponent(() => import("@/views/substituteTeacher/teacherInfoSeeComplaint.vue"))
 const teacherInfoSeeScore = defineAsyncComponent(() => import("@/views/substituteTeacher/teacherInfoSeeScore.vue"))
+const teacherSeeHour = defineAsyncComponent(() => import("@/views/substituteTeacher/teacherInfoSeeHour.vue"))
+const teacherSeeTotalHour = defineAsyncComponent(() => import("@/views/substituteTeacher/teacherSeeTotalHour.vue"))
 
 const nowYear = new Date().getFullYear()
 const year = ref(nowYear)
@@ -86,7 +88,7 @@ const currentComponent = computed(() => {
       res = markRaw(teacherInfoSeeScore)
       break
     case 'teacherSeeHour':
-      res = markRaw(teacherInfoSeeComment)
+      res = markRaw(teacherSeeHour)
       break
     case 'teacherSeeStudent':
       res = markRaw(teacherInfoSeeSalary)
@@ -101,7 +103,7 @@ const currentComponent = computed(() => {
       res = markRaw(teacherInfoSeeSalary)
       break
     case 'teacherSeeTotalHour':
-      res = markRaw(teacherInfoSeeCheckIn)
+      res = markRaw(teacherSeeTotalHour)
       break
     case 'teacherSeeSchedule':
       res = markRaw(teacherInfoSeeComment)
