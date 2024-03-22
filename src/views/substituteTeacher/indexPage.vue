@@ -1,7 +1,7 @@
 <template>
   <pageStructureComponent
     :pageType="'home'"
-    :isSeparate="false"
+    :isSeparate="isSeparate"
     @close2NotDim="close2NotDim"
     @back2LastDiv="back2LastDiv"
   >
@@ -42,8 +42,22 @@ const staffList = ref(['李文斌［钢琴教师］', '张三毛［美术教师�
 const searchValue = ref('')
 
 const changeTab = (v) => {
+  console.log('indexPage.vue --- v : ', v)
   pageType.value = v
-  isSeparate.value = ['infoSeeSalary', 'infoSeeCheckIn', 'infoSeeComment'].includes(v);
+  isSeparate.value = [
+    'teacherSeeSalary',
+    'teacherSeeCheckIn',
+    'teacherSeeComment',
+    'teacherSeeComplaint',
+    'teacherSeeScore',
+    'teacherSeeHour',
+    'teacherSeeStudent',
+    'teacherSeeRoyallty',
+    'teacherSeeStatistic',
+    'teacherSeeFile',
+    'teacherSeeTotalHour',
+    'teacherSeeSchedule',
+  ].includes(v);
 }
 
 const close2NotDim = () => {
@@ -58,9 +72,18 @@ const back2LastDiv = () => {
     case 'infoSeeFile':
       changeTab('infoSee')
       break
-    case 'infoSeeSalary':
-    case 'infoSeeCheckIn':
-    case 'infoSeeComment':
+    case 'teacherSeeSalary':
+    case 'teacherSeeCheckIn':
+    case 'teacherSeeComment':
+    case 'teacherSeeComplaint':
+    case 'teacherSeeScore':
+    case 'teacherSeeHour':
+    case 'teacherSeeStudent':
+    case 'teacherSeeRoyallty':
+    case 'teacherSeeStatistic':
+    case 'teacherSeeFile':
+    case 'teacherSeeTotalHour':
+    case 'teacherSeeSchedule':
       changeTab('infoSeeFile')
       break
     case 'staffDimissionDelete':
@@ -94,9 +117,18 @@ watch(pageType, () => {
     case 'infoSeeFile':
       currentCom.value = markRaw(staffInfoSee)
       break
-    case 'infoSeeSalary':
-    case 'infoSeeCheckIn':
-    case 'infoSeeComment':
+    case 'teacherSeeSalary':
+    case 'teacherSeeCheckIn':
+    case 'teacherSeeComment':
+    case 'teacherSeeComplaint':
+    case 'teacherSeeScore':
+    case 'teacherSeeHour':
+    case 'teacherSeeStudent':
+    case 'teacherSeeRoyallty':
+    case 'teacherSeeStatistic':
+    case 'teacherSeeFile':
+    case 'teacherSeeTotalHour':
+    case 'teacherSeeSchedule':
       currentCom.value = markRaw(staffInfoSeeDetail)
       break
     case 'staffConfirmDimission':

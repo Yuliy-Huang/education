@@ -65,37 +65,37 @@
           <div class="detail-button">
             <el-button
               plain
-              @click="jump2Detail('infoSeeSalary')"
+              @click="jump2Detail('teacherSeeSalary')"
             >工资明细</el-button>
           </div>
           <div class="detail-button">
             <el-button
               plain
-              @click="jump2Detail('infoSeeCheckIn')"
+              @click="jump2Detail('teacherSeeCheckIn')"
             >考勤查看</el-button>
           </div>
           <div class="detail-button">
             <el-button
               plain
-              @click="jump2Detail('infoSeeComment')"
+              @click="jump2Detail('teacherSeeComment')"
             >入职备注</el-button>
           </div>
           <div class="detail-button">
             <el-button
               plain
-              @click="jump2Detail('infoSeeSalary')"
+              @click="jump2Detail('teacherSeeComplaint')"
             >匿名投诉</el-button>
           </div>
           <div class="detail-button">
             <el-button
               plain
-              @click="jump2Detail('infoSeeCheckIn')"
+              @click="jump2Detail('teacherSeeScore')"
             >评分查看</el-button>
           </div>
           <div class="detail-button">
             <el-button
               plain
-              @click="jump2Detail('infoSeeComment')"
+              @click="jump2Detail('teacherSeeHour')"
             >课时数据</el-button>
           </div>
         </div>
@@ -103,37 +103,37 @@
           <div class="detail-button">
             <el-button
               plain
-              @click="jump2Detail('infoSeeSalary')"
+              @click="jump2Detail('teacherSeeStudent')"
             >学员数据</el-button>
           </div>
           <div class="detail-button">
             <el-button
               plain
-              @click="jump2Detail('infoSeeCheckIn')"
+              @click="jump2Detail('teacherSeeRoyallty')"
             >课费分成</el-button>
           </div>
           <div class="detail-button">
             <el-button
               plain
-              @click="jump2Detail('infoSeeComment')"
+              @click="jump2Detail('teacherSeeStatistic')"
             >上课统计</el-button>
           </div>
           <div class="detail-button">
             <el-button
               plain
-              @click="jump2Detail('infoSeeSalary')"
+              @click="jump2Detail('teacherSeeFile')"
             >学员档案</el-button>
           </div>
           <div class="detail-button">
             <el-button
               plain
-              @click="jump2Detail('infoSeeCheckIn')"
+              @click="jump2Detail('teacherSeeTotalHour')"
             >课时共计</el-button>
           </div>
           <div class="detail-button">
             <el-button
               plain
-              @click="jump2Detail('infoSeeComment')"
+              @click="jump2Detail('teacherSeeSchedule')"
             >课表查看</el-button>
           </div>
         </div>

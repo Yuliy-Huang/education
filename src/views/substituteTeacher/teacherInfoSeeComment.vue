@@ -5,9 +5,9 @@
   </div>
 </template>
 <script setup>
-import {ref} from "vue";
+import { ref } from "vue";
 
-const comment = ref('您的工资已升了1000元')
+const comment = ref('承诺老板在本小区入职三年为一期')
 
 </script>
 <style lang="less">

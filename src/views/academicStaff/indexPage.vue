@@ -1,7 +1,7 @@
 <template>
   <pageStructureComponent
     :pageType="'home'"
-    :isSeparate="false"
+    :isSeparate="isSeparate"
     @close2NotDim="close2NotDim"
     @back2LastDiv="back2LastDiv"
   >

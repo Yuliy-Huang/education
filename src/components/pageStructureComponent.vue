@@ -1,7 +1,7 @@
 <template>
   <div class="staff-setting">
     <div class="staff-div">
-      <keep-alive :exclude="['staffInfoSeeDetail', 'staffDimission']">
+      <keep-alive :exclude="['staffInfoSeeDetail', 'staffDimission', 'teacherInfoSeeDetail']">
         <div :class="isSeparate ? 'academic-staff-separate' : 'academic-staff'">
           <slot></slot>
         </div>

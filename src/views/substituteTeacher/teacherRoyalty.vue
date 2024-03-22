@@ -1,5 +1,5 @@
 <template>
-  <div class="staff-info-salary">
+  <div class="teacher-royalty">
     <div class="row1"></div>
     <div class="row2">
       <div class="col col-left">
@@ -12,7 +12,7 @@
           %
         </div>
         <div>
-          &lt;1&gt; 一对一比例模式
+          &lt;2&gt; 一对一比例模式
           <el-input
             v-model="ratio"
             placeholder=""
@@ -20,7 +20,7 @@
           %
         </div>
         <div>
-          &lt;1&gt; 一对一比例模式
+          &lt;3&gt; 一对一比例模式
           <el-input
             v-model="ratio"
             placeholder=""
@@ -28,7 +28,7 @@
           %
         </div>
         <div>
-          &lt;1&gt; 一对一比例模式
+          &lt;4&gt; 一对一比例模式
           <el-input
             v-model="ratio"
             placeholder=""
@@ -46,7 +46,7 @@
           %
         </div>
         <div>
-          &lt;1&gt; 一对一比例模式
+          &lt;2&gt; 一对一比例模式
           <el-input
             v-model="ratio"
             placeholder=""
@@ -54,7 +54,7 @@
           %
         </div>
         <div>
-          &lt;1&gt; 一对一比例模式
+          &lt;3&gt; 一对一比例模式
           <el-input
             v-model="ratio"
             placeholder=""
@@ -62,7 +62,7 @@
           %
         </div>
         <div>
-          &lt;1&gt; 一对一比例模式
+          &lt;4&gt; 一对一比例模式
           <el-input
             v-model="ratio"
             placeholder=""
@@ -80,7 +80,7 @@
           %
         </div>
         <div>
-          &lt;1&gt; 一对一比例模式
+          &lt;2&gt; 一对一比例模式
           <el-input
             v-model="ratio"
             placeholder=""
@@ -88,7 +88,7 @@
           %
         </div>
         <div>
-          &lt;1&gt; 一对一比例模式
+          &lt;3&gt; 一对一比例模式
           <el-input
             v-model="ratio"
             placeholder=""
@@ -96,7 +96,7 @@
           %
         </div>
         <div>
-          &lt;1&gt; 一对一比例模式
+          &lt;4&gt; 一对一比例模式
           <el-input
             v-model="ratio"
             placeholder=""

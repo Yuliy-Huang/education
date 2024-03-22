@@ -91,7 +91,7 @@ const emits = defineEmits(['changeTab'])
 const globalVars = inject('globalVars')
 globalVars.isDim = '1'
 const changePage = (v) => {
-  console.log('blocks --- changePage --- v : ', v)
+  // console.log('blocks --- changePage --- v : ', v)
   emits('changeTab', v)
 }
 
