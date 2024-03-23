@@ -23,7 +23,7 @@ import pageStructureComponent from '@/components/pageStructureComponent'
 import blocksComponent from '@/components/blocksComponent'
 
 const staffArchive = defineAsyncComponent(() => import("./staffArchive.vue"))
-const cellListComponent = defineAsyncComponent(() => import("../../components/cellListComponent.vue"))
+const cellListComponent = defineAsyncComponent(() => import("../../components/cellMoreSearchComponent.vue"))
 const staffInfoSee = defineAsyncComponent(() => import("./seeDetail/staffInfoSee.vue"))
 const staffInfoSeeDetail = defineAsyncComponent(() => import("./seeDetail/staffInfoSeeDetail.vue"))
 const staffDimission = defineAsyncComponent(() => import("./staffDimission.vue"))

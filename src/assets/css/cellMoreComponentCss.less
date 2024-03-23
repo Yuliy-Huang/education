@@ -37,11 +37,26 @@
     .last {
     }
   }
-
 }
 
 .staff-paginate-div {
   height: calc(450px - 35px * 10);
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  div {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+  }
+  .el-button {
+    width: 150px;
+  }
+}
+
+.student-paginate-div {
+  height: calc(430px - 35px * 10);
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -86,7 +101,6 @@
     height: 20px;
     width: 20px;
   }
-
 
   .el-message-box__content {
     height: 50%;
@@ -151,6 +165,4 @@
       margin: 0 60px !important;
     }
   }
-
 }
-

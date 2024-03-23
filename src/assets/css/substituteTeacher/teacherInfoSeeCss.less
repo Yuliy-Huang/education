@@ -1,10 +1,11 @@
-.staff-info-see {
+.teacher-info-see {
   width: 90%;
   height: 100%;
   display: grid;
   grid-template-rows: 1.3fr 3fr 2.3fr;
 
-  .row1 {}
+  .row1 {
+  }
 
   .row2 {
     display: grid;
@@ -64,7 +65,7 @@
       padding: 0 20px;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      
+
       .col3-inside-div {
         padding: 0 20px;
         display: flex;
@@ -86,7 +87,6 @@
           background-color: var(--white-custom-transparent);
         }
       }
-
     }
     .col4 {
       width: 100%;
@@ -110,7 +110,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-          
+
             .avatar-uploader-icon {
               font-size: xx-large;
             }
@@ -151,7 +151,6 @@
   }
 
   .info-form {
-
     .form-span {
       color: var(--light-grey-custom);
     }
@@ -194,14 +193,14 @@
     }
 
     .div-required::before {
-      content: "*";
+      content: '*';
       color: var(--light-red-custom);
       margin-right: 8px;
       margin-top: 3px;
     }
 
     .div-no-required::before {
-      content: "*";
+      content: '*';
       visibility: hidden;
       margin-right: 8px;
       margin-top: 3px;
@@ -225,5 +224,4 @@
     border-radius: 50%;
     background-color: var(--light-green-custom);
   }
-
 }

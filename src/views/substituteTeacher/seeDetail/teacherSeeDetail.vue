@@ -1,119 +1,141 @@
 <template>
   <div class="teacher-detail-page">
-    <div class="staff-head">
+    <div class="staff-head" :style="{ display: headHiding ? 'none' : '' }">
       <div class="year">
         <div class="arrow-left-div">
-          <span
-            class="inner-img-div"
-            @click="changeYear(-1)"
-          >
+          <span class="inner-img-div" @click="changeYear(-1)">
             <img
               :src="require(`@/assets/img/arrowLeft.png`)"
-              style="width: 20px; height: 12px; cursor: pointer;"
+              style="width: 20px; height: 12px; cursor: pointer"
               alt=""
             />
           </span>
         </div>
         <span>{{ year }}</span>
         <div class="arrow-right-div">
-          <span
-            class="inner-img-div"
-            @click="changeYear(1)"
-          >
+          <span class="inner-img-div" @click="changeYear(1)">
             <img
               :src="require(`@/assets/img/arrowRight.png`)"
-              style="width: 20px; height: 12px; cursor: pointer;"
+              style="width: 20px; height: 12px; cursor: pointer"
               alt=""
             />
           </span>
         </div>
       </div>
-      <template
-        v-for="item of 12"
-        :key="item"
-      >
+      <template v-for="item of 12" :key="item">
         <div
-          :class="['month', {'is-active': item === activeMonth}]"
+          :class="['month', { 'is-active': item === activeMonth }]"
           @click="activeMonth = item"
-        >{{ item }}月</div>
+        >
+          {{ item }}月
+        </div>
       </template>
     </div>
     <component
       :is="currentComponent"
+      :page-type="pageType"
       :year="year"
       :month="activeMonth"
     ></component>
   </div>
 </template>
 <script setup>
-import { defineAsyncComponent, defineProps, markRaw, ref, toRefs, computed } from "vue";
-import teacherInfoSeeSalary from "@/views/substituteTeacher/seeDetail/teacherSeeSalary.vue";
-const teacherInfoSeeCheckIn = defineAsyncComponent(() => import("@/views/substituteTeacher/seeDetail/teacherSeeCheckIn.vue"))
-const teacherInfoSeeComment = defineAsyncComponent(() => import("@/views/substituteTeacher/seeDetail/teacherSeeComment.vue"))
-const teacherInfoSeeComplaint = defineAsyncComponent(() => import("@/views/substituteTeacher/seeDetail/teacherSeeComplaint.vue"))
-const teacherInfoSeeScore = defineAsyncComponent(() => import("@/views/substituteTeacher/seeDetail/teacherSeeScore.vue"))
-const teacherSeeHour = defineAsyncComponent(() => import("@/views/substituteTeacher/seeDetail/teacherSeeHour.vue"))
-const teacherSeeTotalHour = defineAsyncComponent(() => import("@/views/substituteTeacher/seeDetail/teacherSeeTotalHour.vue"))
+import {
+  defineAsyncComponent,
+  defineProps,
+  markRaw,
+  ref,
+  toRefs,
+  computed,
+} from 'vue';
+import teacherInfoSeeSalary from '@/views/substituteTeacher/seeDetail/teacherSeeSalary.vue';
+const teacherInfoSeeCheckIn = defineAsyncComponent(() =>
+  import('@/views/substituteTeacher/seeDetail/teacherSeeCheckIn.vue')
+);
+const teacherInfoSeeComment = defineAsyncComponent(() =>
+  import('@/views/substituteTeacher/seeDetail/teacherSeeComment.vue')
+);
+const teacherInfoSeeComplaint = defineAsyncComponent(() =>
+  import('@/views/substituteTeacher/seeDetail/teacherSeeComplaint.vue')
+);
+const teacherInfoSeeScore = defineAsyncComponent(() =>
+  import('@/views/substituteTeacher/seeDetail/teacherSeeScore.vue')
+);
+const teacherSeeHour = defineAsyncComponent(() =>
+  import('@/views/substituteTeacher/seeDetail/teacherSeeHour.vue')
+);
+const teacherSeeTotalHour = defineAsyncComponent(() =>
+  import('@/views/substituteTeacher/seeDetail/teacherSeeTotalHour.vue')
+);
+const teacherSeeStudent = defineAsyncComponent(() =>
+  import('@/views/substituteTeacher/seeDetail/teacherSeeStudent.vue')
+);
+const teacherSeeRoyallty = defineAsyncComponent(() =>
+  import('@/views/substituteTeacher/seeDetail/teacherSeeRoyalty.vue')
+);
 
-const nowYear = new Date().getFullYear()
-const year = ref(nowYear)
-const changeYear = (v) => {
-  v === 1 ? (year.value = year.value + 1 <= nowYear ? year.value + 1 : nowYear) : (year.value = year.value - 1 >= 1970 ? year.value - 1 : 1970)
-}
-const activeMonth = ref(new Date().getMonth() + 1)
+const nowYear = new Date().getFullYear();
+const year = ref(nowYear);
+const changeYear = v => {
+  v === 1
+    ? (year.value = year.value + 1 <= nowYear ? year.value + 1 : nowYear)
+    : (year.value = year.value - 1 >= 1970 ? year.value - 1 : 1970);
+};
+const activeMonth = ref(new Date().getMonth() + 1);
 
 const props = defineProps({
   pageType: {
     type: String,
-    default: ''
-  }
-})
-const { pageType } = toRefs(props)
+    default: '',
+  },
+});
+const { pageType } = toRefs(props);
+const headHiding = computed(() => {
+  return pageType.value === 'teacherSeeStudent';
+});
 const currentComponent = computed(() => {
-  let res = null
+  let res = null;
   switch (pageType.value) {
     case 'teacherSeeSalary':
-      res = markRaw(teacherInfoSeeSalary)
-      break
+      res = markRaw(teacherInfoSeeSalary);
+      break;
     case 'teacherSeeCheckIn':
-      res = markRaw(teacherInfoSeeCheckIn)
-      break
+      res = markRaw(teacherInfoSeeCheckIn);
+      break;
     case 'teacherSeeComment':
-      res = markRaw(teacherInfoSeeComment)
-      break
+      res = markRaw(teacherInfoSeeComment);
+      break;
     case 'teacherSeeComplaint':
-      res = markRaw(teacherInfoSeeComplaint)
-      break
+      res = markRaw(teacherInfoSeeComplaint);
+      break;
     case 'teacherSeeScore':
-      res = markRaw(teacherInfoSeeScore)
-      break
+      res = markRaw(teacherInfoSeeScore);
+      break;
     case 'teacherSeeHour':
-      res = markRaw(teacherSeeHour)
-      break
+      res = markRaw(teacherSeeHour);
+      break;
     case 'teacherSeeStudent':
-      res = markRaw(teacherInfoSeeSalary)
-      break
+      res = markRaw(teacherSeeStudent);
+      break;
     case 'teacherSeeRoyallty':
-      res = markRaw(teacherInfoSeeCheckIn)
-      break
+      res = markRaw(teacherSeeRoyallty);
+      break;
     case 'teacherSeeStatistic':
-      res = markRaw(teacherInfoSeeComment)
-      break
+      res = markRaw(teacherInfoSeeComment);
+      break;
     case 'teacherSeeFile':
-      res = markRaw(teacherInfoSeeSalary)
-      break
+      res = markRaw(teacherInfoSeeSalary);
+      break;
     case 'teacherSeeTotalHour':
-      res = markRaw(teacherSeeTotalHour)
-      break
+      res = markRaw(teacherSeeTotalHour);
+      break;
     case 'teacherSeeSchedule':
-      res = markRaw(teacherInfoSeeComment)
-      break
+      res = markRaw(teacherInfoSeeComment);
+      break;
   }
-  return res
-})
-
-
+  return res;
+});
 </script>
 <style lang="less">
-@import "@/assets/css/substituteTeacher/teacherInfoSeeDetailCss";
+@import '@/assets/css/substituteTeacher/teacherInfoSeeDetailCss';
 </style>
