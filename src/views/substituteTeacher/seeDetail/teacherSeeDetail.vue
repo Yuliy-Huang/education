@@ -47,12 +47,12 @@
 </template>
 <script setup>
 import { defineAsyncComponent, defineProps, markRaw, ref, toRefs, computed } from "vue";
-import teacherInfoSeeSalary from "@/views/substituteTeacher/seeDetail/teacherInfoSeeSalary.vue";
-const teacherInfoSeeCheckIn = defineAsyncComponent(() => import("@/views/substituteTeacher/seeDetail/teacherInfoSeeCheckIn.vue"))
-const teacherInfoSeeComment = defineAsyncComponent(() => import("@/views/substituteTeacher/seeDetail/teacherInfoSeeComment.vue"))
-const teacherInfoSeeComplaint = defineAsyncComponent(() => import("@/views/substituteTeacher/seeDetail/teacherInfoSeeComplaint.vue"))
-const teacherInfoSeeScore = defineAsyncComponent(() => import("@/views/substituteTeacher/seeDetail/teacherInfoSeeScore.vue"))
-const teacherSeeHour = defineAsyncComponent(() => import("@/views/substituteTeacher/seeDetail/teacherInfoSeeHour.vue"))
+import teacherInfoSeeSalary from "@/views/substituteTeacher/seeDetail/teacherSeeSalary.vue";
+const teacherInfoSeeCheckIn = defineAsyncComponent(() => import("@/views/substituteTeacher/seeDetail/teacherSeeCheckIn.vue"))
+const teacherInfoSeeComment = defineAsyncComponent(() => import("@/views/substituteTeacher/seeDetail/teacherSeeComment.vue"))
+const teacherInfoSeeComplaint = defineAsyncComponent(() => import("@/views/substituteTeacher/seeDetail/teacherSeeComplaint.vue"))
+const teacherInfoSeeScore = defineAsyncComponent(() => import("@/views/substituteTeacher/seeDetail/teacherSeeScore.vue"))
+const teacherSeeHour = defineAsyncComponent(() => import("@/views/substituteTeacher/seeDetail/teacherSeeHour.vue"))
 const teacherSeeTotalHour = defineAsyncComponent(() => import("@/views/substituteTeacher/seeDetail/teacherSeeTotalHour.vue"))
 
 const nowYear = new Date().getFullYear()

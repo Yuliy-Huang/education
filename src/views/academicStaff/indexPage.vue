@@ -24,8 +24,8 @@ import blocksComponent from '@/components/blocksComponent'
 
 const staffArchive = defineAsyncComponent(() => import("./staffArchive.vue"))
 const cellListComponent = defineAsyncComponent(() => import("../../components/cellListComponent.vue"))
-const staffInfoSee = defineAsyncComponent(() => import("./staffInfoSee.vue"))
-const staffInfoSeeDetail = defineAsyncComponent(() => import("./staffInfoSeeDetail.vue"))
+const staffInfoSee = defineAsyncComponent(() => import("./seeDetail/staffInfoSee.vue"))
+const staffInfoSeeDetail = defineAsyncComponent(() => import("./seeDetail/staffInfoSeeDetail.vue"))
 const staffDimission = defineAsyncComponent(() => import("./staffDimission.vue"))
 const staffDimissionDelete = defineAsyncComponent(() => import("./staffDimissionDelete.vue"))
 
