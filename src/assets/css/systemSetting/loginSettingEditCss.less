@@ -15,17 +15,17 @@
   }
 
   .setting-form {
-    margin-top: calc(100vh * 20 / 1080);
+    margin-top: 20px;
 
     .div-required::before {
-      content: "*";
+      content: '*';
       color: var(--light-red-custom);
       margin-right: 8px;
       margin-top: 6px;
     }
 
     .button-item {
-      margin-top: 10px;
+      margin-top: 40px;
 
       .el-form-item__content {
         justify-content: flex-end;
@@ -34,11 +34,12 @@
     }
 
     .el-button {
+      float: right;
       width: calc(100vw * 200 / 1080);
       height: calc(100vw * 24 / 1080);
+      margin-left: auto;
       background-color: #4f4f4f30;
       border-radius: 3px;
-      float: right;
     }
   }
 
@@ -52,5 +53,4 @@
       text-align: center;
     }
   }
-
 }

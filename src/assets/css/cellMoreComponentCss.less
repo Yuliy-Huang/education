@@ -6,7 +6,7 @@
 
   .staff-box-row {
     display: table-row;
-    height: 35px !important;
+    height: calc((395px + 100vw * 28 / 1080) / 12) !important;
     border-bottom: 1px solid var(--white-custom-2);
     div {
       display: table-cell;
@@ -23,7 +23,7 @@
 
   .more-box-row {
     display: table-row;
-    height: 41px !important;
+    height: calc((395px + 100vw * 28 / 1080) / 12) !important;
     border-bottom: 1px solid var(--white-custom-2);
     div {
       display: table-cell;
@@ -40,7 +40,7 @@
 }
 
 .staff-paginate-div {
-  height: calc(450px - 35px * 10);
+  height: calc((395px + 100vw * 28 / 1080) * 2 / 12);
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -56,7 +56,7 @@
 }
 
 .student-paginate-div {
-  height: calc(430px - 35px * 10);
+  height: calc((395px + 100vw * 28 / 1080) / 6) !important;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -72,7 +72,7 @@
 }
 
 .paginate-div {
-  height: calc(100% - 41px * 9);
+  height: calc((395px + 100vw * 28 / 1080) / 6) !important;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
