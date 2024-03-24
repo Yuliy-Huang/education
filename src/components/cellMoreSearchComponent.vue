@@ -18,7 +18,7 @@
       :show-add="false"
       :show-del="false"
       :page-type="pageType"
-      @clickCell="clickCell"
+      @clickCell="clickCellMore"
     />
   </div>
 </template>
@@ -53,14 +53,16 @@ const props = defineProps({
 const { pageType, searchValue, placeholder } = toRefs(props);
 const emits = defineEmits(['changeTab']);
 
-const clickCell = () => {
-  console.log('cellMoreSearch -- click -- pageType : ', pageType.value);
+const clickCellMore = () => {
+  console.log('cellMoreSearch -- clickCellMore -- pageType : ', pageType.value);
   if (pageType.value === 'infoModify') {
     emits('changeTab', 'infoArchiveModify');
   } else if (pageType.value === 'infoSee') {
     emits('changeTab', 'infoSeeFile');
   } else if (pageType.value === 'staffDimission') {
     emits('changeTab', 'staffConfirmDimission');
+  } else if (pageType.value === 'teacherSeeFile') {
+    emits('changeTab', 'teacherSeeStudentDetail');
   }
 };
 </script>

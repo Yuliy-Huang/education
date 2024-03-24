@@ -1,14 +1,6 @@
 <template>
   <div class="more-box-table">
-    <div
-      :class="
-        pageType === 'infoModify' || 'infoSee'
-          ? 'staff-box-row'
-          : 'more-box-row'
-      "
-      v-for="row in rowCount"
-      :key="row"
-    >
+    <div class="more-box-row" v-for="row in rowCount" :key="row">
       <template v-for="col in colCount" :key="col - 1">
         <div
           :class="col - 1 !== colCount - 1 ? 'left' : 'last'"
@@ -49,7 +41,7 @@
     </div>
   </div>
 
-  <div :class="paginationClass">
+  <div class="paginate-div">
     <div class="previous-page">
       <el-button plain @click="previousPage">上 一 页</el-button>
     </div>
@@ -60,7 +52,7 @@
 </template>
 <script setup>
 import { ElMessageBox } from 'element-plus';
-import { defineProps, toRefs, ref, defineEmits, computed } from 'vue';
+import { defineProps, toRefs, ref, defineEmits } from 'vue';
 import { Plus } from '@element-plus/icons-vue';
 
 const props = defineProps({
@@ -92,20 +84,6 @@ const props = defineProps({
 const { pageType, colCount, rowCount, dataList } = toRefs(props);
 const emits = defineEmits(['clickCell']);
 
-const paginationClass = computed(() => {
-  console.log('computed --- pageType : ', pageType.value);
-  let res = '';
-  if (pageType.value === 'infoModify' || pageType.value === 'infoSee') {
-    res = 'staff-paginate-div';
-  } else if (pageType.value === 'teacherSeeStudent') {
-    res = 'student-paginate-div';
-  } else {
-    res = 'paginate-div';
-  }
-  console.log('paginationClass : ', res);
-  return res;
-});
-
 const newData = ref([]);
 for (let i = 0; i < dataList.value.length; i += colCount.value) {
   if (i + colCount.value < dataList.value.length) {
@@ -129,11 +107,12 @@ const clickAdd = () => {
 };
 
 const clickCellFunc = e => {
+  console.log('**** cellMore --- clickCellFunc --- pageType : ', pageType.value)
   const tagName = e.target.tagName.toLowerCase();
   if (
     pageType.value === 'infoModify' ||
     pageType.value === 'infoSee' ||
-    pageType.value === 'staffDimission'
+    pageType.value === 'staffDimission' || pageType.value === 'teacherSeeFile'
   ) {
     emits('clickCell');
   } else if (tagName === 'span') {

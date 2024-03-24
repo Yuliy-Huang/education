@@ -36,11 +36,13 @@
       :page-type="pageType"
       :year="year"
       :month="activeMonth"
+      @changeTab="changeTab"
     ></component>
   </div>
 </template>
 <script setup>
 import {
+  defineEmits,
   defineAsyncComponent,
   defineProps,
   markRaw,
@@ -76,6 +78,18 @@ const teacherSeeRoyallty = defineAsyncComponent(() =>
 const teacherSeeStatistic = defineAsyncComponent(() =>
   import('@/views/substituteTeacher/seeDetail/teacherSeeStatistic.vue')
 );
+const teacherSeeFile = defineAsyncComponent(() =>
+  import('@/views/substituteTeacher/seeDetail/teacherSeeFile.vue')
+);
+const teacherSeeStudentDetail = defineAsyncComponent(() =>
+    import('@/views/substituteTeacher/seeDetail/teacherSeeStudentDetail.vue')
+);
+
+const emits = defineEmits(['changeTab']);
+const changeTab = () => {
+  console.log('***** detail  000 : ', pageType.value)
+  emits('changeTab', 'teacherSeeStudentDetail');
+};
 
 const nowYear = new Date().getFullYear();
 const year = ref(nowYear);
@@ -94,7 +108,10 @@ const props = defineProps({
 });
 const { pageType } = toRefs(props);
 const headHiding = computed(() => {
-  return pageType.value === 'teacherSeeStudent';
+  return (
+    pageType.value === 'teacherSeeStudent' ||
+    pageType.value === 'teacherSeeFile' || pageType.value === 'teacherSeeStudentDetail'
+  );
 });
 const currentComponent = computed(() => {
   let res = null;
@@ -127,7 +144,10 @@ const currentComponent = computed(() => {
       res = markRaw(teacherSeeStatistic);
       break;
     case 'teacherSeeFile':
-      res = markRaw(teacherInfoSeeSalary);
+      res = markRaw(teacherSeeFile);
+      break;
+    case 'teacherSeeStudentDetail':
+      res = markRaw(teacherSeeStudentDetail);
       break;
     case 'teacherSeeTotalHour':
       res = markRaw(teacherSeeTotalHour);

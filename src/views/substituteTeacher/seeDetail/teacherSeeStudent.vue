@@ -12,7 +12,7 @@
   </div>
 </template>
 <script setup>
-import { ref, defineProps } from 'vue';
+import { ref, defineProps, defineEmits } from 'vue';
 import yearsComponent from '@/components/yearsComponent.vue';
 import cellMoreSearchComponent from '@/components/cellMoreSearchComponent.vue';
 
@@ -26,6 +26,10 @@ const funcList = ref(['招生', '续费', '请假', '旷课', '停课', '退学'
 const searchValue = ref('');
 const staffList = ref(['梁朝伟（学生）']);
 
-const changeTab = () => {};
+const emits = defineEmits(['changeTab']);
+const changeTab = () => {
+  console.log('*** teacherSeeStudent')
+  emits('changeTab');
+};
 </script>
 <style lang="less" scoped></style>
