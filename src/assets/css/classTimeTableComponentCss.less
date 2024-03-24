@@ -1,0 +1,101 @@
+.time-table-div {
+  height: 100%;
+  .time-table {
+    display: grid;
+    grid-template-rows: 1fr 4fr;
+    height: 100%;
+
+    .head-rows {
+      display: grid;
+      grid-template-columns: 1.5fr 15fr;
+      border-bottom: 1px solid var(--white-custom-2);
+      .bevel-edge {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        border-right: 1px solid var(--white-custom-2);
+        line-height: 120px;
+        text-indent: 5px;
+        background: linear-gradient(
+          to top right,
+          transparent 49.5%,
+          var(--white-custom-2) 49.5%,
+          var(--white-custom-2) 50.5%,
+          transparent 50.5%
+        );
+      }
+      .head-title {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        border-right: 1px solid var(--white-custom-2);
+        .week-div {
+          display: grid;
+          grid-template-rows: repeat(2, 1fr);
+          border-right: 1px solid var(--white-custom-2);
+        }
+        .week-div:last-of-type {
+          border: none;
+        }
+        .week-div .up {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          border-bottom: 1px solid var(--white-custom-2);
+        }
+        .week-div .down {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          .down-div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-right: 1px solid var(--white-custom-2);
+          }
+          .down-div:last-of-type {
+            border: none;
+          }
+        }
+      }
+      .head-title:last-of-type {
+        border: none;
+      }
+    }
+    .body-rows {
+      display: grid;
+      grid-template-rows: repeat(8, 1fr);
+
+      .week-row {
+        display: grid;
+        grid-template-columns: 1.5fr 15fr;
+        border-bottom: 1px solid var(--white-custom-2);
+        .left-cell {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          border-right: 1px solid var(--white-custom-2);
+        }
+        .right-cells {
+          display: grid;
+          grid-template-columns: repeat(12, 1fr);
+        }
+        .right-cell {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          border-right: 1px solid var(--white-custom-2);
+        }
+        .right-cell:last-of-type {
+          border: none;
+        }
+      }
+      .week-row:last-of-type {
+        border: none;
+      }
+    }
+  }
+}

@@ -73,6 +73,9 @@ const teacherSeeStudent = defineAsyncComponent(() =>
 const teacherSeeRoyallty = defineAsyncComponent(() =>
   import('@/views/substituteTeacher/seeDetail/teacherSeeRoyalty.vue')
 );
+const teacherSeeStatistic = defineAsyncComponent(() =>
+  import('@/views/substituteTeacher/seeDetail/teacherSeeStatistic.vue')
+);
 
 const nowYear = new Date().getFullYear();
 const year = ref(nowYear);
@@ -121,7 +124,7 @@ const currentComponent = computed(() => {
       res = markRaw(teacherSeeRoyallty);
       break;
     case 'teacherSeeStatistic':
-      res = markRaw(teacherInfoSeeComment);
+      res = markRaw(teacherSeeStatistic);
       break;
     case 'teacherSeeFile':
       res = markRaw(teacherInfoSeeSalary);
