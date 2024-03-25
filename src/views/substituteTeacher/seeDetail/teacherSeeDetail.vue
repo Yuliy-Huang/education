@@ -1,36 +1,8 @@
 <template>
   <div class="teacher-detail-page">
-    <div class="staff-head" :style="{ display: headHiding ? 'none' : '' }">
-      <div class="year">
-        <div class="arrow-left-div">
-          <span class="inner-img-div" @click="changeYear(-1)">
-            <img
-              :src="require(`@/assets/img/arrowLeft.png`)"
-              style="width: 20px; height: 12px; cursor: pointer"
-              alt=""
-            />
-          </span>
-        </div>
-        <span>{{ year }}</span>
-        <div class="arrow-right-div">
-          <span class="inner-img-div" @click="changeYear(1)">
-            <img
-              :src="require(`@/assets/img/arrowRight.png`)"
-              style="width: 20px; height: 12px; cursor: pointer"
-              alt=""
-            />
-          </span>
-        </div>
-      </div>
-      <template v-for="item of 12" :key="item">
-        <div
-          :class="['month', { 'is-active': item === activeMonth }]"
-          @click="activeMonth = item"
-        >
-          {{ item }}月
-        </div>
-      </template>
-    </div>
+    <weekTitleComponent v-if="pageType === 'teacherSeeSchedule'" />
+    <yearTitleComponent v-else :headHiding="headHiding" />
+
     <component
       :is="currentComponent"
       :page-type="pageType"
@@ -46,10 +18,11 @@ import {
   defineAsyncComponent,
   defineProps,
   markRaw,
-  ref,
   toRefs,
   computed,
 } from 'vue';
+import yearTitleComponent from '@/components/yearTitleComponent.vue';
+import weekTitleComponent from '@/components/weekTitleComponent.vue';
 import teacherInfoSeeSalary from '@/views/substituteTeacher/seeDetail/teacherSeeSalary.vue';
 const teacherInfoSeeCheckIn = defineAsyncComponent(() =>
   import('@/views/substituteTeacher/seeDetail/teacherSeeCheckIn.vue')
@@ -82,24 +55,17 @@ const teacherSeeFile = defineAsyncComponent(() =>
   import('@/views/substituteTeacher/seeDetail/teacherSeeFile.vue')
 );
 const teacherSeeStudentDetail = defineAsyncComponent(() =>
-    import('@/views/substituteTeacher/seeDetail/teacherSeeStudentDetail.vue')
+  import('@/views/substituteTeacher/seeDetail/teacherSeeStudentDetail.vue')
+);
+const teacherSeeSchedule = defineAsyncComponent(() =>
+  import('@/views/substituteTeacher/seeDetail/teacherSeeClassSchedule.vue')
 );
 
 const emits = defineEmits(['changeTab']);
 const changeTab = () => {
-  console.log('***** detail  000 : ', pageType.value)
+  console.log('***** detail  000 : ', pageType.value);
   emits('changeTab', 'teacherSeeStudentDetail');
 };
-
-const nowYear = new Date().getFullYear();
-const year = ref(nowYear);
-const changeYear = v => {
-  v === 1
-    ? (year.value = year.value + 1 <= nowYear ? year.value + 1 : nowYear)
-    : (year.value = year.value - 1 >= 1970 ? year.value - 1 : 1970);
-};
-const activeMonth = ref(new Date().getMonth() + 1);
-
 const props = defineProps({
   pageType: {
     type: String,
@@ -110,7 +76,8 @@ const { pageType } = toRefs(props);
 const headHiding = computed(() => {
   return (
     pageType.value === 'teacherSeeStudent' ||
-    pageType.value === 'teacherSeeFile' || pageType.value === 'teacherSeeStudentDetail'
+    pageType.value === 'teacherSeeFile' ||
+    pageType.value === 'teacherSeeStudentDetail'
   );
 });
 const currentComponent = computed(() => {
@@ -153,7 +120,7 @@ const currentComponent = computed(() => {
       res = markRaw(teacherSeeTotalHour);
       break;
     case 'teacherSeeSchedule':
-      res = markRaw(teacherInfoSeeComment);
+      res = markRaw(teacherSeeSchedule);
       break;
   }
   return res;

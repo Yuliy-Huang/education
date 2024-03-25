@@ -1,0 +1,23 @@
+.weeks-title-heading {
+  background-color: var(--black-custom-default);
+  width: 100%;
+  height: calc(100vw * 28 / 1080);
+  border: 1px solid var(--white-custom-2);
+  border-radius: 4px;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  .weeks {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-right: 1px solid var(--white-custom-2);
+    cursor: pointer;
+  }
+  .weeks:first-of-type {
+    cursor: auto;
+  }
+  .weeks:last-of-type {
+    border: none;
+  }
+}

@@ -110,7 +110,7 @@ const back2LastDiv = () => {
       break;
     case 'teacherSeeStudentDetail':
       changeTab('teacherSeeFile');
-          break;
+      break;
     default:
       changeTab('home');
   }
