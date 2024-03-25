@@ -4,23 +4,29 @@
     <div class="row2">
       <div class="col1">
         <div class="avatar-div">
-          <el-upload class="avatar-upload"
-                     accept="image/*"
-                     action="#"
-                     :show-file-list="false"
-                     :before-upload="beforeAvatarUpload"
+          <el-upload
+            class="avatar-upload"
+            accept="image/*"
+            action="#"
+            :show-file-list="false"
+            :before-upload="beforeAvatarUpload"
           >
-            <img v-if="imageUrl" :src="imageUrl" class="avatar" alt=""/>
+            <img v-if="imageUrl" :src="imageUrl" class="avatar" alt="" />
             <el-icon v-else class="avatar-uploader-icon">
-              <Plus/>
+              <Plus />
             </el-icon>
           </el-upload>
-          <div class="avatar-text-left"><span class="avatar-span-text">点击重新上传照片</span></div>
+          <div class="avatar-text-left">
+            <span class="avatar-span-text">点击重新上传照片</span>
+          </div>
         </div>
         <div class="info-div">
           <el-form :model="form" label-width="auto" class="info-form">
-            <el-form-item label="编号：" class="div-no-required no-border-number">
-              <span class="form-span">{{form.no}}</span>
+            <el-form-item
+              label="编号："
+              class="div-no-required no-border-number"
+            >
+              <span class="form-span">{{ form.no }}</span>
             </el-form-item>
             <el-form-item label="姓名：" class="div-required">
               <el-input v-model="form.name" />
@@ -64,29 +70,34 @@
             </el-form-item>
           </el-form>
           <el-input
-              v-model="textarea"
-              :rows="6"
-              type="textarea"
-              placeholder="入职备注："
-              resize="none"
+            v-model="textarea"
+            :rows="4"
+            type="textarea"
+            placeholder="入职备注："
+            resize="none"
           />
         </div>
       </div>
       <div class="col4">
         <div class="qr-div">
           <div class="upload-img-div">
-            <el-upload class="avatar-upload"
-                       accept="image/*"
-                       action="#"
-                       :show-file-list="false"
-                       :before-upload="beforeAvatarUpload"
+            <el-upload
+              class="avatar-upload"
+              accept="image/*"
+              action="#"
+              :show-file-list="false"
+              :before-upload="beforeAvatarUpload"
             >
-              <img v-if="imageUrl" :src="imageUrl" class="avatar" alt=""/>
+              <img v-if="imageUrl" :src="imageUrl" class="avatar" alt="" />
               <el-icon v-else class="avatar-uploader-icon">
-                <Plus/>
+                <Plus />
               </el-icon>
             </el-upload>
-            <div class="upload-bottom">请添加教务教师<br />工资收款二维码</div>
+            <div class="upload-bottom">
+              请添加教务教师
+              <br />
+              工资收款二维码
+            </div>
           </div>
           <div class="avatar-text-right">
             <span class="avatar-span-dot">
@@ -107,21 +118,20 @@
   </div>
 </template>
 <script setup>
+import { ElInput, ElMessage, ElMessageBox } from 'element-plus';
+import { h, reactive, ref } from 'vue';
+import { Plus } from '@element-plus/icons-vue';
 
-import {ElInput, ElMessage, ElMessageBox} from "element-plus";
-import {h, reactive, ref} from "vue";
-import {Plus} from "@element-plus/icons-vue";
-
-const imageUrl = ref('')
-const beforeAvatarUpload = (rawFile) => {
+const imageUrl = ref('');
+const beforeAvatarUpload = rawFile => {
   if (rawFile.size / 1024 / 1024 > 2) {
-    ElMessage.error('图片大小不能超过 2MB!')
-    return false
+    ElMessage.error('图片大小不能超过 2MB!');
+    return false;
   }
-  console.log('000 : ', rawFile)
-  imageUrl.value = URL.createObjectURL(rawFile)
-  return false
-}
+  console.log('000 : ', rawFile);
+  imageUrl.value = URL.createObjectURL(rawFile);
+  return false;
+};
 
 const form = reactive({
   no: 'A1004',
@@ -129,22 +139,30 @@ const form = reactive({
   sex: '',
   birth: '',
   place: '',
-})
+});
 
 const vNode = () => {
   return h('div', {}, [
-    h('div', {style: 'margin-bottom: 20px; margin-top: 50px;'}, [
-      h('div', {
-        class: 'div-inside',
-      }, ['备注编辑']),
+    h('div', { style: 'margin-bottom: 20px; margin-top: 50px;' }, [
+      h(
+        'div',
+        {
+          class: 'div-inside',
+        },
+        ['备注编辑']
+      ),
     ]),
     h('div', {}, [
-      h('div', {
-        class: 'div-inside',
-      }, ['基本工资已重置']),
+      h(
+        'div',
+        {
+          class: 'div-inside',
+        },
+        ['基本工资已重置']
+      ),
     ]),
   ]);
-}
+};
 
 const saveFunc = () => {
   ElMessageBox({
@@ -155,27 +173,24 @@ const saveFunc = () => {
     autofocus: false,
     beforeClose: (action, instance, done) => {
       if (action === 'confirm') {
-        instance.confirmButtonLoading = true
-        instance.confirmButtonText = 'Loading...'
+        instance.confirmButtonLoading = true;
+        instance.confirmButtonText = 'Loading...';
         setTimeout(() => {
-          done()
+          done();
           setTimeout(() => {
-            instance.confirmButtonLoading = false
-          }, 300)
-        }, 2000)
+            instance.confirmButtonLoading = false;
+          }, 300);
+        }, 2000);
       } else {
-        done()
+        done();
       }
     },
-  }).then(() => {
   })
-      .catch(() => {
-
-      })
-}
-const textarea = ref('')
-
+    .then(() => {})
+    .catch(() => {});
+};
+const textarea = ref('');
 </script>
 <style lang="less">
-@import "@/assets/css/academicStaff/staffArchiveCss";
+@import '@/assets/css/academicStaff/staffArchiveCss';
 </style>

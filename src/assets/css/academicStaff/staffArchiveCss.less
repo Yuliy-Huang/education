@@ -2,7 +2,7 @@
   width: 90%;
   height: 100%;
   display: grid;
-  grid-template-rows: 1.3fr 3fr 2.3fr;
+  grid-template-rows: 1.5fr 2.5fr 2.3fr;
 
   .row1 {
   }
@@ -23,7 +23,7 @@
       display: grid;
       grid-template-columns: 1fr 1.5fr;
       text-align: center;
-      align-items: center;
+      align-items: flex-start;
 
       .avatar-div {
         // padding-right: 10px;
@@ -32,7 +32,7 @@
         //grid-template-rows: 2.4fr 1fr;
 
         .avatar-upload {
-          height: 200px;
+          height: 180px;
           background-color: var(--dark-grey-custom-3);
           border-radius: 4px;
           display: flex;
@@ -69,7 +69,7 @@
       padding: 0 20px;
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start;
       text-align: center;
     }
 
@@ -78,10 +78,13 @@
       padding: 0 20px;
       display: grid;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start;
       text-align: center;
 
       .col3-div {
+        .el-textarea {
+          margin-top: 20px;
+        }
         .el-textarea__inner {
           border: 1px solid var(--white-custom-2);
           border-radius: 1px;
@@ -97,7 +100,7 @@
       width: 100%;
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start;
       text-align: center;
 
       .qr-div {
@@ -110,7 +113,7 @@
         .upload-img-div {
           height: 100%;
           .avatar-upload {
-            height: 150px;
+            height: 130px;
             background-color: var(--dark-grey-custom-3);
             border-radius: 4px;
             display: flex;
@@ -174,6 +177,10 @@
     .el-form-item {
       margin-bottom: 16px;
       font-size: 0.9rem !important;
+    }
+
+    .el-form-item:last-of-type {
+      margin-bottom: 0;
     }
 
     .el-form-item__label {
