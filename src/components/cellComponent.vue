@@ -1,15 +1,11 @@
 <template>
   <div class="box-table">
-    <div
-      :class="colCount === 4 ? 'box-row' : 'box-row-seven'"
-      v-for="row in rowCount"
-      :key="row"
-    >
+    <div :class="'box-row-' + colCount" v-for="row in rowCount" :key="row">
       <template v-for="col in colCount" :key="col - 1">
         <div
           :class="[
             col - 1 !== colCount - 1 ? 'left' : 'last',
-            colCount === 4 ? 'col-four' : 'col-seven',
+            'col-' + colCount,
           ]"
           v-if="showAdd && row === addButtonRow && addButtonCol === col - 1"
         >
@@ -21,7 +17,7 @@
         <div
           :class="[
             col - 1 === colCount - 1 ? 'last' : 'left',
-            colCount === 4 ? 'col-four' : 'col-seven',
+            'col-' + colCount,
           ]"
           @click="clickCellFunc"
           v-else-if="!showDel"
@@ -36,6 +32,7 @@
               <div class="dot-green" v-if="pageType === 'infoSeeCheckIn'"></div>
               <span>{{ newData[row - 1][col - 1] }}</span>
               <el-checkbox
+                v-if="pageType === 'infoSeeCheckIn'"
                 v-model="checkDate"
                 style="margin-left: 10px; margin-top: 2px"
               />
@@ -45,7 +42,7 @@
         <div
           :class="[
             col - 1 === colCount - 1 ? 'last' : 'left',
-            colCount === 4 ? 'col-four' : 'col-seven',
+            'col-' + colCount,
           ]"
           @click="clickCellFunc"
           v-else
@@ -62,7 +59,7 @@
 </template>
 <script setup>
 import { ElMessageBox, ElInput } from 'element-plus';
-import { defineProps, toRefs, ref, h } from 'vue';
+import { defineProps, toRefs, ref, h, defineEmits } from 'vue';
 import { Plus } from '@element-plus/icons-vue';
 
 const props = defineProps({
@@ -92,6 +89,7 @@ const props = defineProps({
   },
 });
 const { dataList, pageType, colCount, rowCount, showDel } = toRefs(props);
+const emits = defineEmits(['clickCell']);
 
 const checkDate = ref(false);
 const newData = ref([]);
@@ -147,6 +145,7 @@ const vNode = () => {
 };
 
 const clickCellFunc = e => {
+  console.log('cellCom --- clickCellFunc');
   const tagName = e.target.tagName.toLowerCase();
   if (pageType.value === 'campus') {
     ElMessageBox({
@@ -182,6 +181,8 @@ const clickCellFunc = e => {
     })
       .then(() => {})
       .catch(() => {});
+  } else if (pageType.value === 'studentDimission') {
+    emits('clickCell');
   }
 };
 </script>

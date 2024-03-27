@@ -85,7 +85,7 @@
       </div>
     </div>
     <div class="row3-2">
-      <el-button plain style="margin-left: 150px">现 已 离 职</el-button>
+      <el-button plain style="margin-left: 150px">现 已 退 款</el-button>
       <el-button plain @click="saveFunc" style="margin-right: 150px">
         删 除 档 案
       </el-button>

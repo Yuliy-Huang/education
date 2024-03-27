@@ -4,35 +4,53 @@
   text-align: center;
   border-collapse: collapse;
 
-  .box-row {
+  .box-row-4 {
     display: table-row;
     height: calc(450px / 13) !important;
     border-bottom: 1px solid var(--white-custom-2);
   }
 
-  .box-row-seven {
+  .box-row-7 {
     display: table-row;
     height: calc(450px / 6.5) !important;
     border-bottom: 1px solid var(--white-custom-2);
   }
-  .box-row-seven:last-of-type {
+  .box-row-7:last-of-type {
     display: table-row;
     height: calc(450px / 6.5) !important;
     border-bottom: none;
   }
 
-  .col-four {
+  .box-row-8 {
+    display: table-row;
+    height: calc((395px - 100vw * 34 / 1080) / 10) !important;
+    border-bottom: 1px solid var(--white-custom-2);
+  }
+  .box-row-8:last-of-type {
+    display: table-row;
+    height: calc((395px - 100vw * 34 / 1080) / 10) !important;
+    border-bottom: none;
+  }
+
+  .col-4 {
     display: table-cell;
     vertical-align: middle;
     word-break: break-all;
     width: 25%;
   }
 
-  .col-seven {
+  .col-7 {
     display: table-cell;
     vertical-align: middle;
     word-break: break-all;
     width: calc(100% / 7);
+  }
+
+  .col-8 {
+    display: table-cell;
+    vertical-align: middle;
+    word-break: break-all;
+    width: calc(100% / 8);
   }
 
   .left {

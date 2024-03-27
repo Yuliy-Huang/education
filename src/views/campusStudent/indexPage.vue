@@ -32,6 +32,13 @@ const fileSeePage = defineAsyncComponent(() => import('./studentFileSee.vue'));
 const studentDimissionPage = defineAsyncComponent(() =>
   import('./studentDimission.vue')
 );
+const studentDimissionConfirmPage = defineAsyncComponent(() =>
+  import('./studentDimissionConfirm.vue')
+);
+
+const studentDimissionDeletePage = defineAsyncComponent(() =>
+  import('./studentDimissionDelete.vue')
+);
 
 const pageType = ref('home');
 const isSeparate = ref(false);
@@ -47,7 +54,12 @@ const searchValue = ref('');
 const changeTab = v => {
   console.log('indexPage.vue --- v : ', v);
   pageType.value = v;
-  isSeparate.value = [].includes(v);
+  isSeparate.value = [
+    'studentNumber',
+    'classStatistic',
+    'fileSee',
+    'studentDimission',
+  ].includes(v);
 };
 
 const close2NotDim = () => {
@@ -61,6 +73,12 @@ const back2LastDiv = () => {
     case 'fileSee':
     case 'studentDimission':
       changeTab('home');
+      break;
+    case 'studentDimissionConfirm':
+      changeTab('studentDimission');
+      break;
+    case 'studentDimissionDelete':
+      changeTab('studentDimissionConfirm');
       break;
     default:
       changeTab('home');
@@ -81,6 +99,12 @@ watch(pageType, () => {
       break;
     case 'studentDimission':
       currentCom.value = markRaw(studentDimissionPage);
+      break;
+    case 'studentDimissionConfirm':
+      currentCom.value = markRaw(studentDimissionConfirmPage);
+      break;
+    case 'studentDimissionDelete':
+      currentCom.value = markRaw(studentDimissionDeletePage);
       break;
     default:
       currentCom.value = markRaw(blocksComponent);
