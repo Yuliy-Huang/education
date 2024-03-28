@@ -34,24 +34,41 @@ const blockList = ref([
     pageType: 'professionalLevelStatistic',
     count: 2,
   },
-  { name: '教师考级学员统计', pageType: 'classStatistic', count: 3 },
-  { name: '教师单节课费统计', pageType: 'fileSee', count: 0 },
-  { name: '教师学员课表查看', pageType: 'studentDimission', count: 1 },
-  { name: '学员每月作业查看', pageType: 'studentDimission', count: 0 },
-  { name: '学员课时明细查看', pageType: 'studentDimission', count: 0 },
+  { name: '教师考级学员统计', pageType: 'teacherLevelStatistic', count: 3 },
+  { name: '教师单节课费统计', pageType: 'classFeeStatistic', count: 0 },
+  { name: '教师学员课表查看', pageType: 'classScheduleSee', count: 1 },
+  { name: '学员每月作业查看', pageType: 'monthlyHomeworkSee', count: 0 },
+  { name: '学员课时明细查看', pageType: 'classDetailSee', count: 0 },
 ]);
-const staffList = ref(['架子鼓', '钢琴']);
+const staffList = ref([]);
 const searchValue = ref('');
 
 const changeTab = v => {
   console.log('indexPage.vue --- v : ', v);
   pageType.value = v;
-  isSeparate.value = [
-    'studentNumber',
-    'classStatistic',
-    'fileSee',
-    'studentDimission',
-  ].includes(v);
+  isSeparate.value = [''].includes(v);
+  switch (pageType.value) {
+    case 'professionalLevelStatistic':
+      staffList.value = ['架子鼓', '钢琴'];
+      break;
+    case 'teacherLevelStatistic':
+      staffList.value = ['李文斌［吉他教师］', '张三毛［美术教师］'];
+      break;
+    case 'classFeeStatistic':
+      staffList.value = ['李文斌［吉他教师］', '张三毛［美术教师］'];
+      break;
+    case 'classScheduleSee':
+      staffList.value = ['李文斌［吉他教师］', '张三毛［美术教师］'];
+      break;
+    case 'monthlyHomeworkSee':
+      staffList.value = ['李文斌［吉他教师］', '张三毛［美术教师］'];
+      break;
+    case 'classDetailSee':
+      staffList.value = ['李文斌［吉他教师］', '张三毛［美术教师］'];
+      break;
+    default:
+      staffList.value = [];
+  }
 };
 
 const close2NotDim = () => {
@@ -60,17 +77,8 @@ const close2NotDim = () => {
 
 const back2LastDiv = () => {
   switch (pageType.value) {
-    case 'professionalLevelStatistic':
-    case 'classStatistic':
-    case 'fileSee':
-    case 'studentDimission':
+    case '':
       changeTab('home');
-      break;
-    case 'studentDimissionConfirm':
-      changeTab('studentDimission');
-      break;
-    case 'studentDimissionDelete':
-      changeTab('studentDimissionConfirm');
       break;
     default:
       changeTab('home');
@@ -81,6 +89,11 @@ const currentCom = ref(markRaw(blocksComponent));
 watch(pageType, () => {
   switch (pageType.value) {
     case 'professionalLevelStatistic':
+    case 'teacherLevelStatistic':
+    case 'classFeeStatistic':
+    case 'classScheduleSee':
+    case 'monthlyHomeworkSee':
+    case 'classDetailSee':
       currentCom.value = markRaw(cellMoreSearchComponent);
       break;
     default:
