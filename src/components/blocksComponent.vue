@@ -1,5 +1,5 @@
 <template>
-  <div class="home" v-if="blockList.length <= 4">
+  <div class="home-2blocks" v-if="blockList.length === 2">
     <div class="one-block" v-for="(item, index) in blockList" :key="index">
       <div class="up-block" @click="changePage(item.pageType)">
         {{ item.name }}
@@ -11,7 +11,31 @@
       </div>
     </div>
   </div>
-  <div class="home-multi" v-else>
+  <div class="home-3blocks" v-else-if="blockList.length === 3">
+    <div class="one-block" v-for="(item, index) in blockList" :key="index">
+      <div class="up-block" @click="changePage(item.pageType)">
+        {{ item.name }}
+      </div>
+      <div class="down-block">
+        <div class="link-mid" v-for="idx in 13" :key="idx"></div>
+        <span>{{ item.count }}</span>
+        <div class="link-mid" v-for="idx in 13" :key="idx"></div>
+      </div>
+    </div>
+  </div>
+  <div class="home-4blocks" v-else-if="blockList.length === 4">
+    <div class="one-block" v-for="(item, index) in blockList" :key="index">
+      <div class="up-block" @click="changePage(item.pageType)">
+        {{ item.name }}
+      </div>
+      <div class="down-block">
+        <div class="link-mid" v-for="idx in 13" :key="idx"></div>
+        <span>{{ item.count }}</span>
+        <div class="link-mid" v-for="idx in 13" :key="idx"></div>
+      </div>
+    </div>
+  </div>
+  <div class="home-2lines" v-else>
     <div class="home-line"></div>
     <div class="home-line">
       <div
