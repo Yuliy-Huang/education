@@ -107,12 +107,17 @@ const clickAdd = () => {
 };
 
 const clickCellFunc = e => {
-  console.log('**** cellMore --- clickCellFunc --- pageType : ', pageType.value)
+  console.log(
+    '**** cellMore --- clickCellFunc --- pageType : ',
+    pageType.value
+  );
   const tagName = e.target.tagName.toLowerCase();
   if (
     pageType.value === 'infoModify' ||
     pageType.value === 'infoSee' ||
-    pageType.value === 'staffDimission' || pageType.value === 'teacherSeeFile'
+    pageType.value === 'staffDimission' ||
+    pageType.value === 'teacherSeeFile' ||
+    pageType.value === 'studentLevelStatistic'
   ) {
     emits('clickCell');
   } else if (tagName === 'span') {

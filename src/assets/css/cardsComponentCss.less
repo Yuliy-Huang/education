@@ -1,0 +1,35 @@
+.card-page {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  text-align: center;
+  background-color: var(--black-custom-transparence);
+  border-radius: 4px;
+  .card-line {
+    display: grid;
+    grid-template-rows: 1fr 4fr;
+    border-bottom: 1px solid var(--white-custom-2);
+  }
+  .card-line:last-of-type {
+    border: none;
+  }
+  .card-line-inside {
+    display: grid;
+    grid-template-columns: repeat(11, 1fr);
+    border-bottom: 1px solid var(--white-custom-2);
+  }
+  .card-line-inside:last-of-type {
+    border: none;
+  }
+  .card-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid var(--white-custom-2);
+  }
+  .card-cell:last-of-type {
+    border: none;
+  }
+}

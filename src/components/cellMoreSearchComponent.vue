@@ -63,6 +63,8 @@ const clickCellMore = () => {
     emits('changeTab', 'staffConfirmDimission');
   } else if (pageType.value === 'teacherSeeFile') {
     emits('changeTab', 'teacherSeeStudentDetail');
+  } else if (pageType.value === 'studentLevelStatistic') {
+    emits('changeTab', 'studentStatisticDetail');
   }
 };
 </script>

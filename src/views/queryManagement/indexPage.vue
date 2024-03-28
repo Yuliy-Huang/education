@@ -21,6 +21,7 @@
 import { markRaw, ref, watch, defineAsyncComponent } from 'vue';
 import pageStructureComponent from '@/components/pageStructureComponent';
 import blocksComponent from '@/components/blocksComponent';
+import studentStatisticDetail from './studentStatisticDetail.vue';
 
 const cellMoreSearchComponent = defineAsyncComponent(() =>
   import('../../components/cellMoreSearchComponent.vue')
@@ -31,7 +32,7 @@ const isSeparate = ref(false);
 const blockList = ref([
   {
     name: '专业级别学员统计',
-    pageType: 'professionalLevelStatistic',
+    pageType: 'studentLevelStatistic',
     count: 2,
   },
   { name: '教师考级学员统计', pageType: 'teacherLevelStatistic', count: 3 },
@@ -48,7 +49,7 @@ const changeTab = v => {
   pageType.value = v;
   isSeparate.value = [''].includes(v);
   switch (pageType.value) {
-    case 'professionalLevelStatistic':
+    case 'studentLevelStatistic':
       staffList.value = ['架子鼓', '钢琴'];
       break;
     case 'teacherLevelStatistic':
@@ -88,13 +89,16 @@ const back2LastDiv = () => {
 const currentCom = ref(markRaw(blocksComponent));
 watch(pageType, () => {
   switch (pageType.value) {
-    case 'professionalLevelStatistic':
+    case 'studentLevelStatistic':
     case 'teacherLevelStatistic':
     case 'classFeeStatistic':
     case 'classScheduleSee':
     case 'monthlyHomeworkSee':
     case 'classDetailSee':
       currentCom.value = markRaw(cellMoreSearchComponent);
+      break;
+    case 'studentStatisticDetail':
+      currentCom.value = markRaw(studentStatisticDetail);
       break;
     default:
       currentCom.value = markRaw(blocksComponent);
