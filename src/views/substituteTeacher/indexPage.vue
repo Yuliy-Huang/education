@@ -45,10 +45,10 @@ const teacherRoyalty = defineAsyncComponent(() =>
 const pageType = ref('home');
 const isSeparate = ref(false);
 const blockList = ref([
-  { name: '教师档案存档', pageType: 'infoArchiveAdd' },
-  { name: '教师档案查看', pageType: 'infoSee' },
-  { name: '教师档案修改', pageType: 'infoModify' },
-  { name: '教师离职办理', pageType: 'staffDimission' },
+  { name: '教师档案存档', pageType: 'infoArchiveAdd', count: 8 },
+  { name: '教师档案查看', pageType: 'infoSee', count: 3 },
+  { name: '教师档案修改', pageType: 'infoModify', count: 2 },
+  { name: '教师离职办理', pageType: 'staffDimission', count: 2 },
 ]);
 const staffList = ref(['李文斌［钢琴教师］', '张三毛［美术教师］']);
 const searchValue = ref('');

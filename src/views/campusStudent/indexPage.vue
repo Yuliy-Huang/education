@@ -43,10 +43,10 @@ const studentDimissionDeletePage = defineAsyncComponent(() =>
 const pageType = ref('home');
 const isSeparate = ref(false);
 const blockList = ref([
-  { name: '学员专业人数', pageType: 'studentNumber' },
-  { name: '学员课时统计', pageType: 'classStatistic' },
-  { name: '学员档案查看', pageType: 'fileSee' },
-  { name: '学员退学管理', pageType: 'studentDimission' },
+  { name: '学员专业人数', pageType: 'studentNumber', count: 2 },
+  { name: '学员课时统计', pageType: 'classStatistic', count: 2 },
+  { name: '学员档案查看', pageType: 'fileSee', count: 1 },
+  { name: '学员退学管理', pageType: 'studentDimission', count: 0 },
 ]);
 const staffList = ref(['梁朝伟', '刘德华']);
 const searchValue = ref('');
