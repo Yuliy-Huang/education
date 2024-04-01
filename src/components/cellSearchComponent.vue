@@ -58,7 +58,7 @@ const { pageType, searchValue, placeholder } = toRefs(props);
 const emits = defineEmits(['changeTab']);
 
 const clickCellMore = () => {
-  console.log('cellMoreSearch -- clickCellMore -- pageType : ', pageType.value);
+  console.log('cellSearch -- clickCellMore -- pageType : ', pageType.value);
   if (pageType.value === 'infoModify') {
     emits('changeTab', 'infoArchiveModify');
   } else if (pageType.value === 'infoSee') {

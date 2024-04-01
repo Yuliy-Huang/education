@@ -22,6 +22,8 @@ import { markRaw, ref, watch, defineAsyncComponent } from 'vue';
 import pageStructureComponent from '@/components/pageStructureComponent';
 import blocksComponent from '@/components/blocksComponent';
 import studentStatisticDetail from './studentStatisticDetail.vue';
+import teacherStatisticDetail from './teacherStatisticDetail.vue';
+import classFeeDetail from './classFeeDetail.vue';
 
 const cellMoreSearchComponent = defineAsyncComponent(() =>
   import('../../components/cellMoreSearchComponent.vue')
@@ -78,8 +80,14 @@ const close2NotDim = () => {
 
 const back2LastDiv = () => {
   switch (pageType.value) {
-    case '':
-      changeTab('home');
+    case 'studentStatisticDetail':
+      changeTab('studentLevelStatistic');
+      break;
+    case 'teacherStatisticDetail':
+      changeTab('teacherLevelStatistic');
+      break;
+    case 'classFeeDetail':
+      changeTab('classFeeStatistic');
       break;
     default:
       changeTab('home');
@@ -99,6 +107,12 @@ watch(pageType, () => {
       break;
     case 'studentStatisticDetail':
       currentCom.value = markRaw(studentStatisticDetail);
+      break;
+    case 'teacherStatisticDetail':
+      currentCom.value = markRaw(teacherStatisticDetail);
+      break;
+    case 'classFeeDetail':
+      currentCom.value = markRaw(classFeeDetail);
       break;
     default:
       currentCom.value = markRaw(blocksComponent);
