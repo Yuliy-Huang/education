@@ -12,11 +12,13 @@
     />
     <loginAccount
       v-else-if="loginShow"
+      @changeCampusShow="changeCampusShow"
       @changeLoginShow="changeLoginShow"
       @changeCampusSelectShow="changeCampusSelectShow"
     />
     <selectCampus
       v-else-if="loginCampusShow"
+      @changeLoginShow="changeLoginShow"
       @changeCampusSelectShow="changeCampusSelectShow"
     />
     <forgetPasswd v-else-if="forgetShow" />

@@ -30,8 +30,16 @@
 </template>
 <script setup>
 import { areaObj } from '@/utils/pca.js';
-import { ref, computed, watch } from 'vue';
+import { ref, toRefs, computed, watch, defineProps, defineEmits } from 'vue';
 
+const props = defineProps({
+  index: {
+    type: Number,
+    default: 0,
+  },
+});
+const { index } = toRefs(props);
+const emits = defineEmits(['changeAddress']);
 // 省
 const provinceArr = Object.keys(areaObj);
 const province = ref(provinceArr[0]);
@@ -57,6 +65,14 @@ const isAreaSelectorShow = computed(() => !!city.value);
 // 监听市变化
 watch(city, newVal => {
   area.value = areaObj[province.value][newVal][0];
+});
+// 监听区变化
+watch(area, () => {
+  emits(
+    'changeAddress',
+    index,
+    province.value + '省' + city.value + '市' + area.value
+  );
 });
 </script>
 <style scoped>

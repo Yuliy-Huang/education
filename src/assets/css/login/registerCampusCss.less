@@ -47,6 +47,12 @@
       align-items: center;
     }
   }
+  .top-div.select-div {
+    cursor: pointer;
+  }
+  .top-div.select-div.is-active {
+    background-color: var(--white-custom-2) !important;
+  }
   .campus-info .bottom-div {
     display: flex;
     justify-content: center;
@@ -57,6 +63,21 @@
     border: 1px solid var(--white-custom-2);
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
+  }
+  .campus-info .bottom-div-2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 40px;
+    background-color: var(--black-custom-transparence) !important;
+    border: 1px solid var(--white-custom-2);
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+  }
+  .bottom-div-2.is-active {
+    background-color: var(--white-custom-2) !important;
   }
   .campus-info .button-div {
     display: flex;

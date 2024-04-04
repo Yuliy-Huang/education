@@ -18,7 +18,10 @@
           </template>
         </el-input>
         <div class="bottom-div">
-          <pcaComponent />
+          <pcaComponent
+            @changeAddress="changeAddress"
+            :index="currentPage * 2 - 2"
+          />
         </div>
         <el-input
           class="top-div"
@@ -35,7 +38,10 @@
           </template>
         </el-input>
         <div class="bottom-div">
-          <pcaComponent />
+          <pcaComponent
+            @changeAddress="changeAddress"
+            :index="currentPage * 2 - 1"
+          />
         </div>
 
         <div class="button-div">
@@ -65,9 +71,10 @@
 <script>
 import { reactive, ref } from 'vue';
 import { ElMessage } from 'element-plus';
-import { useRouter } from 'vue-router';
-import pcaComponent from '@/components/pcaComponent';
+// import { useRouter } from 'vue-router';
 import { campusListAddApi } from '@/service/registerCampus';
+import pcaComponent from '@/components/pcaComponent';
+
 export default {
   components: {
     pcaComponent,
@@ -80,7 +87,7 @@ export default {
         address: '',
       }))
     );
-    const router = useRouter();
+    // const router = useRouter();
 
     const currentPage = ref(1);
 
@@ -95,8 +102,8 @@ export default {
     };
 
     const delCampus = i => {
-      console.log('delCampus --- i: ', i);
       campus_list[i].deptName = '';
+      campus_list[i].address = '';
     };
 
     const addCampus = () => {
@@ -108,6 +115,11 @@ export default {
         deptName: '',
         address: '',
       });
+    };
+
+    const changeAddress = (index, v) => {
+      campus_list[index].address = v;
+      console.log('*** campus_list : ', campus_list);
     };
 
     const back2Home = () => {
@@ -125,10 +137,12 @@ export default {
         ...new Set(campus_list.filter(item => item.deptName != '')),
       ];
 
+      console.log('regist campus ---- unique_list : ', unique_list.value);
+
       campusListAddApi(unique_list).then(res => {
         if (res.code === 200) {
           ElMessage.success(res.msg);
-          router.push('/home');
+          // router.push('/home');
         } else {
           ElMessage.error(res.msg);
         }
@@ -142,6 +156,7 @@ export default {
       toLeft,
       delCampus,
       toRight,
+      changeAddress,
       currentPage,
     };
   },

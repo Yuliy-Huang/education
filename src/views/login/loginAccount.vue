@@ -12,6 +12,7 @@
             placeholder="密码："
             type="password"
             show-password
+            @keyup.enter="doLogin"
           />
         </div>
         <div class="button-div">
@@ -32,6 +33,8 @@ export default {
   setup(props, context) {
     const back2Home = () => {
       context.emit('changeLoginShow', false);
+      context.emit('changeCampusShow', false);
+      context.emit('changeCampusSelectShow', false);
     };
     const account = ref('');
     const password = ref('');

@@ -24,6 +24,7 @@ import blocksComponent from '@/components/blocksComponent';
 import studentStatisticDetail from './studentStatisticDetail.vue';
 import teacherStatisticDetail from './teacherStatisticDetail.vue';
 import classFeeDetail from './classFeeDetail.vue';
+import classScheduleDetail from './studentSeeSchedule.vue';
 
 const cellMoreSearchComponent = defineAsyncComponent(() =>
   import('../../components/cellMoreSearchComponent.vue')
@@ -89,6 +90,9 @@ const back2LastDiv = () => {
     case 'classFeeDetail':
       changeTab('classFeeStatistic');
       break;
+    case 'classScheduleDetail':
+      changeTab('classScheduleSee');
+      break;
     default:
       changeTab('home');
   }
@@ -113,6 +117,9 @@ watch(pageType, () => {
       break;
     case 'classFeeDetail':
       currentCom.value = markRaw(classFeeDetail);
+      break;
+    case 'classScheduleDetail':
+      currentCom.value = markRaw(classScheduleDetail);
       break;
     default:
       currentCom.value = markRaw(blocksComponent);

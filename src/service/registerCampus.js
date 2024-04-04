@@ -28,3 +28,11 @@ export function campusGetApi(params) {
     },
   });
 }
+
+export function campusSelectApi(params) {
+  return requestWithToken({
+    url: '/api/system/dept/campus/checkCampus',
+    method: 'post',
+    data: params,
+  });
+}
