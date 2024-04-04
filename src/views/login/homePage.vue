@@ -1,8 +1,24 @@
 <template>
   <div class="login-page">
-    <registerCampus v-if="registerCampusShow" />
-    <registerAccount v-else-if="registerAccountShow" />
-    <loginAccount v-else-if="loginShow" />
+    <registerAccount
+      v-if="registerAccountShow"
+      @changeCampusShow="changeCampusShow"
+      @changeRegisterAccountShow="changeRegisterAccountShow"
+    />
+    <registerCampus
+      v-else-if="registerCampusShow"
+      @changeCampusShow="changeCampusShow"
+      @changeRegisterAccountShow="changeRegisterAccountShow"
+    />
+    <loginAccount
+      v-else-if="loginShow"
+      @changeLoginShow="changeLoginShow"
+      @changeCampusSelectShow="changeCampusSelectShow"
+    />
+    <selectCampus
+      v-else-if="loginCampusShow"
+      @changeCampusSelectShow="changeCampusSelectShow"
+    />
     <forgetPasswd v-else-if="forgetShow" />
     <changePasswd v-else-if="changeShow" />
     <div class="login-form" v-else>
@@ -11,13 +27,13 @@
           type="primary"
           :loading="loading"
           class="login-btn"
-          @click="doLogin"
+          @click="changeLoginShow(true)"
         >
           用户登录
         </el-button>
       </div>
-      <div class="register-jump">
-        <span @click="doRegister">用户注册</span>
+      <div class="register-jump" @click="changeRegisterAccountShow(true)">
+        <span>用户注册</span>
       </div>
       <div class="passwd-jump">
         <div @click="doForgetPasswd">忘记密码</div>
@@ -31,19 +47,30 @@ import { ref } from 'vue';
 import registerCampus from './registerCampus.vue';
 import registerAccount from './registerAccount.vue';
 import loginAccount from './loginAccount.vue';
+import selectCampus from './selectCampus.vue';
 import forgetPasswd from './forgetPasswd.vue';
 import changePasswd from './changePasswd.vue';
 
+// const homeShow = ref(true);
+// const changeHomeShow = v => {
+//   homeShow.value = v;
+// };
+
 const loginShow = ref(false);
-const doLogin = () => {
-  loginShow.value = true;
+const changeLoginShow = v => {
+  loginShow.value = v;
 };
 
 const registerCampusShow = ref(false);
-const doRegister = () => {
-  registerCampusShow.value = true;
+const changeCampusShow = v => {
+  registerCampusShow.value = v;
 };
+
 const registerAccountShow = ref(false);
+
+const changeRegisterAccountShow = v => {
+  registerAccountShow.value = v;
+};
 
 const forgetShow = ref(false);
 const doForgetPasswd = () => {
@@ -52,6 +79,11 @@ const doForgetPasswd = () => {
 const changeShow = ref(false);
 const doChangePasswd = () => {
   changeShow.value = true;
+};
+
+const loginCampusShow = ref(false);
+const changeCampusSelectShow = v => {
+  loginCampusShow.value = v;
 };
 </script>
 <style scoped lang="less">

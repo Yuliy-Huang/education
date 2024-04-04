@@ -10,7 +10,7 @@ export function campusAddApi(params) {
 }
 
 export function campusListAddApi(params) {
-  return request({
+  return requestWithToken({
     url: '/api/system/dept/campus/addList',
     method: 'post',
     data: params,

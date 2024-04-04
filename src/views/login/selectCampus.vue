@@ -56,7 +56,6 @@ export default {
   setup(props, context) {
     const getCampusList = () => {
       campusGetApi().then(res => {
-        console.log('res : ', res);
         if (res.code === 200) {
           ElMessage.success(res.msg);
         } else {

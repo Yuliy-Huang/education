@@ -13,7 +13,7 @@ const service = axios.create({
 // request请求拦截器 主要来注入token
 service.interceptors.request.use(
   config => {
-    console.log('**** token : ', localStorage.getItem('token'));
+    // console.log('**** token : ', localStorage.getItem('token'));
     config.headers.Authorization = 'Bearer ' + localStorage.getItem('token');
     return config;
   },

@@ -7,6 +7,11 @@
   width: 20%;
   height: 40%;
 
+  .el-input .el-input__icon {
+    color: var(--light-grey-custom) !important;
+    cursor: pointer !important;
+  }
+
   .campus-form {
     display: flex;
     justify-content: center;
@@ -18,8 +23,9 @@
     background-color: var(--white-custom-4);
   }
   .campus-info {
-    width: 80%;
-    margin: 20px 10px;
+    width: 84%;
+    margin: 20px 0;
+    color: var(--white-custom-2);
   }
   .campus-info .top-div {
     display: flex;
@@ -33,6 +39,13 @@
     border-bottom: none;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
+    .el-input__inner {
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      align-items: center;
+    }
   }
   .campus-info .bottom-div {
     display: flex;
@@ -83,7 +96,7 @@
     align-items: center;
     text-align: center;
     width: 100%;
-    margin-top: 10px;
+    margin-top: 15px;
     .el-button {
       width: 130px;
     }

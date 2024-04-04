@@ -1,11 +1,10 @@
-const { defineConfig } = require('@vue/cli-service')
-const path = require("path");
-const name = 'education' // page title
+const { defineConfig } = require('@vue/cli-service');
+const path = require('path');
+const name = 'education'; // page title
 
 function resolve(dir) {
-  return path.join(__dirname, dir)
+  return path.join(__dirname, dir);
 }
-
 
 module.exports = defineConfig({
   css: {
@@ -13,8 +12,8 @@ module.exports = defineConfig({
       scss: {
         /* eslint-disable */
         additionalData: `@import "~@/assets/css/variables.scss";`,
-      }
-    }
+      },
+    },
   },
   transpileDependencies: true,
   configureWebpack: {
@@ -22,9 +21,9 @@ module.exports = defineConfig({
     resolve: {
       alias: {
         // 设置@/的意义
-        '@': resolve('src')
-      }
-    }
+        '@': resolve('src'),
+      },
+    },
   },
   publicPath: './',
   outputDir: 'dist',
@@ -35,13 +34,13 @@ module.exports = defineConfig({
     },
     proxy: {
       '/api': {
-        target: "https://www.baidu.com",
-        changOrigin:true,
+        target: 'http://i557y6.natappfree.cc/prod-api',
+        changOrigin: true,
         secure: true,
-        pathRewrite:{
-          '^/api': ''
-        }
+        pathRewrite: {
+          '^/api': '',
+        },
       },
     },
   },
-})
+});

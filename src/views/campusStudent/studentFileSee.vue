@@ -3,7 +3,7 @@
   <div>filesee</div>
 </template>
 <script>
-import { twoLineTitleComponent } from '@/components/twoLineTitleComponent.vue';
+import twoLineTitleComponent from '@/components/twoLineTitleComponent.vue';
 export default {
   components: {
     twoLineTitleComponent,
