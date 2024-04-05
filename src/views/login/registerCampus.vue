@@ -119,7 +119,6 @@ export default {
 
     const changeAddress = (index, v) => {
       campus_list[index].address = v;
-      console.log('*** campus_list : ', campus_list);
     };
 
     const back2Home = () => {
@@ -137,12 +136,11 @@ export default {
         ...new Set(campus_list.filter(item => item.deptName != '')),
       ];
 
-      console.log('regist campus ---- unique_list : ', unique_list.value);
-
       campusListAddApi(unique_list).then(res => {
         if (res.code === 200) {
           ElMessage.success(res.msg);
-          // router.push('/home');
+          context.emit('changeCampusShow', false);
+          context.emit('changeRegisterAccountShow', false);
         } else {
           ElMessage.error(res.msg);
         }

@@ -71,6 +71,8 @@ const clickCellMore = () => {
     emits('changeTab', 'classFeeDetail');
   } else if (pageType.value === 'classScheduleSee') {
     emits('changeTab', 'classScheduleDetail');
+  } else if (pageType.value === 'monthlyHomeworkSee') {
+    emits('changeTab', 'monthlyHomeworkDetail');
   }
 };
 </script>

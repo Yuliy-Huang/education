@@ -34,7 +34,7 @@ module.exports = defineConfig({
     },
     proxy: {
       '/api': {
-        target: 'http://u8fznp.natappfree.cc/prod-api',
+        target: 'http://5qmjns.natappfree.cc/prod-api',
         changOrigin: true,
         secure: true,
         pathRewrite: {

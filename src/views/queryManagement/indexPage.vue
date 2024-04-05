@@ -25,6 +25,7 @@ import studentStatisticDetail from './studentStatisticDetail.vue';
 import teacherStatisticDetail from './teacherStatisticDetail.vue';
 import classFeeDetail from './classFeeDetail.vue';
 import classScheduleDetail from './studentSeeSchedule.vue';
+import monthlyHomeworkDetailPage from './monthlyHomeworkDetail.vue';
 
 const cellMoreSearchComponent = defineAsyncComponent(() =>
   import('../../components/cellMoreSearchComponent.vue')
@@ -93,6 +94,9 @@ const back2LastDiv = () => {
     case 'classScheduleDetail':
       changeTab('classScheduleSee');
       break;
+    case 'monthlyHomeworkDetail':
+      changeTab('monthlyHomeworkSee');
+      break;
     default:
       changeTab('home');
   }
@@ -120,6 +124,9 @@ watch(pageType, () => {
       break;
     case 'classScheduleDetail':
       currentCom.value = markRaw(classScheduleDetail);
+      break;
+    case 'monthlyHomeworkDetail':
+      currentCom.value = markRaw(monthlyHomeworkDetailPage);
       break;
     default:
       currentCom.value = markRaw(blocksComponent);
