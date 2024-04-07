@@ -8,60 +8,44 @@
     <component
       :is="currentCom"
       :page-type="pageType"
-      :staffList="staffList"
-      :searchValue="searchValue"
-      @changeTab="changeTab"
       :blockList="blockList"
-      :placeholder="'学校专业搜索：'"
+      @changeTab="changeTab"
+      :twoBlockList="twoBlockList"
     />
   </pageStructureComponent>
 </template>
 
 <script setup>
-import { markRaw, ref, watch, defineAsyncComponent } from 'vue';
+import { markRaw, ref, watch } from 'vue';
 import pageStructureComponent from '@/components/pageStructureComponent';
 import blocksComponent from '@/components/blocksComponent';
-
-const cellMoreSearchComponent = defineAsyncComponent(() =>
-  import('../../components/cellMoreSearchComponent.vue')
-);
+import twoBlocksComponent from '@/components/twoBlocksComponent';
 
 const pageType = ref('home');
 const isSeparate = ref(false);
+
 const blockList = ref([
-  { name: '其他扣费入档', pageType: 'teacherLevelStatistic', count: 3 },
-  { name: '其他付费入档', pageType: 'classFeeStatistic', count: 0 },
-  { name: '销售提成入档', pageType: 'classScheduleSee', count: 1 },
-  { name: '绩效奖金入栏', pageType: 'monthlyHomeworkSee', count: 0 },
+  { name: '其他扣费入档', pageType: 'page1', count: 3 },
+  { name: '其他付费入档', pageType: 'page2', count: 0 },
+  { name: '销售提成入档', pageType: 'page3', count: 1 },
+  { name: '绩效奖金入栏', pageType: 'page4', count: 1 },
 ]);
-const staffList = ref([]);
-const searchValue = ref('');
+
+const twoBlockList = ref([]);
 
 const changeTab = v => {
-  console.log('indexPage.vue --- v : ', v);
+  console.log('archiveManage --- indexPage.vue --- v : ', v);
   pageType.value = v;
   isSeparate.value = [''].includes(v);
   switch (pageType.value) {
-    case 'professionalLevelStatistic':
-      staffList.value = ['架子鼓', '钢琴'];
-      break;
-    case 'teacherLevelStatistic':
-      staffList.value = ['李文斌［吉他教师］', '张三毛［美术教师］'];
-      break;
-    case 'classFeeStatistic':
-      staffList.value = ['李文斌［吉他教师］', '张三毛［美术教师］'];
-      break;
-    case 'classScheduleSee':
-      staffList.value = ['李文斌［吉他教师］', '张三毛［美术教师］'];
-      break;
-    case 'monthlyHomeworkSee':
-      staffList.value = ['李文斌［吉他教师］', '张三毛［美术教师］'];
-      break;
-    case 'classDetailSee':
-      staffList.value = ['李文斌［吉他教师］', '张三毛［美术教师］'];
+    case 'page1':
+    case 'page2':
+    case 'page3':
+    case 'page4':
+      twoBlockList.value = ['代课教师管理存栏', '教务员工管理存栏'];
       break;
     default:
-      staffList.value = [];
+      twoBlockList.value = [];
   }
 };
 
@@ -71,8 +55,17 @@ const close2NotDim = () => {
 
 const back2LastDiv = () => {
   switch (pageType.value) {
-    case '':
-      changeTab('home');
+    case 'xxx':
+      changeTab('page1');
+      break;
+    case 'www':
+      changeTab('page2');
+      break;
+    case 'eeee':
+      changeTab('page3');
+      break;
+    case 'wwwwww':
+      changeTab('page4');
       break;
     default:
       changeTab('home');
@@ -82,13 +75,11 @@ const back2LastDiv = () => {
 const currentCom = ref(markRaw(blocksComponent));
 watch(pageType, () => {
   switch (pageType.value) {
-    case 'professionalLevelStatistic':
-    case 'teacherLevelStatistic':
-    case 'classFeeStatistic':
-    case 'classScheduleSee':
-    case 'monthlyHomeworkSee':
-    case 'classDetailSee':
-      currentCom.value = markRaw(cellMoreSearchComponent);
+    case 'page1':
+    case 'page2':
+    case 'page3':
+    case 'page4':
+      currentCom.value = markRaw(twoBlocksComponent);
       break;
     default:
       currentCom.value = markRaw(blocksComponent);
