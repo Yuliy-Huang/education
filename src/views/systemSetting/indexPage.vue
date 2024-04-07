@@ -19,19 +19,18 @@
       >
         <component
           :is="loginSetting"
-          :key="activeTag + ':' + showEdit.toString()"
+          :key="`${activeTag}:${showEdit.toString()}`"
           @updateEdit="updateShowEdit"
           v-if="activeTag === '岗位人员登录设置' && !showEdit"
         />
         <component
           :is="loginSettingEdit"
-          :key="activeTag + ':' + showEdit.toString()"
           @updateEdit="updateShowEdit"
           v-else-if="activeTag === '岗位人员登录设置' && showEdit"
         />
         <component
           :is="currentCom"
-          :key="activeTag + ':' + showEdit.toString()"
+          :key="`${activeTag}:${showEdit.toString()}`"
           v-else
         />
       </keep-alive>

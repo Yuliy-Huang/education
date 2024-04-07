@@ -1,15 +1,25 @@
 <template>
-  <cardsComponent />
+  <div class="homework-page">
+    <div class="homework-head">
+      <div class="homework-col" v-for="item of 12" :key="item">
+        <div>{{ item + 1 }}月</div>
+        <div>75%</div>
+      </div>
+    </div>
+    <div class="homework-body">
+      <weeksComponent />
+    </div>
+  </div>
 </template>
 <script>
-import cardsComponent from '@/components/cardsComponent.vue';
+import weeksComponent from '@/components/weeksComponent.vue';
 export default {
   components: {
-    cardsComponent,
+    weeksComponent,
   },
   setup() {},
 };
 </script>
 <style lang="less" scoped>
-@import '@/assets/css/queryManage/studentStatisticDetailCss.less';
+@import '@/assets/css/queryManage/monthlyHomeworkDetailCss.less';
 </style>

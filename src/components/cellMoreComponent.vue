@@ -121,7 +121,8 @@ const clickCellFunc = e => {
     pageType.value === 'teacherLevelStatistic' ||
     pageType.value === 'classFeeStatistic' ||
     pageType.value === 'classScheduleSee' ||
-    pageType.value === 'monthlyHomeworkSee'
+    pageType.value === 'monthlyHomeworkSee' ||
+    pageType.value === 'classDetailSee'
   ) {
     emits('clickCell');
   } else if (tagName === 'span') {

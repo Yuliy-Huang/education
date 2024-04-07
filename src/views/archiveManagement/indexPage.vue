@@ -32,7 +32,7 @@ const blockList = ref([
   { name: '其他扣费入档', pageType: 'teacherLevelStatistic', count: 3 },
   { name: '其他付费入档', pageType: 'classFeeStatistic', count: 0 },
   { name: '销售提成入档', pageType: 'classScheduleSee', count: 1 },
-  { name: '销售提成入档', pageType: 'monthlyHomeworkSee', count: 0 },
+  { name: '绩效奖金入栏', pageType: 'monthlyHomeworkSee', count: 0 },
 ]);
 const staffList = ref([]);
 const searchValue = ref('');

@@ -14,12 +14,12 @@
   <div class="homework-right-side">
     <div class="homework-line-inside">
       <div class="homework-cell" v-for="itm of 5" :key="itm">
-        {{ toChineseNumber(itm - 1) }} 级
+        第 {{ toChineseNumber(itm) }} 周
       </div>
     </div>
     <div class="homework-line-inside">
       <div class="homework-cell" v-for="itm of 5" :key="itm">
-        {{ itm - 1 }} 级
+        第 {{ itm }} 周
       </div>
     </div>
   </div>

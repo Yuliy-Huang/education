@@ -4,6 +4,7 @@
     :isSeparate="isSeparate"
     @close2NotDim="close2NotDim"
     @back2LastDiv="back2LastDiv"
+    :noBorderRight="noBorderRight"
   >
     <component
       :is="currentCom"
@@ -26,10 +27,13 @@ import teacherStatisticDetail from './teacherStatisticDetail.vue';
 import classFeeDetail from './classFeeDetail.vue';
 import classScheduleDetail from './studentSeeSchedule.vue';
 import monthlyHomeworkDetailPage from './monthlyHomeworkDetail.vue';
+import classInfoDetailPage from './classInfoDetail.vue';
 
 const cellMoreSearchComponent = defineAsyncComponent(() =>
   import('../../components/cellMoreSearchComponent.vue')
 );
+
+const noBorderRight = ref(false);
 
 const pageType = ref('home');
 const isSeparate = ref(false);
@@ -51,7 +55,7 @@ const searchValue = ref('');
 const changeTab = v => {
   console.log('indexPage.vue --- v : ', v);
   pageType.value = v;
-  isSeparate.value = [''].includes(v);
+  isSeparate.value = ['monthlyHomeworkDetail'].includes(v);
   switch (pageType.value) {
     case 'studentLevelStatistic':
       staffList.value = ['架子鼓', '钢琴'];
@@ -95,7 +99,10 @@ const back2LastDiv = () => {
       changeTab('classScheduleSee');
       break;
     case 'monthlyHomeworkDetail':
-      changeTab('monthlyHomeworkSee');
+      changeTab('classDetailSee');
+      break;
+    case 'classInfoDetail':
+      changeTab('classDetailSee');
       break;
     default:
       changeTab('home');
@@ -112,23 +119,34 @@ watch(pageType, () => {
     case 'monthlyHomeworkSee':
     case 'classDetailSee':
       currentCom.value = markRaw(cellMoreSearchComponent);
+      noBorderRight.value = false;
       break;
     case 'studentStatisticDetail':
       currentCom.value = markRaw(studentStatisticDetail);
+      noBorderRight.value = false;
       break;
     case 'teacherStatisticDetail':
       currentCom.value = markRaw(teacherStatisticDetail);
+      noBorderRight.value = false;
       break;
     case 'classFeeDetail':
       currentCom.value = markRaw(classFeeDetail);
+      noBorderRight.value = false;
       break;
     case 'classScheduleDetail':
       currentCom.value = markRaw(classScheduleDetail);
+      noBorderRight.value = false;
       break;
     case 'monthlyHomeworkDetail':
       currentCom.value = markRaw(monthlyHomeworkDetailPage);
+      noBorderRight.value = false;
+      break;
+    case 'classInfoDetail':
+      currentCom.value = markRaw(classInfoDetailPage);
+      noBorderRight.value = true;
       break;
     default:
+      noBorderRight.value = false;
       currentCom.value = markRaw(blocksComponent);
   }
 });

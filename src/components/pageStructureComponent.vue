@@ -8,7 +8,12 @@
           'teacherInfoSeeDetail',
         ]"
       >
-        <div :class="isSeparate ? 'academic-staff-separate' : 'academic-staff'">
+        <div
+          :class="[
+            isSeparate ? 'academic-staff-separate' : 'academic-staff',
+            noBorderRight ? 'no-border-right' : '',
+          ]"
+        >
           <slot></slot>
         </div>
       </keep-alive>
@@ -32,6 +37,10 @@ defineProps({
     required: true,
   },
   isSeparate: {
+    type: Boolean,
+    default: false,
+  },
+  noBorderRight: {
     type: Boolean,
     default: false,
   },
