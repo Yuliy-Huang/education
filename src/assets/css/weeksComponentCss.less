@@ -1,0 +1,30 @@
+.homework-left-side {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid var(--white-custom-2);
+}
+.homework-right-side {
+  display: grid;
+  grid-template-rows: 1fr 10fr;
+}
+
+.homework-line-inside {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  border-bottom: 1px solid var(--white-custom-2);
+}
+.homework-line-inside:last-of-type {
+  border: none;
+}
+.homework-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid var(--white-custom-2);
+}
+.homework-cell:last-of-type {
+  border: none;
+}
