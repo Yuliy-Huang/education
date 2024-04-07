@@ -85,8 +85,12 @@ const emits = defineEmits(['changeTab']);
 const globalVars = inject('globalVars');
 globalVars.isDim = '1';
 const changePage = v => {
-  // console.log('blocks --- changePage --- v : ', v)
-  emits('changeTab', v);
+  const specialList = ['page1', 'page2', 'page3', 'page4'];
+  if (specialList.indexOf(v) !== -1) {
+    emits('changeTab', 'home', v);
+  } else {
+    emits('changeTab', v);
+  }
 };
 </script>
 <style scoped lang="less">

@@ -33,10 +33,12 @@ const blockList = ref([
 
 const twoBlockList = ref([]);
 
-const changeTab = v => {
-  console.log('archiveManage --- indexPage.vue --- v : ', v);
-  pageType.value = v;
-  isSeparate.value = [''].includes(v);
+const changeTab = (from, to) => {
+  console.log('archiveManage --- indexPage.vue --- from : ', from);
+  console.log('archiveManage --- indexPage.vue --- to : ', to);
+
+  pageType.value = to;
+  isSeparate.value = [''].includes(to);
   switch (pageType.value) {
     case 'page1':
     case 'page2':
@@ -45,30 +47,31 @@ const changeTab = v => {
       twoBlockList.value = ['代课教师管理存栏', '教务员工管理存栏'];
       break;
     default:
+      console.log('changeTab --- default');
       twoBlockList.value = [];
   }
 };
 
 const close2NotDim = () => {
-  changeTab('home');
+  changeTab('', 'home');
 };
 
 const back2LastDiv = () => {
   switch (pageType.value) {
     case 'xxx':
-      changeTab('page1');
+      changeTab('home', 'page1');
       break;
     case 'www':
-      changeTab('page2');
+      changeTab('home', 'page2');
       break;
     case 'eeee':
-      changeTab('page3');
+      changeTab('home', 'page3');
       break;
     case 'wwwwww':
-      changeTab('page4');
+      changeTab('home', 'page4');
       break;
     default:
-      changeTab('home');
+      changeTab('', 'home');
   }
 };
 
