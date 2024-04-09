@@ -99,7 +99,7 @@ const back2LastDiv = () => {
       changeTab('classScheduleSee');
       break;
     case 'monthlyHomeworkDetail':
-      changeTab('classDetailSee');
+      changeTab('monthlyHomeworkSee');
       break;
     case 'classInfoDetail':
       changeTab('classDetailSee');
