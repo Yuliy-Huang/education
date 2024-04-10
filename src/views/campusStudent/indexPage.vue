@@ -52,7 +52,7 @@ const staffList = ref(['梁朝伟', '刘德华']);
 const searchValue = ref('');
 
 const changeTab = v => {
-  console.log('indexPage.vue --- v : ', v);
+  console.log('campusStudent ---- indexPage.vue --- v : ', v);
   pageType.value = v;
   isSeparate.value = [
     'studentNumber',

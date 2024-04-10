@@ -16,6 +16,29 @@
       justify-content: center;
       align-items: center;
       text-align: center;
+      .search-head {
+        height: 65%;
+        // border-bottom: 1px solid var(--white-custom-2);
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+
+        .el-input {
+          border: 1px solid var(--white-custom-2);
+          border-radius: 2px;
+        }
+
+        .el-input .el-input__icon {
+          font-size: small;
+          color: var(--white-custom-2);
+          cursor: pointer;
+        }
+
+        .el-input__inner::placeholder {
+          color: var(--light-grey-custom-transparent);
+        }
+      }
     }
     .inner-img-div {
       cursor: pointer;

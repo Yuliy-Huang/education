@@ -10,8 +10,23 @@
           />
         </span>
       </div>
-      <div class="first-col">
+      <div class="first-col" v-if="title">
         {{ props.title }}
+      </div>
+      <div class="first-col" v-else>
+        <span class="search-head">
+          <el-input
+            v-model="searchValue"
+            style="
+              width: 300px;
+              height: 100%;
+              background-color: var(--dark-grey-custom-2);
+            "
+            placeholder="校区学员搜索"
+            size="small"
+            :suffix-icon="Search"
+          />
+        </span>
       </div>
       <div class="first-col">
         <span class="inner-img-div" @click="changeYear(1)">
@@ -23,7 +38,7 @@
         </span>
       </div>
     </div>
-    <div :class="'second-line-' + cutNum">
+    <div :class="'second-line-' + cutNum" v-if="title">
       <div class="second-col" v-for="idx in cutNum" :key="idx">
         {{
           props.dataList[idx - 1]
@@ -36,28 +51,29 @@
         }}
       </div>
     </div>
+    <div :class="'second-line-' + cutNum" v-else>
+      <div class="second-col" v-for="idx in cutNum" :key="idx">
+        {{ props.dataList[idx - 1] ? props.dataList[idx - 1] : '' }}
+      </div>
+    </div>
   </div>
 </template>
-<script>
-export default {
-  props: {
-    cutNum: {
-      type: Number,
-      default: 8,
-    },
-    title: String,
-    dataList: {
-      type: Array,
-      default: () => {},
-    },
+<script setup>
+import { defineProps } from 'vue';
+import { Search } from '@element-plus/icons-vue';
+
+const props = defineProps({
+  title: String,
+  cutNum: {
+    type: Number,
+    default: 8,
   },
-  setup(props) {
-    return {
-      props,
-    };
+  dataList: {
+    type: Array,
+    default: () => {},
   },
-};
+});
 </script>
-<style scoped lang="less">
+<style lang="less">
 @import '@/assets/css/twoLineTitleComponentCss.less';
 </style>

@@ -111,8 +111,15 @@ const clickCellFunc = e => {
     '**** cellMore --- clickCellFunc --- pageType : ',
     pageType.value
   );
+  if (!e.target.innerHTML) {
+    return;
+  }
   const tagName = e.target.tagName.toLowerCase();
+  const regex = new RegExp('-', 'g');
+  const matches = pageType.value.match(regex);
+  console.log('matches : ', matches);
   if (
+    (matches && matches.length === 1) ||
     pageType.value === 'infoModify' ||
     pageType.value === 'infoSee' ||
     pageType.value === 'staffDimission' ||
