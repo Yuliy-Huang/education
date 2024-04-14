@@ -97,6 +97,10 @@ const props = defineProps({
     type: Number,
     default: 10,
   },
+  showRightBorder: {
+    type: Boolean,
+    default: false,
+  },
 });
 const {
   tableData,
@@ -105,6 +109,7 @@ const {
   operationList,
   isShowAdd,
   rowNum,
+  showRightBorder,
 } = toRefs(props);
 console.log('rowNum : ', rowNum.value);
 const tableOnceRef = ref(null);
@@ -144,8 +149,10 @@ watch(
 );
 
 const setClass = data => {
-  if (rowNum.value !== 10 && data.rowIndex === rowNum.value - 1) {
-    return 'notTenRightBorderAndNoBottom';
+  if (showRightBorder) {
+    return 'addRightBorder';
+  } else if (rowNum.value !== 10 && data.rowIndex === rowNum.value - 1) {
+    return 'notTenColumns';
   } else if (rowNum.value !== 10 && data.rowIndex !== rowNum.value - 1) {
     return 'notTenRightBorder';
   } else if (
@@ -176,7 +183,7 @@ const loadMore = () => {
 
 const emit = defineEmits(['addFunc']);
 const clickAdd = () => {
+  console.log('tableOnce --- addaddadd');
   emit('addFunc');
 };
 </script>
-<style scoped></style>

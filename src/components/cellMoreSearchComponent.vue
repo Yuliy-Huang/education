@@ -75,10 +75,17 @@ const clickCellMore = () => {
     emits('changeTab', 'monthlyHomeworkDetail');
   } else if (pageType.value === 'classDetailSee') {
     emits('changeTab', 'classInfoDetail');
-  } else if (pageType.value === 'page1-staff') {
-    emits('changeTab', 'page1-staff-archieve');
-  } else if (pageType.value === 'page1-teacher') {
-    emits('changeTab', 'page1-teacer-archieve');
+  } else if (
+    pageType.value === 'page1-staff' ||
+    pageType.value === 'page1-teacher' ||
+    pageType.value === 'page2-staff' ||
+    pageType.value === 'page2-teacher' ||
+    pageType.value === 'page3-staff' ||
+    pageType.value === 'page3-teacher' ||
+    pageType.value === 'page4-staff' ||
+    pageType.value === 'page4-teacher'
+  ) {
+    emits('changeTab', pageType.value, 'archieve');
   }
 };
 </script>

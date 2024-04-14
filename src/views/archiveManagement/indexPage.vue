@@ -14,6 +14,8 @@
       :searchValue="searchValue"
       :placeholder="placeholder"
       :staffList="staffList"
+      @clickPlusFunc="clickPlusFunc"
+      :newArchive="newArchive"
     />
   </pageStructureComponent>
 </template>
@@ -25,6 +27,12 @@ import blocksComponent from '@/components/blocksComponent';
 import twoBlocksComponent from '@/components/twoBlocksComponent';
 const cellMoreSearchComponent = defineAsyncComponent(() =>
   import('../../components/cellMoreSearchComponent.vue')
+);
+const leftRightCom = defineAsyncComponent(() =>
+  import('@/components/leftPicRightTableComponent.vue')
+);
+const newArchivePage = defineAsyncComponent(() =>
+  import('./newArchivePage.vue')
 );
 
 const pageType = ref('home');
@@ -41,15 +49,19 @@ const twoBlockList = ref([]);
 const searchValue = ref('');
 const placeholder = ref('');
 const staffList = ref(['张三［前台］', '李四毛［经理］']);
-
+let theFrom = ref('');
 const changeTab = (from, to) => {
   console.log('archiveManage --- indexPage.vue --- from : ', from);
   console.log('archiveManage --- indexPage.vue --- to : ', to);
-  if (from === 'home' || !from) {
+  if (to === 'new-archive') {
+    pageType.value = to;
+    theFrom.value = from;
+  } else if (from === 'home' || !from) {
     pageType.value = to;
   } else {
     pageType.value = from + '-' + to;
   }
+  console.log('changeTab --- pageType.value : ', pageType.value);
   isSeparate.value = [''].includes(to);
   switch (pageType.value) {
     case 'page1':
@@ -80,7 +92,14 @@ const close2NotDim = () => {
 };
 
 const back2LastDiv = () => {
-  if (pageType.value.startsWith('page1-')) {
+  const regex = /^\[a-z]+-[a-z]+-[a-z]+$/;
+  if (pageType.value === 'new-archive') {
+    changeTab('', theFrom.value);
+  } else if (regex.test(pageType.value)) {
+    const nameList = pageType.value.split('-');
+    const to = nameList.slice(0, nameList.length - 2).join('-');
+    changeTab('', to);
+  } else if (pageType.value.startsWith('page1-')) {
     changeTab('', 'page1');
   } else if (pageType.value.startsWith('page2-')) {
     changeTab('', 'page2');
@@ -112,9 +131,25 @@ watch(pageType, () => {
     case 'page4-staff':
       currentCom.value = markRaw(cellMoreSearchComponent);
       break;
+    case 'page1-teacher-archieve':
+    case 'page1-staff-archieve':
+    case 'page2-teacher-archieve':
+    case 'page2-staff-archieve':
+      currentCom.value = markRaw(leftRightCom);
+      break;
+    case 'new-archive':
+      currentCom.value = markRaw(newArchivePage);
+      break;
     default:
       currentCom.value = markRaw(blocksComponent);
   }
 });
+
+const newArchive = ref(false);
+const clickPlusFunc = () => {
+  console.log('index --- clickPlusFunc');
+  newArchive.value = true;
+  changeTab(pageType.value, 'new-archive');
+};
 </script>
 <style scoped lang="less"></style>
