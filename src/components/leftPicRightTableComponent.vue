@@ -33,6 +33,7 @@ const props = defineProps({
   },
 });
 const { pageType } = toRefs(props);
+console.log('leftRight --- pageType : ', pageType.value);
 
 const emits = defineEmits(['clickPlusFunc', 'changeTab']);
 const clickAddFunc = () => {
@@ -40,27 +41,41 @@ const clickAddFunc = () => {
   emits('clickPlusFunc');
 };
 
-const columns = [
-  {
-    label: '入档名称',
-    prop: 'name',
-  },
-  {
-    label: '付费价格',
-    prop: 'price',
-  },
-  {
-    label: '入档日期',
-    prop: 'archieveDate',
-  },
-  {
-    label: '备注说明',
-    prop: 'description',
-  },
-];
+let columns =
+  pageType.value.indexOf('page4') === -1
+    ? [
+        {
+          label: '入档名称',
+          prop: 'name',
+        },
+        {
+          label: '付费价格',
+          prop: 'price',
+        },
+        {
+          label: '入档日期',
+          prop: 'archieveDate',
+        },
+        {
+          label: '备注说明',
+          prop: 'description',
+        },
+      ]
+    : [
+        {
+          label: '绩效奖金',
+          prop: 'name',
+        },
+        {
+          label: '入档日期',
+          prop: 'archieveDate',
+        },
+      ];
 const archieveAddFunc = () => {
-  console.log('leftRight --- archieveAddFunc');
-  emits('changeTab', pageType.value, 'new-archive');
+  console.log('leftRight --- archieveAddFunc --- pageType: ', pageType.value);
+  pageType.value.startsWith('page4')
+    ? emits('changeTab', pageType.value, 'new-archive-bonus')
+    : emits('changeTab', pageType.value, 'new-archive');
 };
 const operationList = [
   { title: '入档', type: 'info', callBack: archieveAddFunc },

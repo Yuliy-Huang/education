@@ -34,6 +34,15 @@ const leftRightCom = defineAsyncComponent(() =>
 const newArchivePage = defineAsyncComponent(() =>
   import('./newArchivePage.vue')
 );
+const salesIntoFileList = defineAsyncComponent(() =>
+  import('./salesIntoFileList.vue')
+);
+const newArchiveSales = defineAsyncComponent(() =>
+  import('./newArchiveSales.vue')
+);
+const newArchiveBonus = defineAsyncComponent(() =>
+  import('./newArchiveBonus.vue')
+);
 
 const pageType = ref('home');
 const isSeparate = ref(false);
@@ -50,12 +59,20 @@ const searchValue = ref('');
 const placeholder = ref('');
 const staffList = ref(['张三［前台］', '李四毛［经理］']);
 let theFrom = ref('');
+let theSales = ref('');
+let theBonus = ref('');
 const changeTab = (from, to) => {
   console.log('archiveManage --- indexPage.vue --- from : ', from);
   console.log('archiveManage --- indexPage.vue --- to : ', to);
   if (to === 'new-archive') {
     pageType.value = to;
     theFrom.value = from;
+  } else if (to === 'new-archive-sales') {
+    pageType.value = to;
+    theSales.value = from;
+  } else if (to === 'new-archive-bonus') {
+    pageType.value = to;
+    theBonus.value = from;
   } else if (from === 'home' || !from) {
     pageType.value = to;
   } else {
@@ -68,7 +85,7 @@ const changeTab = (from, to) => {
     case 'page2':
     case 'page3':
     case 'page4':
-      twoBlockList.value = ['代课教师管理存栏', '教务员工管理存栏'];
+      twoBlockList.value = ['代课教师管理存档', '教务员工管理存档'];
       break;
     case 'page1-teacher':
     case 'page2-teacher':
@@ -92,12 +109,20 @@ const close2NotDim = () => {
 };
 
 const back2LastDiv = () => {
-  const regex = /^\[a-z]+-[a-z]+-[a-z]+$/;
+  const regex = /^[A-Za-z0-9]+-[A-Za-z0-9]+-[A-Za-z0-9]+$/;
+  console.log('back2LastDiv*******pageType.value : ', pageType.value);
+  console.log(regex.test(pageType.value));
   if (pageType.value === 'new-archive') {
     changeTab('', theFrom.value);
+  } else if (pageType.value === 'new-archive-sales') {
+    console.log('back2LastDiv*******theSales.value : ', theSales.value);
+    changeTab('', theSales.value);
+  } else if (pageType.value === 'new-archive-bonus') {
+    console.log('back2LastDiv*******theBonus.value : ', theBonus.value);
+    changeTab('', theBonus.value);
   } else if (regex.test(pageType.value)) {
     const nameList = pageType.value.split('-');
-    const to = nameList.slice(0, nameList.length - 2).join('-');
+    const to = nameList.slice(0, nameList.length - 1).join('-');
     changeTab('', to);
   } else if (pageType.value.startsWith('page1-')) {
     changeTab('', 'page1');
@@ -135,7 +160,19 @@ watch(pageType, () => {
     case 'page1-staff-archieve':
     case 'page2-teacher-archieve':
     case 'page2-staff-archieve':
+    case 'page4-teacher-archieve':
+    case 'page4-staff-archieve':
       currentCom.value = markRaw(leftRightCom);
+      break;
+    case 'page3-teacher-archieve':
+    case 'page3-staff-archieve':
+      currentCom.value = markRaw(salesIntoFileList);
+      break;
+    case 'new-archive-bonus':
+      currentCom.value = markRaw(newArchiveBonus);
+      break;
+    case 'new-archive-sales':
+      currentCom.value = markRaw(newArchiveSales);
       break;
     case 'new-archive':
       currentCom.value = markRaw(newArchivePage);
@@ -147,9 +184,15 @@ watch(pageType, () => {
 
 const newArchive = ref(false);
 const clickPlusFunc = () => {
-  console.log('index --- clickPlusFunc');
+  console.log('index --- clickPlusFunc-- pagetype: ', pageType.value);
   newArchive.value = true;
-  changeTab(pageType.value, 'new-archive');
+  if (pageType.value.indexOf('page4') !== -1) {
+    changeTab(pageType.value, 'new-archive-bonus');
+  } else if (pageType.value.indexOf('page3') === -1) {
+    changeTab(pageType.value, 'new-archive');
+  } else {
+    changeTab(pageType.value, 'new-archive-sales');
+  }
 };
 </script>
 <style scoped lang="less"></style>

@@ -111,7 +111,7 @@ const {
   rowNum,
   showRightBorder,
 } = toRefs(props);
-console.log('rowNum : ', rowNum.value);
+console.log('tableComponentOnce -- rowNum : ', rowNum.value);
 const tableOnceRef = ref(null);
 const tableWidth = ref(0);
 const operationWidth = computed(
