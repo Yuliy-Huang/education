@@ -1,0 +1,33 @@
+.pic-table-upper {
+  height: calc(100vw * 56 / 1080);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: var(--black-custom-transparence);
+  border-bottom: 1px solid var(--white-custom-2);
+
+  .search-upper {
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+
+    .el-input {
+      border: 1px solid var(--white-custom-2);
+      border-radius: 2px;
+    }
+
+    .el-input .el-input__icon {
+      font-size: small;
+      color: var(--white-custom-2);
+      cursor: pointer;
+    }
+
+    .el-input__inner::placeholder {
+      color: var(--light-grey-custom-transparent);
+    }
+  }
+}

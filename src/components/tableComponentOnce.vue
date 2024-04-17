@@ -6,6 +6,7 @@
     :style="['width: 100%', rowNum !== 10 ? 'height: 100%' : '']"
     :cell-class-name="setClass"
     :header-cell-class-name="setClass"
+    :show-header="showHeader"
   >
     <el-table-column
       v-for="(item, index) in userColumn"
@@ -101,6 +102,10 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  showHeader: {
+    type: Boolean,
+    default: false,
+  },
 });
 const {
   tableData,
@@ -110,6 +115,7 @@ const {
   isShowAdd,
   rowNum,
   showRightBorder,
+  showHeader,
 } = toRefs(props);
 console.log('tableComponentOnce -- rowNum : ', rowNum.value);
 const tableOnceRef = ref(null);

@@ -12,6 +12,7 @@
           :class="[
             isSeparate ? 'academic-staff-separate' : 'academic-staff',
             noBorderRight ? 'no-border-right' : '',
+            hasUpper ? 'staff-upper' : '',
           ]"
         >
           <slot></slot>
@@ -37,6 +38,10 @@ defineProps({
     required: true,
   },
   isSeparate: {
+    type: Boolean,
+    default: false,
+  },
+  hasUpper: {
     type: Boolean,
     default: false,
   },

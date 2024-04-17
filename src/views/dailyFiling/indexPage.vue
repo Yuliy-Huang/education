@@ -1,98 +1,250 @@
 <template>
   <pageStructureComponent
-    :pageType="'home'"
-    :isSeparate="isSeparate"
-    @close2NotDim="close2NotDim"
-    @back2LastDiv="back2LastDiv"
+      :pageType="'home'"
+      :isSeparate="isSeparate"
+      @close2NotDim="close2NotDim"
+      @back2LastDiv="back2LastDiv"
   >
     <component
-      :is="currentCom"
-      :page-type="pageType"
-      :staffList="staffList"
-      :searchValue="searchValue"
-      @changeTab="changeTab"
-      :blockList="blockList"
-      :placeholder="'学校专业搜索：'"
+        :is="currentCom"
+        :page-type="pageType"
+        @changeTab="changeTab"
+        :blockList="blockList"
+        :rowNum="12"
+        :user-column="columns"
+        :table-data="tableData"
+        :is-show-operation="true"
+        :operation-list="operationList"
+        :is-show-add="true"
+        @addFunc="clickAddFunc"
+        :showRightBorder="true"
+        :showHeader="true"
     />
   </pageStructureComponent>
 </template>
 
 <script setup>
-import { markRaw, ref, watch, defineAsyncComponent } from 'vue';
+import {defineAsyncComponent, markRaw, reactive, ref, watch} from 'vue';
 import pageStructureComponent from '@/components/pageStructureComponent';
 import blocksComponent from '@/components/blocksComponent';
+import tableComponentOnce from '@/components/tableComponentOnce.vue';
 
-const cellMoreSearchComponent = defineAsyncComponent(() =>
-  import('../../components/cellMoreSearchComponent.vue')
+const newDailyFillingPage = defineAsyncComponent(() =>
+    import('./newDailyFilling.vue')
 );
 
 const pageType = ref('home');
 const isSeparate = ref(false);
 const blockList = ref([
-  { name: '日常开销归档', pageType: 'teacherLevelStatistic', count: 3 },
-  { name: '日常收入归档', pageType: 'classFeeStatistic', count: 0 },
-  { name: '商品销售归档', pageType: 'classScheduleSee', count: 1 },
-  { name: '商品进货归栏', pageType: 'monthlyHomeworkSee', count: 0 },
+  {name: '日常开销归档', pageType: 'page1', count: 3},
+  {name: '日常收入归档', pageType: 'page2', count: 0},
+  {name: '商品销售归档', pageType: 'page3', count: 1},
+  {name: '商品进货归栏', pageType: 'page4', count: 0},
 ]);
-const staffList = ref([]);
-const searchValue = ref('');
-
-const changeTab = v => {
-  console.log('indexPage.vue --- v : ', v);
-  pageType.value = v;
-  isSeparate.value = [''].includes(v);
+let tableData = reactive([]);
+let columns = ref([])
+const theFrom = ref('')
+const changeTab = (from, to) => {
+  console.log('dailyFilling --- indexPage.vue --- from : ', from);
+  console.log('dailyFilling --- indexPage.vue --- to : ', to);
+  if (to.endsWith('-new')) {
+    pageType.value = to;
+    theFrom.value = from;
+  } else if (from === 'home' || !from) {
+    pageType.value = to;
+  } else {
+    pageType.value = to;
+  }
   switch (pageType.value) {
-    case 'professionalLevelStatistic':
-      staffList.value = ['架子鼓', '钢琴'];
+    case 'page1':
+      columns.value = [
+        {
+          label: '入档员工',
+          prop: 'name',
+        },
+        {
+          label: '入档名称',
+          prop: 'archiveName',
+        },
+        {
+          label: '开销价格',
+          prop: 'price1',
+        },
+        {
+          label: '入档目期',
+          prop: 'date',
+        },
+        {
+          label: '备注说明',
+          prop: 'comment'
+        }
+      ]
+      tableData = [
+        {
+          name: '刘文【前台］',
+          archiveName: '水费',
+          price1: '150',
+          date: '2023.5.6',
+          comment: '交了半年水费',
+        },
+      ];
       break;
-    case 'teacherLevelStatistic':
-      staffList.value = ['李文斌［吉他教师］', '张三毛［美术教师］'];
+    case 'page2':
+      columns.value = [
+        {
+          label: '入档员工',
+          prop: 'name',
+        },
+        {
+          label: '入档名称',
+          prop: 'archiveName',
+        },
+        {
+          label: '开销价格',
+          prop: 'price1',
+        },
+        {
+          label: '入档目期',
+          prop: 'date',
+        },
+        {
+          label: '备注说明',
+          prop: 'comment'
+        }
+      ]
+      tableData = [
+        {
+          name: '刘文【前台］',
+          archiveName: '水费',
+          price1: '150',
+          date: '2023.5.6',
+          comment: '交了半年水费',
+        },
+      ];
       break;
-    case 'classFeeStatistic':
-      staffList.value = ['李文斌［吉他教师］', '张三毛［美术教师］'];
+    case 'page3':
+      columns.value = [
+        {
+          label: '入档员工',
+          prop: 'name',
+        },
+        {
+          label: '入档名称',
+          prop: 'archiveName',
+        },
+        {
+          label: '开销价格',
+          prop: 'price1',
+        },
+        {
+          label: '入档目期',
+          prop: 'date',
+        },
+        {
+          label: '备注说明',
+          prop: 'comment'
+        }
+      ]
+      tableData = [
+        {
+          name: '刘文【前台］',
+          archiveName: '水费',
+          price1: '150',
+          date: '2023.5.6',
+          comment: '交了半年水费',
+        },
+      ];
       break;
-    case 'classScheduleSee':
-      staffList.value = ['李文斌［吉他教师］', '张三毛［美术教师］'];
-      break;
-    case 'monthlyHomeworkSee':
-      staffList.value = ['李文斌［吉他教师］', '张三毛［美术教师］'];
-      break;
-    case 'classDetailSee':
-      staffList.value = ['李文斌［吉他教师］', '张三毛［美术教师］'];
+    case 'page4':
+      columns.value = [
+        {
+          label: '入档员工',
+          prop: 'name',
+        },
+        {
+          label: '入档名称',
+          prop: 'archiveName',
+        },
+        {
+          label: '开销价格',
+          prop: 'price1',
+        },
+        {
+          label: '入档目期',
+          prop: 'date',
+        },
+        {
+          label: '备注说明',
+          prop: 'comment'
+        }
+      ]
+      tableData = [
+        {
+          name: '刘文【前台］',
+          archiveName: '水费',
+          price1: '150',
+          date: '2023.5.6',
+          comment: '交了半年水费',
+        },
+      ];
       break;
     default:
-      staffList.value = [];
+      tableData.value = [];
   }
 };
 
 const close2NotDim = () => {
-  changeTab('home');
+  changeTab('', 'home');
 };
 
 const back2LastDiv = () => {
   switch (pageType.value) {
-    case '':
-      changeTab('home');
+    case 'page1-new':
+    case 'page2-new':
+    case 'page3-new':
+    case 'page4-new':
+       changeTab(pageType.value, pageType.value.split('-')[0]);
       break;
     default:
-      changeTab('home');
+       changeTab('', 'home');
   }
 };
 
 const currentCom = ref(markRaw(blocksComponent));
 watch(pageType, () => {
   switch (pageType.value) {
-    case 'professionalLevelStatistic':
-    case 'teacherLevelStatistic':
-    case 'classFeeStatistic':
-    case 'classScheduleSee':
-    case 'monthlyHomeworkSee':
-    case 'classDetailSee':
-      currentCom.value = markRaw(cellMoreSearchComponent);
+    case 'page1':
+    case 'page2':
+    case 'page3':
+    case 'page4':
+      currentCom.value = markRaw(tableComponentOnce);
+      break;
+    case 'page1-new':
+    case 'page2-new':
+    case 'page3-new':
+    case 'page4-new':
+      currentCom.value = markRaw(newDailyFillingPage);
       break;
     default:
       currentCom.value = markRaw(blocksComponent);
   }
 });
+const clickAddFunc = () => {
+  console.log('dailyFilling --- clickAddFunc');
+  switch (pageType.value) {
+    case 'page1':
+    case 'page2':
+    case 'page3':
+    case 'page4':
+      changeTab(pageType.value, pageType.value + '-new')
+      break;
+    default:
+      changeTab('', 'home');
+  }
+};
+const operationList = [
+  {title: '入档', type: 'info', callBack: clickAddFunc},
+]
 </script>
 <style scoped lang="less"></style>
+
