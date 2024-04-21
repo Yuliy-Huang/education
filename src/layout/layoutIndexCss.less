@@ -62,6 +62,20 @@
   --el-header-height: calc(100vh * 27 / 1080);
 }
 
+.el-dialog {
+  background-color: var(--black-custom-default);
+  border: 1px solid var(--white-custom-2);
+  border-radius: 4px;
+}
+
+.el-dialog__body {
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
 .el-input__inner::placeholder {
   color: var(--light-grey-custom-transparent) !important;
 }
@@ -196,6 +210,31 @@
 
 .addRightBorder {
   border-right: 1px solid var(--white-custom-2) !important;
+}
+
+.greenPointerStyle {
+  cursor: pointer;
+}
+
+.green-cell {
+  display: grid;
+  grid-template-columns: 1fr 10fr;
+  text-align: center;
+  align-items: center;
+
+  .el-checkbox {
+    height: 10px !important;
+    width: 10px !important;
+  }
+
+  .el-checkbox__input {
+    width: 10px; /* 改变input的宽度 */
+    height: 10px; /* 改变input的高度 */
+  }
+  .el-checkbox__inner {
+    width: 10px; /* 改变选框的宽度 */
+    height: 10px; /* 改变选框的高度 */
+  }
 }
 
 .notTenRightBorder {
@@ -566,14 +605,32 @@
 }
 
 .el-select__wrapper {
-  height: 40px;
-  background-color: rgba(0, 0, 0, 0.05);
+  height: 22px;
+  background-color: var(--white-custom-transparence);
   box-shadow: none;
+  padding: 0 5px;
+  border: 1px solid var(--white-custom-2);
+  border-radius: 2px;
 }
 
-.el-icon {
-  font-size: x-large;
+.el-popper.is-light .el-popper__arrow::before {
+  background: none;
+  border: 1px solid var(--white-custom-2);
 }
+
+.el-select__popper.el-popper {
+  border: 1px solid var(--white-custom-2);
+  border-radius: 2px;
+}
+
+
+.el-popper.is-light {
+  background-color: var(--black-custom);
+}
+
+//.el-icon {
+//  font-size: x-large;
+//}
 
 .common-layout {
   width: 100%;
@@ -721,11 +778,9 @@
       color: var(--black-custom);
 
       .svg_wrapper {
-        background: linear-gradient(
-          90deg,
-          var(--white-custom),
-          var(--white-custom) 91.25%
-        );
+        background: linear-gradient(90deg,
+        var(--white-custom),
+        var(--white-custom) 91.25%);
       }
     }
   }
@@ -870,15 +925,13 @@
         height: 28px;
         width: 30px;
         /* 从左下到右上，从蓝色开始渐变、到50%位置是透明色渐变开始、最后以透明色结束 */
-        background: linear-gradient(
-          45deg,
-          var(--dark-grey-custom-2),
-          var(--dark-grey-custom-2) 39%,
-          #393939 40%,
-          #393939 50%,
-          transparent 50%,
-          transparent 100%
-        );
+        background: linear-gradient(45deg,
+        var(--dark-grey-custom-2),
+        var(--dark-grey-custom-2) 39%,
+        #393939 40%,
+        #393939 50%,
+        transparent 50%,
+        transparent 100%);
       }
     }
 

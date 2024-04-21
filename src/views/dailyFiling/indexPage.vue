@@ -17,9 +17,16 @@
         :operation-list="operationList"
         :is-show-add="true"
         @addFunc="clickAddFunc"
-        :showRightBorder="true"
         :showHeader="true"
+        @clickCell="showPic"
+        :showRightBorder="true"
+        :showGreen="true"
     />
+
+    <el-dialog :title="imageTitle" v-model="dialogVisible" style="height: 300px; width: 450px;">
+      <el-image :src="imageUrl" style="height: 80%; object-fit: contain;"></el-image>
+    </el-dialog>
+
   </pageStructureComponent>
 </template>
 
@@ -44,6 +51,15 @@ const blockList = ref([
 let tableData = reactive([]);
 let columns = ref([])
 const theFrom = ref('')
+const dialogVisible = ref(false)
+const imageUrl = ref('')
+const imageTitle = ref('')
+const showPic = (row) => {
+  dialogVisible.value = true
+  console.log('showPic --- row : ', row)
+  imageUrl.value = row.imageUrl
+  imageTitle.value = row.name + '照片'
+}
 const changeTab = (from, to) => {
   console.log('dailyFilling --- indexPage.vue --- from : ', from);
   console.log('dailyFilling --- indexPage.vue --- to : ', to);
@@ -61,10 +77,12 @@ const changeTab = (from, to) => {
         {
           label: '入档员工',
           prop: 'name',
+          showGreenCheckBox: true,
         },
         {
           label: '入档名称',
           prop: 'archiveName',
+          showGreenCheckBox: true,
         },
         {
           label: '开销价格',
@@ -86,6 +104,7 @@ const changeTab = (from, to) => {
           price1: '150',
           date: '2023.5.6',
           comment: '交了半年水费',
+          imageUrl: require(`@/assets/img/qr/img.jpg`)
         },
       ];
       break;
@@ -94,10 +113,12 @@ const changeTab = (from, to) => {
         {
           label: '入档员工',
           prop: 'name',
+          showGreenCheckBox: true,
         },
         {
           label: '入档名称',
           prop: 'archiveName',
+          showGreenCheckBox: true,
         },
         {
           label: '开销价格',
@@ -127,10 +148,12 @@ const changeTab = (from, to) => {
         {
           label: '入档员工',
           prop: 'name',
+          showGreenCheckBox: true,
         },
         {
           label: '入档名称',
           prop: 'archiveName',
+          showGreenCheckBox: true,
         },
         {
           label: '开销价格',
@@ -158,12 +181,13 @@ const changeTab = (from, to) => {
     case 'page4':
       columns.value = [
         {
-          label: '入档员工',
+          label: '商品名称',
           prop: 'name',
+          showGreenCheckBox: true,
         },
         {
-          label: '入档名称',
-          prop: 'archiveName',
+          label: '剩余库存',
+          prop: 'leftNum',
         },
         {
           label: '开销价格',
@@ -181,7 +205,7 @@ const changeTab = (from, to) => {
       tableData = [
         {
           name: '刘文【前台］',
-          archiveName: '水费',
+          leftNum: '2',
           price1: '150',
           date: '2023.5.6',
           comment: '交了半年水费',

@@ -7,6 +7,7 @@
     :cell-class-name="setClass"
     :header-cell-class-name="setClass"
     :show-header="showHeader"
+    @cell-click="handleCellClick"
   >
     <el-table-column
       v-for="(item, index) in userColumn"
@@ -15,7 +16,16 @@
       :prop="item.prop"
       :width="item.width"
       :align="item.align ? item.align : 'center'"
-    />
+    >
+      <template #default="scope">
+        <div v-if="item.showGreenCheckBox && scope.row[item.prop]" class="green-cell">
+          <slot :name="item.prop" v-bind="scope">
+            <el-checkbox checked disabled />
+            <span>{{ scope.row[item.prop] }}</span>
+          </slot>
+        </div>
+      </template>
+    </el-table-column>
     <el-table-column
       v-if="isShowOperation"
       label="操作设置"
@@ -106,6 +116,10 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  showGreen: {
+    type: Boolean,
+    default: false,
+  }
 });
 const {
   tableData,
@@ -116,8 +130,9 @@ const {
   rowNum,
   showRightBorder,
   showHeader,
+  showGreen,
 } = toRefs(props);
-console.log('tableComponentOnce -- rowNum : ', rowNum.value);
+// console.log('tableComponentOnce -- rowNum : ', rowNum.value);
 const tableOnceRef = ref(null);
 const tableWidth = ref(0);
 const operationWidth = computed(
@@ -155,7 +170,11 @@ watch(
 );
 
 const setClass = data => {
+  // console.log('setClass --- data.column : ', data.column)
   if (showRightBorder) {
+    if (showGreen && (data.column.property === 'name' || data.column.property === 'archiveName')) {
+      return 'addRightBorder greenPointerStyle';
+    }
     return 'addRightBorder';
   } else if (rowNum.value !== 10 && data.rowIndex === rowNum.value - 1) {
     return 'notTenColumns';
@@ -187,9 +206,13 @@ const loadMore = () => {
   }
 };
 
-const emit = defineEmits(['addFunc']);
+const emit = defineEmits(['addFunc', 'clickCell']);
 const clickAdd = () => {
   console.log('tableOnce --- addaddadd');
   emit('addFunc');
 };
+
+const handleCellClick = (row) => {
+  emit('clickCell', row)
+}
 </script>
