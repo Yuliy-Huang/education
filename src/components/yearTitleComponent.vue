@@ -1,9 +1,9 @@
 <template>
   <div
-    class="years-title-heading"
+    :class="['years-title-heading', showYear ? 'show-year': 'hide-year']"
     :style="{ display: headHiding ? 'none' : '' }"
   >
-    <div class="year">
+    <div class="year" v-show="showYear">
       <div class="arrow-left-div">
         <span class="inner-img-div" @click="changeYear(-1)">
           <img
@@ -41,6 +41,10 @@ defineProps({
     type: Boolean,
     default: false,
   },
+  showYear: {
+    type: Boolean,
+    default: true,
+  }
 });
 
 const nowYear = new Date().getFullYear();

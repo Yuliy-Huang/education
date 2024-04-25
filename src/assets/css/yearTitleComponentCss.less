@@ -5,7 +5,6 @@
   border: 1px solid var(--white-custom-2);
   border-radius: 4px;
   display: grid;
-  grid-template-columns: 1.8fr repeat(12, 1fr);
 
   .year {
     display: grid;
@@ -29,15 +28,25 @@
       padding-right: 5px;
     }
   }
-  .month {
-    border-left: 1px solid var(--white-custom-2);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    cursor: pointer;
-  }
-  .month.is-active {
-    background-color: var(--dark-grey-transparent);
-  }
+}
+
+.show-year {
+  grid-template-columns: 1.8fr repeat(12, 1fr);
+}
+
+.hide-year {
+  grid-template-columns: repeat(12, 1fr);
+}
+
+
+.month {
+  border-left: 1px solid var(--white-custom-2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+}
+.month.is-active {
+  background-color: var(--dark-grey-transparent);
 }

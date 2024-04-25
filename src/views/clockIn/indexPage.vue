@@ -57,7 +57,7 @@ const changeTab = (from, to) => {
 };
 
 const close2NotDim = () => {
-  changeTab('home');
+  changeTab(pageType.value, 'home');
 };
 
 const back2LastDiv = () => {
