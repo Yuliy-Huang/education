@@ -12,7 +12,7 @@
       :searchValue="searchValue"
       @changeTab="changeTab"
       :blockList="blockList"
-      :placeholder="'学校专业搜索：'"
+      :placeholder="placeholder"
     />
   </pageStructureComponent>
 </template>
@@ -22,41 +22,34 @@ import { markRaw, ref, watch, defineAsyncComponent } from 'vue';
 import pageStructureComponent from '@/components/pageStructureComponent';
 import blocksComponent from '@/components/blocksComponent';
 
-const cellMoreSearchComponent = defineAsyncComponent(() =>
-  import('../../components/cellMoreSearchComponent.vue')
+const clockDetailPage = defineAsyncComponent(() =>
+    import('./clockDetail.vue')
 );
 
 const pageType = ref('home');
 const isSeparate = ref(false);
+const placeholder = ref('')
 const blockList = ref([
-  { name: '代课教师上班打卡', pageType: 'teacherLevelStatistic', count: 3 },
-  { name: '教务员工上班打卡', pageType: 'classFeeStatistic', count: 0 },
+  { name: '教务员工上班打卡', pageType: 'page1', count: 3 },
+  { name: '代课教师上班打卡', pageType: 'page2', count: 1 },
 ]);
 const staffList = ref([]);
 const searchValue = ref('');
-
-const changeTab = v => {
-  console.log('indexPage.vue --- v : ', v);
-  pageType.value = v;
-  isSeparate.value = [''].includes(v);
+let theFrom = ref('');
+const changeTab = (from, to) => {
+  console.log('clockIn --- indexPage.vue --- from : ', from);
+  console.log('clockIn --- indexPage.vue --- to : ', to);
+  pageType.value = to;
+  theFrom.value = from;
+  isSeparate.value = ['page1', 'page2'].includes(to);
   switch (pageType.value) {
-    case 'professionalLevelStatistic':
-      staffList.value = ['架子鼓', '钢琴'];
+    case 'page1':
+      staffList.value = ['张三［前台］', '李四［后勤］'];
+      placeholder.value = '教务员工搜索：'
       break;
-    case 'teacherLevelStatistic':
+    case 'page2':
       staffList.value = ['李文斌［吉他教师］', '张三毛［美术教师］'];
-      break;
-    case 'classFeeStatistic':
-      staffList.value = ['李文斌［吉他教师］', '张三毛［美术教师］'];
-      break;
-    case 'classScheduleSee':
-      staffList.value = ['李文斌［吉他教师］', '张三毛［美术教师］'];
-      break;
-    case 'monthlyHomeworkSee':
-      staffList.value = ['李文斌［吉他教师］', '张三毛［美术教师］'];
-      break;
-    case 'classDetailSee':
-      staffList.value = ['李文斌［吉他教师］', '张三毛［美术教师］'];
+      placeholder.value = '代课教师搜索：'
       break;
     default:
       staffList.value = [];
@@ -68,25 +61,15 @@ const close2NotDim = () => {
 };
 
 const back2LastDiv = () => {
-  switch (pageType.value) {
-    case '':
-      changeTab('home');
-      break;
-    default:
-      changeTab('home');
-  }
+  changeTab('home');
 };
 
 const currentCom = ref(markRaw(blocksComponent));
 watch(pageType, () => {
   switch (pageType.value) {
-    case 'professionalLevelStatistic':
-    case 'teacherLevelStatistic':
-    case 'classFeeStatistic':
-    case 'classScheduleSee':
-    case 'monthlyHomeworkSee':
-    case 'classDetailSee':
-      currentCom.value = markRaw(cellMoreSearchComponent);
+    case 'page1':
+    case 'page2':
+      currentCom.value = markRaw(clockDetailPage);
       break;
     default:
       currentCom.value = markRaw(blocksComponent);

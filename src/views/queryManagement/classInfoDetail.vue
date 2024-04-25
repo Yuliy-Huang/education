@@ -19,7 +19,7 @@
         :table-data="tableData"
         :is-show-operation="false"
         :is-show-add="false"
-      ></table-component-once>
+      />
     </div>
   </div>
 </template>

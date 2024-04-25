@@ -22,7 +22,7 @@
               height: 100%;
               background-color: var(--dark-grey-custom-2);
             "
-            placeholder="校区学员搜索"
+            :placeholder="placeholder"
             size="small"
             :suffix-icon="Search"
           />
@@ -72,6 +72,10 @@ const props = defineProps({
     type: Array,
     default: () => {},
   },
+  placeholder: {
+    type: String,
+    default: '校区学员搜索：'
+  }
 });
 </script>
 <style lang="less">
