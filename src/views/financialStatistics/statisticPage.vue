@@ -1,37 +1,19 @@
 <template>
   <div class="clock-detail">
-    <twoLineTitleComponent :hideFirstLine="true" :dataList="props.staffList" :cutNum="cutNum" :placeholder="props.placeholder" class="two-title"/>
-    <yearTitleComponent :showYear="false" />
+    <twoLineTitleComponent :hideFirstLine="true" :dataList="props.staffList" :cutNum="cutNum"
+                           :placeholder="props.placeholder" class="two-title"/>
+    <yearTitleComponent :showYear="false"/>
 
     <div class="clock-detail-table">
-      <div class="left-side">
-        <div>
-          <img
-              :src="require(`@/assets/img/qr/img.jpg`)"
-              style="width: 80px; height: 120px"
-              alt=""
-          />
-        </div>
-        <div>刘老师</div>
-        <div>钢琴教师</div>
-      </div>
-
-      <div class="right-side">
-        <div class="up-side">
-          <table-component-once
-              :rowNum="5"
-              :user-column="columns"
-              :table-data="tableData"
-              :is-show-operation="false"
-              :is-show-add="false"
-          />
-        </div>
-        <div class="down-side">
-          <el-button plain><span class="dot-green"></span>上班</el-button>
-          <el-button plain><span class="yellow-green"></span>请假</el-button>
-          <el-button plain><span class="red-green"></span>旷勤</el-button>
-        </div>
-      </div>
+      <div class="up-table">第一月专业预售学费共计：550000元</div>
+      <table-component-once
+          :rowNum="7"
+          :user-column="columns"
+          :table-data="tableData"
+          :is-show-operation="false"
+          :is-show-add="false"
+          :hide-left-border="true"
+      />
     </div>
 
   </div>
@@ -141,50 +123,27 @@ const tableData = reactive([
   width: 100%;
   height: calc(100% - 100vw * 5.6 * 3 / 1080 - 100vw * 28 * 3 / 1080);
   display: grid;
-  grid-template-columns: 1.3fr 10fr;
   margin-top: calc(100vw * 5.6 / 1080);
   border: 1px solid var(--white-custom-2);
+  border-bottom: none;
   border-radius: 4px;
+
+  .up-table {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: calc(100vw * 28 / 1080);
+    border-bottom: 1px solid var(--white-custom-2);
+    background-color: var(--black-custom-transparence);
+  }
 
   .addRightBorder:last-of-type {
     border-right: none !important;
   }
 
-  .left-side {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-right: 1px solid var(--white-custom-2);
-    background-color: var(--black-custom-transparence) !important;
-  }
-
-  .right-side {
-    height: 100%;
-    display: grid;
-    grid-template-rows: 5fr 1.8fr;
-
-    .up-side {
-
-    }
-
-    .down-side {
-      background-color: var(--black-custom-transparence) !important;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-
-      .el-button.is-plain {
-        width: 100px !important;
-        margin: 0 15px;
-      }
-    }
-
-    .el-table tr {
-      height: 45px !important;
-    }
+  .el-table tr {
+    height: 45px !important;
   }
 
   .dot-green {
@@ -195,6 +154,7 @@ const tableData = reactive([
     border-radius: 50%;
     background-color: var(--light-green-custom);
   }
+
   .red-green {
     margin-right: 10px;
     display: inline-block;
@@ -203,6 +163,7 @@ const tableData = reactive([
     border-radius: 50%;
     background-color: var(--light-red-custom);
   }
+
   .yellow-green {
     margin-right: 10px;
     display: inline-block;

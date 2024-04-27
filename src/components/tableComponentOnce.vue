@@ -119,6 +119,10 @@ const props = defineProps({
   showGreen: {
     type: Boolean,
     default: false,
+  },
+  hideLeftBorder: {
+    type: Boolean,
+    default: false
   }
 });
 const {
@@ -131,6 +135,7 @@ const {
   showRightBorder,
   showHeader,
   showGreen,
+  hideLeftBorder,
 } = toRefs(props);
 // console.log('tableComponentOnce -- rowNum : ', rowNum.value);
 const tableOnceRef = ref(null);
@@ -170,23 +175,30 @@ watch(
 );
 
 const setClass = data => {
-  // console.log('setClass --- data.column : ', data.column)
-  if (showRightBorder) {
+  console.log('setClass --- showRightBorder : ', showRightBorder.value)
+  console.log('setClass --- hideLeftBorder : ', hideLeftBorder.value)
+  let className = ''
+  if (showRightBorder.value) {
     if (showGreen && (data.column.property === 'name' || data.column.property === 'archiveName')) {
-      return 'addRightBorder greenPointerStyle';
+      className = 'addRightBorder greenPointerStyle';
+    } else {
+      className = 'addRightBorder';
     }
-    return 'addRightBorder';
+  } else if (hideLeftBorder.value) {
+    className = 'addRightBorder hideFirstLiftBorder';
   } else if (rowNum.value !== 10 && data.rowIndex === rowNum.value - 1) {
-    return 'notTenColumns';
+    className =  'notTenColumns';
   } else if (rowNum.value !== 10 && data.rowIndex !== rowNum.value - 1) {
-    return 'notTenRightBorder';
+    className =  'notTenRightBorder';
   } else if (
     data.columnIndex === 0 ||
     (!isShowOperation && data.columnIndex !== userColumn.value.length - 1) ||
     (isShowOperation && data.columnIndex !== userColumn.value.length)
   ) {
-    return 'addRightBorder';
+    className =  'addRightBorder';
   }
+  console.log('className : ', className)
+  return className
 };
 
 const count = ref(0);
