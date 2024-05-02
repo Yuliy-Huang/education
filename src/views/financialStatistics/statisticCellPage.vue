@@ -4,15 +4,14 @@
                            :placeholder="props.placeholder" class="two-title"/>
     <yearTitleComponent :showYear="false"/>
 
-    <div class="clock-detail-table">
-      <div class="up-table">第一月专业预售学费共计：550000元</div>
-      <table-component-once
-          :rowNum="7"
-          :user-column="columns"
-          :table-data="tableData"
-          :is-show-operation="false"
-          :is-show-add="false"
-          :hide-left-border="true"
+    <div class="statistic-cell-page">
+      <div class="up-table">第一月工资支出共计：37500元</div>
+      <cellMoreComponent
+          :data-list="dataList"
+          :show-add="false"
+          :show-del="false"
+          :col-count="6"
+          :row-count="7"
       />
     </div>
 
@@ -22,7 +21,7 @@
 import yearTitleComponent from '@/components/yearTitleComponent.vue';
 import twoLineTitleComponent from "@/components/twoLineTitleComponent.vue";
 import {defineProps, reactive} from "vue";
-import tableComponentOnce from "@/components/tableComponentOnce.vue";
+import cellMoreComponent from '@/components/cellMoreComponent.vue';
 
 const props = defineProps({
   placeholder: {
@@ -40,73 +39,11 @@ const props = defineProps({
   }
 });
 
-const columns = [
-  {
-    label: '学员编号',
-    prop: 'id',
-  },
-  {
-    label: '学员姓名',
-    prop: 'name',
-  },
-  {
-    label: '报名课时',
-    prop: 'classTime',
-  },
-  {
-    label: '剩余课时',
-    prop: 'leftTime',
-  },
-  {
-    label: '已上课时',
-    prop: 'passTime',
-  },
-  {
-    label: '课时优惠',
-    prop: 'classDiscount',
-  },
-  {
-    label: '课费优惠',
-    prop: 'feeDiscount',
-  },
-];
-const tableData = reactive([
-  {
-    id: 'B1003',
-    name: '梁朝伟',
-    classTime: '70',
-    leftTime: '55',
-    passTime: '15',
-    classDiscount: '3',
-    feeDiscount: 120,
-    leave: 0,
-    truant: 0,
-    remaining: 42030,
-  },
-  {
-    id: 'B1004',
-    name: '刘德华',
-    classTime: '70',
-    leftTime: '55',
-    passTime: '15',
-    classDiscount: '3',
-    feeDiscount: 120,
-    leave: 0,
-    truant: 0,
-    remaining: 42030,
-  },
-  {
-    id: 'B1006',
-    name: '张三',
-    classTime: '80',
-    leftTime: '70',
-    passTime: '10',
-    classDiscount: '3',
-    feeDiscount: 120,
-    leave: 0,
-    truant: 0,
-    remaining: 42030,
-  },
+const dataList = reactive([
+  '李三 ［A1003］：8500元',
+  '陈四 ［A1004］：7000元',
+  '张五 ［A1005］：9000元',
+  '李六 ［A1006］：12000元'
 ]);
 </script>
 <style lang="less">
@@ -119,14 +56,14 @@ const tableData = reactive([
   margin-bottom: calc(100vw * 5.6 / 1080);
 }
 
-.clock-detail-table {
+.statistic-cell-page {
   width: 100%;
-  height: calc(100% - 100vw * 5.6 * 3 / 1080 - 100vw * 28 * 3 / 1080);
+  height: calc(100% - 100vw * 5.6 * 2 / 1080 - 100vw * 28 * 3 / 1080);
   display: grid;
   margin-top: calc(100vw * 5.6 / 1080);
   border: 1px solid var(--white-custom-2);
-  border-bottom: none;
   border-radius: 4px;
+  background-color: var(--black-custom-transparence);
 
   .up-table {
     display: flex;
@@ -135,7 +72,7 @@ const tableData = reactive([
     width: 100%;
     height: calc(100vw * 28 / 1080);
     border-bottom: 1px solid var(--white-custom-2);
-    background-color: var(--black-custom-transparence);
+    //background-color: var(--black-custom-transparence);
   }
 
   .addRightBorder:last-of-type {

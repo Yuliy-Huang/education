@@ -14,6 +14,7 @@
         :blockList="blockList"
         :placeholder="placeholder"
         :cutNum="cutNum"
+        :statisticList="statisticList"
     />
   </pageStructureComponent>
 </template>
@@ -23,14 +24,21 @@ import { markRaw, ref, watch, defineAsyncComponent } from 'vue';
 import pageStructureComponent from '@/components/pageStructureComponent';
 import blocksComponent from '@/components/blocksComponent';
 
-const statisticPageCom = defineAsyncComponent(() =>
-    import('./statisticPage.vue')
+const statisticTablePageCom = defineAsyncComponent(() =>
+    import('./statisticTablePage.vue')
+);
+const statisticCellPageCom = defineAsyncComponent(() =>
+    import('./statisticCellPage.vue')
+);
+const statisticYearPageCom = defineAsyncComponent(() =>
+    import('./statisticWholeYear.vue')
 );
 
 const pageType = ref('home');
 const isSeparate = ref(false);
 const placeholder = ref('')
 const cutNum = ref(4)
+const statisticList = ref([])
 const blockList = ref([
   { name: '全年收入统计', pageType: 'page1', count: 3 },
   { name: '全年支出统计', pageType: 'page2', count: 1 },
@@ -59,6 +67,7 @@ const changeTab = (from, to) => {
     case 'page3':
       staffList.value = ['月份', '季度', '半年', '全年'];
       placeholder.value = '代课教师搜索：'
+      statisticList.value = ['收入［158627元］', '支出［36210元］', '利润［120000元］', '毛利［80000元］']
       cutNum.value = 4
       break;
     default:
@@ -78,9 +87,13 @@ const currentCom = ref(markRaw(blocksComponent));
 watch(pageType, () => {
   switch (pageType.value) {
     case 'page1':
+      currentCom.value = markRaw(statisticTablePageCom);
+      break;
     case 'page2':
+      currentCom.value = markRaw(statisticCellPageCom);
+      break;
     case 'page3':
-      currentCom.value = markRaw(statisticPageCom);
+      currentCom.value = markRaw(statisticYearPageCom);
       break;
     default:
       currentCom.value = markRaw(blocksComponent);
