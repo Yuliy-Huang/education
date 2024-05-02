@@ -14,7 +14,7 @@
 
     <div class="info-right-side">
       <table-component-once
-        :rowNum="11"
+        :rowNum="12"
         :user-column="columns"
         :table-data="tableData"
         :is-show-operation="false"

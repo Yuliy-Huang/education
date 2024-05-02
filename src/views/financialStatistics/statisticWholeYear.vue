@@ -1,31 +1,45 @@
 <template>
-  <div class="clock-detail">
+  <div class="statistic-detail">
     <twoLineTitleComponent :hideFirstLine="true" :dataList="props.staffList" :cutNum="cutNum"
-                           :placeholder="props.placeholder" class="two-title"/>
-    <yearTitleComponent :showYear="false" style="margin-bottom: calc(100vw * 5.6 / 1080);"/>
+                           :placeholder="props.placeholder" class="two-title" @changeTitleType="changeTitleType"/>
+
+    <yearTitleComponent v-if="titleType === 1" :showYear="false" style="margin-bottom: calc(100vw * 5.6 / 1080);"/>
+    <seasonsComponent v-if="titleType === 2" :showYear="false" style="margin-bottom: calc(100vw * 5.6 / 1080);"/>
+    <yearsHalfComponent v-if="titleType === 3" :showYear="false" style="margin-bottom: calc(100vw * 5.6 / 1080);"/>
+    <yearsWholeComponent v-if="titleType === 4" :showYear="false" style="margin-bottom: calc(100vw * 5.6 / 1080);"/>
+
     <twoLineTitleComponent :hideFirstLine="true" :dataList="props.statisticList" :cutNum="cutNum"
-                           :placeholder="props.placeholder" class="two-title"/>
+                           :placeholder="props.placeholder" class="two-title" @changeTitleType="changeData"/>
 
     <div class="whole-year-page">
-      <div class="up-table">第一月工资支出共计：37500元</div>
       <cellMoreComponent
+          v-if="dataType === 1 || dataType === 2"
           :first-col-width="true"
           :data-list="cellDataList"
           :show-add="false"
           :show-del="false"
           :show-left-right="true"
           :col-count="8"
-          :row-count="6"
+          :row-count="7"
       />
+      <bigBlockComponent
+          v-if="dataType === 3 || dataType === 4"
+          :blockList="cellDataList"
+      >
+      </bigBlockComponent>
     </div>
 
   </div>
 </template>
 <script setup>
 import yearTitleComponent from '@/components/yearTitleComponent.vue';
+import seasonsComponent from '@/components/yearSeasonTitleComponent.vue';
+import yearsHalfComponent from '@/components/yearHalfTitleComponent.vue';
+import yearsWholeComponent from '@/components/yearWholeComponent.vue';
 import twoLineTitleComponent from "@/components/twoLineTitleComponent.vue";
-import {defineProps, reactive} from "vue";
 import cellMoreComponent from '@/components/cellMoreComponent.vue';
+import bigBlockComponent from '@/components/bigBlockComponent.vue'
+import {defineProps, reactive, ref, watch} from "vue";
 
 const props = defineProps({
   placeholder: {
@@ -48,7 +62,16 @@ const props = defineProps({
   }
 });
 
-const cellDataList = reactive([
+const titleType = ref(1)
+const changeTitleType = (v) => {
+  titleType.value = v
+}
+const dataType = ref(1)
+const changeData = (v) => {
+  dataType.value = v
+}
+const cellDataList = ref([])
+const incommingList = reactive([
   [
     '学费：［共计80000元］',
     '钢琴：28000元',
@@ -61,9 +84,9 @@ const cellDataList = reactive([
     '333：9000元',
     '444：32000元',
     '555：32000元',
-      '666: xxx',
-      '777: xxx',
-      '888: ...'
+    '666: xxx',
+    '777: xxx',
+    '888: ...'
   ],
   [
     '销售：［共计80000元］',
@@ -73,9 +96,56 @@ const cellDataList = reactive([
     '素描：32000元'
   ]
 ]);
+cellDataList.value = incommingList
+const expenditureList = reactive([
+  [
+    '工资：［共计20000元］',
+    '李老师：6200元',
+    '王老师：5800元'
+  ],
+  [
+    '日常：［共计3200元］',
+    '水费：200元',
+    '房租：2400元',
+    '电费：140元'
+  ],
+  [
+    '提成：［共计800元］',
+    '李老师：300元',
+    '陈老师：100元'
+  ]
+])
+const profitList = reactive([
+  '利润',
+  '学费利润：90000元',
+  '销售利润：30000元',
+  '共计：120000元'
+])
+const grossMarginList = reactive([
+  '毛利',
+  '学费利润：90000元',
+  '销售利润：30000元',
+  '共计：120000元'
+])
+
+watch(dataType, () => {
+  switch (dataType.value) {
+    case 1:
+      cellDataList.value = incommingList
+      break
+    case 2:
+      cellDataList.value = expenditureList
+      break
+    case 3:
+      cellDataList.value = profitList
+      break
+    default:
+      cellDataList.value = grossMarginList
+  }
+})
 </script>
 <style lang="less">
-.clock-detail {
+.statistic-detail {
   width: 100%;
   height: 100%;
 }
@@ -86,7 +156,7 @@ const cellDataList = reactive([
 
 .whole-year-page {
   width: 100%;
-  height: calc(100% - 100vw * 5.6 * 2 / 1080 - 100vw * 28 * 4 / 1080);
+  height: calc(100% - 100vw * 5.6 * 3 / 1080 - 100vw * 28 * 4 / 1080);
   display: grid;
   margin-top: calc(100vw * 5.6 / 1080);
   border: 1px solid var(--white-custom-2);

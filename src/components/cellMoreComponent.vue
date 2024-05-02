@@ -76,7 +76,7 @@
 </template>
 <script setup>
 import {ElMessageBox} from 'element-plus';
-import {defineProps, toRefs, ref, defineEmits} from 'vue';
+import {defineProps, toRefs, ref, defineEmits, watch} from 'vue';
 import {Plus} from '@element-plus/icons-vue';
 
 const props = defineProps({
@@ -102,7 +102,7 @@ const props = defineProps({
   },
   showLeftRight: {
     type: Boolean,
-    default: true,
+    default: false,
   },
   dataList: {
     type: Array,
@@ -117,23 +117,32 @@ const {pageType, colCount, rowCount, dataList, firstColWidth, showLeftRight} = t
 const emits = defineEmits(['clickCell']);
 
 const newData = ref([]);
-if (!showLeftRight) {
-  for (let i = 0; i < dataList.value.length; i += colCount.value) {
-    if (i + colCount.value < dataList.value.length) {
-      newData.value.push(dataList.value.slice(i, i + colCount.value));
-    } else {
-      newData.value.push(dataList.value.slice(i, dataList.value.length));
+const changeData = () => {
+  newData.value = []
+  if (!showLeftRight.value) {
+    for (let i = 0; i < dataList.value.length; i += colCount.value) {
+      if (i + colCount.value < dataList.value.length) {
+        newData.value.push(dataList.value.slice(i, i + colCount.value));
+      } else {
+        newData.value.push(dataList.value.slice(i, dataList.value.length));
+      }
     }
-  }
-} else {
-  for (let row = 0; row < rowCount.value; row++) {
-    if (dataList.value[row] && dataList.value[row].length < colCount.value - 1) {
-      newData.value.push(dataList.value[row])
-    } else if (dataList.value[row]) {
-      newData.value.push(dataList.value[row].slice(0, colCount.value - 1));
+  } else {
+    for (let row = 0; row < rowCount.value; row++) {
+      if (dataList.value[row] && dataList.value[row].length < colCount.value - 1) {
+        newData.value.push(dataList.value[row])
+      } else if (dataList.value[row]) {
+        newData.value.push(dataList.value[row].slice(0, colCount.value - 1));
+      }
     }
   }
 }
+changeData()
+
+watch(dataList, () => {
+  console.log('cellMore ---- watch ---- dataList : ', dataList.value)
+  changeData()
+})
 
 const addButtonRow = Math.floor(dataList.value.length / colCount.value) + 1;
 const addButtonCol = dataList.value.length % colCount.value;
