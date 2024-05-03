@@ -1,64 +1,70 @@
 <template>
   <pageStructureComponent
-    :pageType="'home'"
-    :isSeparate="isSeparate"
-    @close2NotDim="close2NotDim"
-    @back2LastDiv="back2LastDiv"
+      :pageType="'home'"
+      :isSeparate="isSeparate"
+      @close2NotDim="close2NotDim"
+      @back2LastDiv="back2LastDiv"
   >
     <component
-      :is="currentCom"
-      :page-type="pageType"
-      :staffList="staffList"
-      :searchValue="searchValue"
-      @changeTab="changeTab"
-      :blockList="blockList"
-      :placeholder="'学校专业搜索：'"
+        :is="currentCom"
+        :page-type="pageType"
+        :staffList="staffList"
+        :searchValue="searchValue"
+        @changeTab="changeTab"
+        :blockList="blockList"
+        :placeholder="placeholder"
+        :cutNum="cutNum"
+        :statisticList="statisticList"
     />
   </pageStructureComponent>
 </template>
 
 <script setup>
-import { markRaw, ref, watch, defineAsyncComponent } from 'vue';
+import {markRaw, ref, watch, defineAsyncComponent} from 'vue';
 import pageStructureComponent from '@/components/pageStructureComponent';
 import blocksComponent from '@/components/blocksComponent';
-
+const accountDetailCom = defineAsyncComponent(() =>
+    import('./accountDetail.vue')
+);
 const cellMoreSearchComponent = defineAsyncComponent(() =>
-  import('../../components/cellMoreSearchComponent.vue')
+    import('../../components/cellMoreSearchComponent.vue')
 );
 
 const pageType = ref('home');
 const isSeparate = ref(false);
+const placeholder = ref('')
+const cutNum = ref(10)
+const statisticList = ref([])
 const blockList = ref([
-  { name: '教师工资结算', pageType: 'teacherLevelStatistic', count: 3 },
-  { name: '教务工资结算', pageType: 'classFeeStatistic', count: 0 },
-  { name: '退费学员结算', pageType: 'classScheduleSee', count: 1 },
-  { name: '商家进货结算', pageType: 'classScheduleSee', count: 1 },
+  {name: '教师工资结算', pageType: 'page1', count: 3},
+  {name: '教务工资结算', pageType: 'page2', count: 1},
+  {name: '退费学员结算', pageType: 'page3', count: 1},
+  {name: '商家进货结算', pageType: 'page4', count: 1},
 ]);
 const staffList = ref([]);
 const searchValue = ref('');
-
-const changeTab = v => {
-  console.log('indexPage.vue --- v : ', v);
-  pageType.value = v;
-  isSeparate.value = [''].includes(v);
+let theFrom = ref('');
+const changeTab = (from, to) => {
+  console.log('campusAccount --- indexPage.vue --- from : ', from);
+  console.log('campusAccount --- indexPage.vue --- to : ', to);
+  pageType.value = to;
+  theFrom.value = from;
+  isSeparate.value = ['page1', 'page2', 'page3'].includes(to);
   switch (pageType.value) {
-    case 'professionalLevelStatistic':
-      staffList.value = ['架子鼓', '钢琴'];
+    case 'page1':
+      staffList.value = ['全部专业预收学费：共计［60］万', '全部专业实收学费：共计［41］万', '全部专业商品销售；共计［33.5］万', '校区其他收入；共计［33.5］万'];
+      placeholder.value = '学校专业搜索：'
+      statisticList.value = ['小提琴', '吉他', '美术', '钢琴']
       break;
-    case 'teacherLevelStatistic':
-      staffList.value = ['李文斌［吉他教师］', '张三毛［美术教师］'];
+    case 'page2':
+      staffList.value = ['工资共计支出：280000元', '退学共计支出：20000元', '提成共计支出：1000元', '日常共计支出：30000元', '进货共计支出：40000元', '其他共计支出：5600元'];
+      placeholder.value = '代课教师搜索：'
+      statisticList.value = ['小提琴', '吉他', '美术', '钢琴']
       break;
-    case 'classFeeStatistic':
-      staffList.value = ['李文斌［吉他教师］', '张三毛［美术教师］'];
-      break;
-    case 'classScheduleSee':
-      staffList.value = ['李文斌［吉他教师］', '张三毛［美术教师］'];
-      break;
-    case 'monthlyHomeworkSee':
-      staffList.value = ['李文斌［吉他教师］', '张三毛［美术教师］'];
-      break;
-    case 'classDetailSee':
-      staffList.value = ['李文斌［吉他教师］', '张三毛［美术教师］'];
+    case 'page3':
+      staffList.value = ['月份', '季度', '半年', '全年'];
+      placeholder.value = '代课教师搜索：'
+      statisticList.value = ['收入［158627元］', '支出［36210元］', '利润［120000元］', '毛利［80000元］']
       break;
     default:
       staffList.value = [];
@@ -66,28 +72,22 @@ const changeTab = v => {
 };
 
 const close2NotDim = () => {
-  changeTab('home');
+  changeTab(pageType.value, 'home');
 };
 
 const back2LastDiv = () => {
-  switch (pageType.value) {
-    case '':
-      changeTab('home');
-      break;
-    default:
-      changeTab('home');
-  }
+  changeTab(pageType.value, 'home');
 };
 
 const currentCom = ref(markRaw(blocksComponent));
 watch(pageType, () => {
   switch (pageType.value) {
-    case 'professionalLevelStatistic':
-    case 'teacherLevelStatistic':
-    case 'classFeeStatistic':
-    case 'classScheduleSee':
-    case 'monthlyHomeworkSee':
-    case 'classDetailSee':
+    case 'page1':
+    case 'page2':
+    case 'page3':
+      currentCom.value = markRaw(accountDetailCom);
+      break;
+    case 'page4':
       currentCom.value = markRaw(cellMoreSearchComponent);
       break;
     default:

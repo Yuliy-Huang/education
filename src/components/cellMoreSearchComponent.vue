@@ -46,7 +46,7 @@ const props = defineProps({
   },
   rowCount: {
     type: Number,
-    default: 10,
+    default: 9,
   },
 });
 

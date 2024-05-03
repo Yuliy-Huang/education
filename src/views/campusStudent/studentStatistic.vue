@@ -6,7 +6,7 @@
         :page-type="props.pageType"
         :staffList="staffList"
         :placeholder="'校区学员搜索'"
-        :rowCount="10"
+        :rowCount="9"
         :colCount="8"
       />
     </div>

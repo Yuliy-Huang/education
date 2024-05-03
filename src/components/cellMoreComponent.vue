@@ -90,7 +90,7 @@ const props = defineProps({
   },
   rowCount: {
     type: Number,
-    default: 10,
+    default: 9,
   },
   showAdd: {
     type: Boolean,

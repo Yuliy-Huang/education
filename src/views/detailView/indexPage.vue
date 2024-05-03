@@ -23,7 +23,7 @@
         :showGreen="true"
     />
 
-    <el-dialog :title="imageTitle" v-model="dialogVisible" style="height: 300px; width: 450px;">
+    <el-dialog :title="imageTitle" v-model="dialogVisible" style="height: 300px; width: 400px;">
       <el-image :src="imageUrl" style="height: 80%; object-fit: contain;"></el-image>
     </el-dialog>
 

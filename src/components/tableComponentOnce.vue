@@ -175,8 +175,6 @@ watch(
 );
 
 const setClass = data => {
-  console.log('setClass --- showRightBorder : ', showRightBorder.value)
-  console.log('setClass --- hideLeftBorder : ', hideLeftBorder.value)
   let className = ''
   if (showRightBorder.value) {
     if (showGreen && (data.column.property === 'name' || data.column.property === 'archiveName')) {
@@ -197,7 +195,7 @@ const setClass = data => {
   ) {
     className =  'addRightBorder';
   }
-  console.log('className : ', className)
+  // console.log('className : ', className)
   return className
 };
 

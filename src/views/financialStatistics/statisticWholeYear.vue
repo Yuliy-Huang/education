@@ -156,7 +156,7 @@ watch(dataType, () => {
 
 .whole-year-page {
   width: 100%;
-  height: calc(100% - 100vw * 5.6 * 3 / 1080 - 100vw * 28 * 4 / 1080);
+  height: calc(100% - 100vw * 5.6 * 3 / 1080 - 100vw * 28 * 3 / 1080);
   display: grid;
   margin-top: calc(100vw * 5.6 / 1080);
   border: 1px solid var(--white-custom-2);
