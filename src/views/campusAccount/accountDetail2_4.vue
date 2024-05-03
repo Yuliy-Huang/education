@@ -1,19 +1,18 @@
 <template>
   <div class="statistic-detail">
     <yearTitleComponent :showYear="false" style="margin-bottom: calc(100vw * 5.6 / 1080);"/>
-    <twoLineTitleComponent :hideFirstLine="false" :dataList="props.statisticList" :cutNum="cutNum"
-                           :placeholder="props.placeholder" class="two-title" @changeTitleType="changeData"/>
-
-    <div class="account-detail-page">
+    <div class="account-detail-page-2-4">
       <tableComponentOnce
           :rowNum="12"
           :user-column="columns"
-          :table-data="cellDataList"
+          :table-data="tableData"
           :show-header="true"
           :is-show-operation="true"
+          :separate-operation="true"
           :operation-list="operationList"
           :is-show-add="false"
           :showRightBorder="true"
+          :show-green="true"
       />
     </div>
 
@@ -21,30 +20,8 @@
 </template>
 <script setup>
 import yearTitleComponent from '@/components/yearTitleComponent.vue';
-import twoLineTitleComponent from "@/components/twoLineTitleComponent.vue";
 import tableComponentOnce from '@/components/tableComponentOnce.vue';
-import {defineProps, ref} from "vue";
-
-const props = defineProps({
-  placeholder: {
-    type: String,
-    default: '教务员工搜索：'
-  },
-  staffList: {
-    type: Array,
-    default: () => {
-    }
-  },
-  statisticList: {
-    type: Array,
-    default: () => {
-    }
-  },
-  cutNum: {
-    type: Number,
-    default: 4
-  }
-});
+import {reactive} from "vue";
 
 const settlementFunc = () => {
 
@@ -56,25 +33,22 @@ const operationList = [
   { title: '自定义结算', type: 'info', callBack: settlementFunc },
   { title: '结账', type: 'info', callBack: checkoutFunc },
 ];
-const dataType = ref(1)
-const changeData = (v) => {
-  dataType.value = v
-}
-const columns = ref([
-  {label:'代课教师', props: 'teacher'},
-  {label:'1对1比例课时结算', props: 'one2one'},
-  {label:'1对多比例课时结算', props: 'one2Multi01'},
-  {label:'1对多固定课时结算', props: 'one2Multi02'},
-  {label:'工资底薪', props: 'salary'},
-  {label:'销售提成', props: 'salesCommissions'},
-  {label:'缋效奖金', props: 'bonus'},
-  {label:'其他付费', props: 'otherCharges'},
-  {label:'其他扣赞', props: 'otherDeductions'},
-  {label:'共计结算', props: 'totalSettlement'}
-])
-const cellDataList = ref([
+
+const columns = [
+  {label:'代课教师', prop: 'name', showGreenCheckBox: true},
+  {label:'1对1比例课时结算', prop: 'one2one'},
+  {label:'1对多比例课时结算', prop: 'one2Multi01'},
+  {label:'1对多固定课时结算', prop: 'one2Multi02'},
+  {label:'工资底薪', prop: 'salary', showGreenCheckBox: true},
+  {label:'销售提成', prop: 'salesCommissions', showGreenCheckBox: true},
+  {label:'缋效奖金', prop: 'bonus'},
+  {label:'其他付费', prop: 'otherCharges'},
+  {label:'其他扣赞', prop: 'otherDeductions'},
+  {label:'共计结算', prop: 'totalSettlement'}
+]
+const tableData = reactive([
   {
-    teacher: '李老师',
+    name: '李老师',
     one2one: '￥1621.8',
     one2Multi01: '￥600',
     one2Multi02: '￥800',
@@ -97,7 +71,7 @@ const cellDataList = ref([
   margin-bottom: calc(100vw * 5.6 / 1080);
 }
 
-.account-detail-page {
+.account-detail-page-2-4 {
   width: 100%;
   height: calc(100% - 100vw * 5.6 * 3 / 1080 - 100vw * 28 * 3 / 1080);
   display: grid;

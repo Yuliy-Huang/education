@@ -23,12 +23,12 @@
 import {markRaw, ref, watch, defineAsyncComponent} from 'vue';
 import pageStructureComponent from '@/components/pageStructureComponent';
 import blocksComponent from '@/components/blocksComponent';
-const accountDetailCom = defineAsyncComponent(() =>
-    import('./accountDetail.vue')
+const accountDetailCom1_3 = defineAsyncComponent(() =>
+    import('./accountDetail1_3.vue')
 );
-const cellMoreSearchComponent = defineAsyncComponent(() =>
-    import('../../components/cellMoreSearchComponent.vue')
-);
+const accountDetailCom2_4 = defineAsyncComponent(() =>
+    import('./accountDetail2_4.vue')
+)
 
 const pageType = ref('home');
 const isSeparate = ref(false);
@@ -64,7 +64,7 @@ const changeTab = (from, to) => {
     case 'page3':
       staffList.value = ['月份', '季度', '半年', '全年'];
       placeholder.value = '代课教师搜索：'
-      statisticList.value = ['收入［158627元］', '支出［36210元］', '利润［120000元］', '毛利［80000元］']
+      statisticList.value = ['梁朝伟［学生]', '刘德华［学生]', '古天乐［学生]']
       break;
     default:
       staffList.value = [];
@@ -83,12 +83,12 @@ const currentCom = ref(markRaw(blocksComponent));
 watch(pageType, () => {
   switch (pageType.value) {
     case 'page1':
-    case 'page2':
     case 'page3':
-      currentCom.value = markRaw(accountDetailCom);
+      currentCom.value = markRaw(accountDetailCom1_3);
       break;
+    case 'page2':
     case 'page4':
-      currentCom.value = markRaw(cellMoreSearchComponent);
+      currentCom.value = markRaw(accountDetailCom2_4);
       break;
     default:
       currentCom.value = markRaw(blocksComponent);

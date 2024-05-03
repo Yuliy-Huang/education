@@ -1,72 +1,94 @@
 <template>
   <el-table
-    v-el-table-infinite-scroll="loadMore"
-    ref="tableOnceRef"
-    :data="tableData"
-    :style="['width: 100%', rowNum !== 10 ? 'height: 100%' : '']"
-    :cell-class-name="setClass"
-    :header-cell-class-name="setClass"
-    :show-header="showHeader"
-    @cell-click="handleCellClick"
+      v-el-table-infinite-scroll="loadMore"
+      ref="tableOnceRef"
+      :data="tableData"
+      :style="['width: 100%', rowNum !== 10 ? 'height: 100%' : '']"
+      :cell-class-name="setClass"
+      :header-cell-class-name="setClass"
+      :show-header="showHeader"
+      @cell-click="handleCellClick"
   >
     <el-table-column
-      v-for="(item, index) in userColumn"
-      :key="index"
-      :label="item.label"
-      :prop="item.prop"
-      :width="item.width"
-      :align="item.align ? item.align : 'center'"
+        v-for="(item, index) in userColumn"
+        :key="index"
+        :label="item.label"
+        :prop="item.prop"
+        :width="item.width"
+        :align="item.align ? item.align : 'center'"
     >
       <template #default="scope">
         <div v-if="item.showGreenCheckBox && scope.row[item.prop]" class="green-cell">
           <slot :name="item.prop" v-bind="scope">
-            <el-checkbox checked disabled />
+            <el-checkbox checked disabled/>
             <span>{{ scope.row[item.prop] }}</span>
           </slot>
         </div>
       </template>
     </el-table-column>
     <el-table-column
-      v-if="isShowOperation"
-      label="操作设置"
-      :width="operationWidth"
-      align="center"
+        v-if="isShowOperation && !separateOperation"
+        label="操作设置"
+        :width="operationWidth"
+        align="center"
     >
       <template #default="scope">
         <template v-if="scope.$index < notNullLength">
           <span
-            v-for="(btn, num) in operationList"
-            :key="num"
-            style="padding: 0 20px"
+              v-for="(btn, num) in operationList"
+              :key="num"
+              style="padding: 0 20px"
           >
             <el-button
-              v-if="btn.title"
-              :type="btn.type"
-              plain
-              @click="btn.callBack(scope.row)"
-              style="width: 80px; height: 24px"
-              size="small"
+                v-if="btn.title"
+                :type="btn.type"
+                plain
+                @click="btn.callBack(scope.row)"
+                style="width: 80px; height: 24px"
+                size="small"
             >
               {{ btn.title }}
             </el-button>
             <el-button
-              v-else
-              text
-              :type="btn.type"
-              :icon="btn.icon"
-              @click="btn.callBack(scope.row)"
-              style="margin-right: 5px"
-              size="small"
+                v-else
+                text
+                :type="btn.type"
+                :icon="btn.icon"
+                @click="btn.callBack(scope.row)"
+                style="margin-right: 5px"
+                size="small"
             ></el-button>
           </span>
         </template>
         <template v-if="scope.$index === notNullLength && isShowAdd">
           <el-icon style="font-size: small; cursor: pointer" @click="clickAdd">
-            <Plus />
+            <Plus/>
           </el-icon>
         </template>
       </template>
     </el-table-column>
+    <template v-if="isShowOperation && separateOperation">
+      <el-table-column
+          v-for="(item, index) in operationList"
+          :key="index"
+          :label="item.title"
+          :width="operationWidth"
+          align="center"
+      >
+        <template #default="scope">
+          <el-button
+              v-if="scope.$index < notNullLength"
+              :type="item.type"
+              plain
+              @click="item.callBack(scope.row)"
+              style="width: 80px; height: 24px"
+              size="small"
+          >
+            {{ item.title }}
+          </el-button>
+        </template>
+      </el-table-column>
+    </template>
   </el-table>
 </template>
 
@@ -80,8 +102,8 @@ import {
   onMounted,
   defineEmits,
 } from 'vue';
-import { Plus } from '@element-plus/icons-vue';
-import { default as vElTableInfiniteScroll } from 'el-table-infinite-scroll';
+import {Plus} from '@element-plus/icons-vue';
+import {default as vElTableInfiniteScroll} from 'el-table-infinite-scroll';
 
 const props = defineProps({
   tableData: {
@@ -96,9 +118,14 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  separateOperation: {
+    type: Boolean,
+    default: false,
+  },
   operationList: {
     type: Object,
-    default: () => {},
+    default: () => {
+    },
   },
   isShowAdd: {
     type: Boolean,
@@ -129,6 +156,7 @@ const {
   tableData,
   userColumn,
   isShowOperation,
+  separateOperation,
   operationList,
   isShowAdd,
   rowNum,
@@ -141,7 +169,7 @@ const {
 const tableOnceRef = ref(null);
 const tableWidth = ref(0);
 const operationWidth = computed(
-  () => tableWidth.value / (userColumn.value.length + 1) + 30 + 'px'
+    () => tableWidth.value / (userColumn.value.length + 1) + 30 + 'px'
 );
 
 onMounted(() => {
@@ -149,35 +177,37 @@ onMounted(() => {
   tableWidth.value = tableElement.offsetWidth;
   window.addEventListener('resize', function () {
     tableElement =
-      tableOnceRef.value && tableOnceRef.value.$el
-        ? tableOnceRef.value.$el
-        : '';
+        tableOnceRef.value && tableOnceRef.value.$el
+            ? tableOnceRef.value.$el
+            : '';
     tableWidth.value =
-      tableElement && tableElement.offsetWidth ? tableElement.offsetWidth : 0;
+        tableElement && tableElement.offsetWidth ? tableElement.offsetWidth : 0;
   });
 });
 
 const notNullLength = computed(() => {
   return tableData.value.filter(item => item).length;
 });
+
 watch(
-  tableData,
-  () => {
-    if (tableData.value.length < rowNum.value) {
-      while (tableData.value.length < rowNum.value) {
+    tableData,
+    () => {
+      if (tableData.value.length < rowNum.value) {
+        while (tableData.value.length < rowNum.value) {
+          tableData.value.push('');
+        }
+      } else {
         tableData.value.push('');
       }
-    } else {
-      tableData.value.push('');
-    }
-  },
-  { immediate: true }
+    },
+    {immediate: true}
 );
 
 const setClass = data => {
   let className = ''
   if (showRightBorder.value) {
     if (showGreen && (data.column.property === 'name' || data.column.property === 'archiveName')) {
+      console.log('showGreenshowGreenshowGreenshowGreen')
       className = 'addRightBorder greenPointerStyle';
     } else {
       className = 'addRightBorder';
@@ -185,15 +215,15 @@ const setClass = data => {
   } else if (hideLeftBorder.value) {
     className = 'addRightBorder hideFirstLiftBorder';
   } else if (rowNum.value !== 10 && data.rowIndex === rowNum.value - 1) {
-    className =  'notTenColumns';
+    className = 'notTenColumns';
   } else if (rowNum.value !== 10 && data.rowIndex !== rowNum.value - 1) {
-    className =  'notTenRightBorder';
+    className = 'notTenRightBorder';
   } else if (
-    data.columnIndex === 0 ||
-    (!isShowOperation && data.columnIndex !== userColumn.value.length - 1) ||
-    (isShowOperation && data.columnIndex !== userColumn.value.length)
+      data.columnIndex === 0 ||
+      (!isShowOperation && data.columnIndex !== userColumn.value.length - 1) ||
+      (isShowOperation && data.columnIndex !== userColumn.value.length)
   ) {
-    className =  'addRightBorder';
+    className = 'addRightBorder';
   }
   // console.log('className : ', className)
   return className
